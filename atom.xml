@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-05-26T15:54:17+08:00</updated>
+  <updated>2015-05-26T16:52:41+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -12,5 +12,14 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[First Blog]]></title>
+    <link href="http://wodis.github.io/blog/2015/05/26/first-blog/"/>
+    <updated>2015-05-26T16:07:32+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/05/26/first-blog</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
 </feed>
