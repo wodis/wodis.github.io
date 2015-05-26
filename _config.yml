@@ -3,9 +3,9 @@
 # ----------------------- #
 
 url: http://wodis.github.io
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+title: Open Tech Pub
+subtitle: Wu Di -- “ I am a programmer who principally focused on Android/Java design and development. Dual master's degree in telecommunication and software engineering. Graduated from Dublin City University and Wuhan University. Working in Beijing. ”
+author: Wu Di
 simple_search: https://www.google.com/search
 description:
 
@@ -69,10 +69,6 @@ github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: true
 
-# Twitter
-twitter_user:
-twitter_tweet_button: true
-
 # Google +1
 google_plus_one: false
 google_plus_one_size: medium
@@ -99,3 +95,5 @@ google_analytics_tracking_id:
 
 # Facebook Like
 facebook_like: false
+
+weibo_share: true
