@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-05-27T10:24:18+08:00</updated>
+  <updated>2015-05-27T11:43:23+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -18,9 +18,7 @@
     <link href="http://wodis.github.io/blog/2015/05/26/first-blog/"/>
     <updated>2015-05-26T16:07:32+08:00</updated>
     <id>http://wodis.github.io/blog/2015/05/26/first-blog</id>
-    <content type="html"><![CDATA[<h1>关于我</h1>
-
-<p><img src="http://tp2.sinaimg.cn/1690201701/50/5679941181/1" alt="my icon" /></p>
+    <content type="html"><![CDATA[<p><img src="http://tp2.sinaimg.cn/1690201701/50/5679941181/1" alt="my icon" /></p>
 
 <p><strong>姓名：</strong> Di Wu</p>
 
