@@ -23,7 +23,8 @@ categories: Python
 # Python学习工程
 [Github Python Project](https://github.com/wodis/python-learning)
 
-###目录
+**目录**
+
 1. 中文编码 encoding
 2. 变量类型 variable
 3. 条件语句 decision
