@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "关于我"
-date: 2015-05-26 16:07:32 +0800
+date: 2015-01-01 16:07:32 +0800
 comments: true
 categories: 
 ---
