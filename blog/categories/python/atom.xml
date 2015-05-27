@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Python | Open Tech Pub]]></title>
+  <link href="http://wodis.github.io/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://wodis.github.io/"/>
+  <updated>2015-05-27T15:22:17+08:00</updated>
+  <id>http://wodis.github.io/</id>
+  <author>
+    <name><![CDATA[Wu Di]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Python Learning]]></title>
+    <link href="http://wodis.github.io/blog/2015/05/27/python-learning/"/>
+    <updated>2015-05-27T14:23:19+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/05/27/python-learning</id>
+    <content type="html"><![CDATA[<h1>为什么我要用Python</h1>
+
+<p>最近整理了一下微人脉现有的脚本，整体都基于PHP编写，然后通过Crontab做定时任务。
+但是，PHP来作为脚本的话，语法并不简洁，尝试使用Python。
+两者比较各有优势，Python的可读性非常好，对于OO化繁为简，就语法而言PHP变量的$总容易混淆（当然可能是我主观这么认为）。
+直接摘一个其他人总结的：</p>
+
+<ul>
+<li>Python is more readable, and more general purpose</li>
+<li>PHP has awful backward compatibility</li>
+<li>PHP has a lower barrier to entry</li>
+<li>Most inexpensive web-hosters support PHP, but not Python</li>
+<li>PHP has far more pre-writen scrīpts available</li>
+<li>Newer versions of mod_python require Apache 2.0, which few hosters have</li>
+<li>There is more demand for PHP developers, than Python developers</li>
+</ul>
+
+
+<h1>Python学习工程</h1>
+
+<p><a href="https://github.com/wodis/python-learning">Github Python Project</a></p>
+
+<h3>目录</h3>
+
+<ol>
+<li>中文编码 encoding</li>
+<li>变量类型 variable</li>
+<li>条件语句 decision</li>
+<li>循环语句 loop</li>
+<li>日期和时间 date</li>
+<li>函数 function</li>
+<li>文件I/O</li>
+<li>HTTP</li>
+<li>JSON</li>
+<li>Log</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>

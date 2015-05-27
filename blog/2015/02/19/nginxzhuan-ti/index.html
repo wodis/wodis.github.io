@@ -5,13 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Open Tech Pub</title>
+  <title>Nginx专题 - Open Tech Pub</title>
   <meta name="author" content="Wu Di">
 
   
-  <meta name="description" content="为什么我要用Python 最近整理了一下微人脉现有的脚本，整体都基于PHP编写，然后通过Crontab做定时任务。
-但是，PHP来作为脚本的话，语法并不简洁，尝试使用Python。
-两者比较各有优势，Python的可读性非常好，对于OO化繁为简，就语法而言PHP变量的$总容易混淆（ &hellip;">
+  <meta name="description" content="起因：由于工作内容变化的原因，需要多了解后端所使用的技术。
+但是一直没有时间去从头学习，过年在家抢红包无意间看见一篇用Nginx做代理并通过log自己动手做一个报警工具
+原文。
+所以这才从头开始搭一下Nginx。现在为学习Nginx做一个整合，争取过年期间快速浏览一遍。 Nginx学习之一： &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://wodis.github.io/">
+  <link rel="canonical" href="http://wodis.github.io/blog/2015/02/19/nginxzhuan-ti/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Open Tech Pub" type="application/atom+xml">
@@ -78,130 +79,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/05/27/python-learning/">Python Learning</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-05-27T14:23:19+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:23 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>为什么我要用Python</h1>
-
-<p>最近整理了一下微人脉现有的脚本，整体都基于PHP编写，然后通过Crontab做定时任务。
-但是，PHP来作为脚本的话，语法并不简洁，尝试使用Python。
-两者比较各有优势，Python的可读性非常好，对于OO化繁为简，就语法而言PHP变量的$总容易混淆（当然可能是我主观这么认为）。
-直接摘一个其他人总结的：</p>
-
-<ul>
-<li>Python is more readable, and more general purpose</li>
-<li>PHP has awful backward compatibility</li>
-<li>PHP has a lower barrier to entry</li>
-<li>Most inexpensive web-hosters support PHP, but not Python</li>
-<li>PHP has far more pre-writen scrīpts available</li>
-<li>Newer versions of mod_python require Apache 2.0, which few hosters have</li>
-<li>There is more demand for PHP developers, than Python developers</li>
-</ul>
-
-
-<h1>Python学习工程</h1>
-
-<p><a href="https://github.com/wodis/python-learning">Github Python Project</a></p>
-
-<h3>目录</h3>
-
-<ol>
-<li>中文编码 encoding</li>
-<li>变量类型 variable</li>
-<li>条件语句 decision</li>
-<li>循环语句 loop</li>
-<li>日期和时间 date</li>
-<li>函数 function</li>
-<li>文件I/O</li>
-<li>HTTP</li>
-<li>JSON</li>
-<li>Log</li>
-</ol>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/05/26/first-blog/">关于我</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-05-26T16:07:32+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:07 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="http://tp2.sinaimg.cn/1690201701/50/5679941181/1" alt="my icon" /></p>
-
-<p><strong>姓名：</strong> Di Wu</p>
-
-<p><strong>微博：</strong> <a href="http://weibo.com/wodis">@讨厌茄子的老科特</a></p>
-
-<p><strong>博客：</strong> <a href="http://www.openwudi.com">http://www.openwudi.com</a></p>
-
-<p><strong>所在地：</strong> 北京</p>
-
-<p><strong>就职于：</strong> 新浪微博</p>
-
-<p><strong>教育经历：</strong> <code>2012~2013 Dublin City University</code>
-<code>2006~2012 武汉大学</code></p>
-
-<hr />
-
-<p>2014年加入新浪微博，进行Java平台的研发工作，现担任新浪微博-微人脉项目工程师，完成Android客户端1.3以前版本，并切入服务器端开发到现在。2013年参加DCU的Kuali Student开源项目，经历了从调研，立项，到研发的整个过程，学业结束回国。</p>
-
-<p>这个Github账号从我入职新浪微博才注册，打算以后维护一些项目常用的代码。</p>
-
-<p>欢迎随时与我交流Android/Java开发中所遇到的问题。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/02/19/nginxzhuan-ti/">Nginx专题</a></h1>
+      <h1 class="entry-title">Nginx专题</h1>
     
     
       <p class="meta">
@@ -217,7 +100,7 @@
   </header>
 
 
-  <div class="entry-content"><p>起因：由于工作内容变化的原因，需要多了解后端所使用的技术。
+<div class="entry-content"><p>起因：由于工作内容变化的原因，需要多了解后端所使用的技术。
 但是一直没有时间去从头学习，过年在家抢红包无意间看见一篇用Nginx做代理并通过log自己动手做一个报警工具
 <a href="http://mp.weixin.qq.com/s?__biz=MjM5NDMwNjMzNA==&amp;amp;amp;mid=203292077&amp;amp;amp;idx=3&amp;amp;amp;sn=815dcf56c4d60ef7251c7c18cfa0fc81&amp;amp;amp;3rd=MzA3MDU4NTYzMw==&amp;amp;amp;scene=6#rd">原文</a>。
 所以这才从头开始搭一下Nginx。现在为学习Nginx做一个整合，争取过年期间快速浏览一遍。</p>
@@ -238,18 +121,64 @@
 </ul>
 
 </div>
-  
-  
 
 
-    </article>
+  <footer>
+    <p class="meta">
+      
   
-  <div class="pagination">
+
+<span class="byline author vcard">Posted by <span class="fn">Wu Di</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-02-19T14:40:19+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:40 pm</span></time>
+      
+
+
+    </p>
     
-    <a href="/blog/archives">Blog Archives</a>
+      <div class="sharing">
     
-  </div>
+    
+    
+
+    
+    <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
 </div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<br>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2035019"></script>
+<!-- UY END -->
+    
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/05/26/first-blog/" title="Next Post: 关于我">关于我 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -291,6 +220,7 @@
 
   
 </aside>
+
 
     </div>
   </div>

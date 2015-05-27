@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-05-27T11:45:44+08:00</updated>
+  <updated>2015-05-27T15:22:17+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -12,6 +12,51 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Python Learning]]></title>
+    <link href="http://wodis.github.io/blog/2015/05/27/python-learning/"/>
+    <updated>2015-05-27T14:23:19+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/05/27/python-learning</id>
+    <content type="html"><![CDATA[<h1>为什么我要用Python</h1>
+
+<p>最近整理了一下微人脉现有的脚本，整体都基于PHP编写，然后通过Crontab做定时任务。
+但是，PHP来作为脚本的话，语法并不简洁，尝试使用Python。
+两者比较各有优势，Python的可读性非常好，对于OO化繁为简，就语法而言PHP变量的$总容易混淆（当然可能是我主观这么认为）。
+直接摘一个其他人总结的：</p>
+
+<ul>
+<li>Python is more readable, and more general purpose</li>
+<li>PHP has awful backward compatibility</li>
+<li>PHP has a lower barrier to entry</li>
+<li>Most inexpensive web-hosters support PHP, but not Python</li>
+<li>PHP has far more pre-writen scrīpts available</li>
+<li>Newer versions of mod_python require Apache 2.0, which few hosters have</li>
+<li>There is more demand for PHP developers, than Python developers</li>
+</ul>
+
+
+<h1>Python学习工程</h1>
+
+<p><a href="https://github.com/wodis/python-learning">Github Python Project</a></p>
+
+<h3>目录</h3>
+
+<ol>
+<li>中文编码 encoding</li>
+<li>变量类型 variable</li>
+<li>条件语句 decision</li>
+<li>循环语句 loop</li>
+<li>日期和时间 date</li>
+<li>函数 function</li>
+<li>文件I/O</li>
+<li>HTTP</li>
+<li>JSON</li>
+<li>Log</li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于我]]></title>
@@ -40,6 +85,34 @@
 <p>这个Github账号从我入职新浪微博才注册，打算以后维护一些项目常用的代码。</p>
 
 <p>欢迎随时与我交流Android/Java开发中所遇到的问题。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Nginx专题]]></title>
+    <link href="http://wodis.github.io/blog/2015/02/19/nginxzhuan-ti/"/>
+    <updated>2015-02-19T14:40:19+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/02/19/nginxzhuan-ti</id>
+    <content type="html"><![CDATA[<p>起因：由于工作内容变化的原因，需要多了解后端所使用的技术。
+但是一直没有时间去从头学习，过年在家抢红包无意间看见一篇用Nginx做代理并通过log自己动手做一个报警工具
+<a href="http://mp.weixin.qq.com/s?__biz=MjM5NDMwNjMzNA==&amp;amp;amp;mid=203292077&amp;amp;amp;idx=3&amp;amp;amp;sn=815dcf56c4d60ef7251c7c18cfa0fc81&amp;amp;amp;3rd=MzA3MDU4NTYzMw==&amp;amp;amp;scene=6#rd">原文</a>。
+所以这才从头开始搭一下Nginx。现在为学习Nginx做一个整合，争取过年期间快速浏览一遍。</p>
+
+<hr />
+
+<ul>
+<li><a href="http://my.oschina.net/boonya/blog/286422">Nginx学习之一：从权威途径(wiki)了解Nginx</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287189">Nginx学习之二：Nginx 学习地图梗概</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287201">Nginx学习之三：对应平台的Nginx下载和安装</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287265">Nginx学习之四：Nginx支持模块的安装及描述</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287300">Nginx学习之五：Nginx第三方模块</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287313">Nginx学习之六：Nginx配置操作导航</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287322">Nginx学习之七：通过Nginx社区进行技术交流</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287330">Nginx开发者学习资源攻略</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/288874">Nginx学习之九：实践学习指南</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/289423">Nginx学习之十：Nginx+Tomcat多站点访问默认主页问题</a></li>
+</ul>
+
 ]]></content>
   </entry>
   
