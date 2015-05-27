@@ -5,7 +5,6 @@ date: 2015-05-26 16:07:32 +0800
 comments: true
 categories: 
 ---
-#关于我
 
 ![my icon](http://tp2.sinaimg.cn/1690201701/50/5679941181/1)
 
