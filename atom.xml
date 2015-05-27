@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-05-27T15:28:33+08:00</updated>
+  <updated>2015-05-27T18:42:52+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -53,6 +53,7 @@
 <li>HTTP</li>
 <li>JSON</li>
 <li>Log</li>
+<li>面向对象 OOP</li>
 </ol>
 
 ]]></content>
