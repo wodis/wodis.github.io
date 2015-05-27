@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Linux | Open Tech Pub]]></title>
+  <link href="http://wodis.github.io/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://wodis.github.io/"/>
+  <updated>2015-05-27T18:56:31+08:00</updated>
+  <id>http://wodis.github.io/</id>
+  <author>
+    <name><![CDATA[Wu Di]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Linux Command Line Tips]]></title>
+    <link href="http://wodis.github.io/blog/2015/01/04/linux-command-line-tips/"/>
+    <updated>2015-01-04T18:53:34+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/01/04/linux-command-line-tips</id>
+    <content type="html"><![CDATA[<p>I just post some &lsquo;terminal&rsquo; things here, because I am getting tried to use GUI for my development and decide to change the method to manage Unix-based Mac OSX. As a developer, I have to shamed to say &lsquo;I am so much depend on GUI before working&rsquo;, that why this article is created.</p>
+
+<h2>1.Try some simple</h2>
+
+<p>date</p>
+
+<p>cal</p>
+
+<p>df - display free disk space</p>
+
+<p>exit</p>
+
+<p>man - format and display the on-line manual pages</p>
+
+<p>which- locate a program file in the user&rsquo;s path</p>
+
+<h2>2.Navigation</h2>
+
+<p>pwd</p>
+
+<p>cd</p>
+
+<p>ls</p>
+
+<p>file - determine file type</p>
+
+<p>less - opposite of more</p>
+
+<h2>3.File System</h2>
+
+<p>cp</p>
+
+<p>mv</p>
+
+<p>mkdir</p>
+
+<p>rm</p>
+
+<h2>4.Authority and Progress</h2>
+
+<p>chmod &ndash; change file modes or Access Control Lists</p>
+
+<p>ps aux | grep vim</p>
+
+<p>kill</p>
+
+<h2>5.Search</h2>
+
+<p>locate - find filenames quickly</p>
+
+<p>find - walk a file hierarchy</p>
+
+<p>grep - file pattern searcher</p>
+]]></content>
+  </entry>
+  
+</feed>
