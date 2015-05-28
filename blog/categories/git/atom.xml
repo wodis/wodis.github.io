@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | Open Tech Pub]]></title>
   <link href="http://wodis.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-05-28T19:18:23+08:00</updated>
+  <updated>2015-05-28T19:26:18+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -172,6 +172,61 @@ Changes to be committed:
 
     new file:   README
     new file:   hello.php
+</code></pre>
+
+<h4>git diff</h4>
+
+<p>执行 git diff 来查看执行 git status 的结果的详细信息。
+git diff 命令显示已写入缓存与已修改但尚未写入缓存的改动的区别。git diff 有两个主要的应用场景。</p>
+
+<ul>
+<li>尚未缓存的改动：git diff</li>
+<li>查看已缓存的改动： git diff &ndash;cached</li>
+<li>查看已缓存的与未缓存的所有改动：git diff HEAD</li>
+<li>显示摘要而非整个 diff：git diff &ndash;stat</li>
+</ul>
+
+
+<p>修改 hello.php 文件中输入以下内容：</p>
+
+<pre><code>$ git status -s
+A  README
+AM hello.php
+$ git diff
+diff --git a/hello.php b/hello.php
+index e69de29..d1a9166 100644
+--- a/hello.php
++++ b/hello.php
+@@ -0,0 +1,3 @@
++&lt;?php
++echo 'www.openwudi.com';
++?&gt;
+</code></pre>
+
+<p>git status显示你上次提交更新至后所更改或者写入缓存的改动， 而 git diff 一行一行地显示这些改动具体是啥。
+接下来我们来查看下 git diff &ndash;cached 的执行效果：</p>
+
+<pre><code>$ git add hello.php
+$ git status -s
+A  README
+A  hello.php
+$ git diff --cached
+diff --git a/README b/README
+new file mode 100644
+index 0000000..704cce7
+--- /dev/null
++++ b/README
+@@ -0,0 +1 @@
++w3cschool.cc
+diff --git a/hello.php b/hello.php
+new file mode 100644
+index 0000000..d1a9166
+--- /dev/null
++++ b/hello.php
+@@ -0,0 +1,3 @@
++&lt;?php
++echo 'www.openwudi.com';
++?&gt;
 </code></pre>
 
 <h2>Git分支模型图</h2>
