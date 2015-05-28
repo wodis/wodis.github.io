@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-05-28T11:57:00+08:00</updated>
+  <updated>2015-05-28T13:54:13+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Git Learning]]></title>
+    <link href="http://wodis.github.io/blog/2015/05/28/git-learning/"/>
+    <updated>2015-05-28T13:47:06+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/05/28/git-learning</id>
+    <content type="html"><![CDATA[<p>Git分支模型图</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1432791784.png" alt="git branch" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Python Learning]]></title>
