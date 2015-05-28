@@ -314,6 +314,83 @@ index 0000000..d1a9166
 +?&gt;
 </code></pre>
 
+<h4>git commit</h4>
+
+<p>使用 git add 命令将想要快照的内容写入了缓存， 而执行 git commit 记录缓存区的快照。
+Git 为你的每一个提交都记录你的名字与电子邮箱地址，所以第一步需要配置用户名和邮箱地址。</p>
+
+<pre><code>$ git config --global user.name 'openwudi'
+$ git config --global user.email xxx@openwudi.com
+</code></pre>
+
+<p>接下来我们写入缓存，并提交对 hello.php 的所有改动。在首个例子中，我们使用 -m 选项以在命令行中提供提交注释。</p>
+
+<pre><code>$ git add hello.php
+$ git status -s
+A  README
+A  hello.php
+$ git commit -m 'test comment from openwudi.com'
+[master (root-commit) 85fc7e7] test comment from w3cschool.cc
+ 2 files changed, 4 insertions(+)
+ create mode 100644 README
+ create mode 100644 hello.php
+</code></pre>
+
+<p>现在我们已经记录了快照。如果我们再执行 git status:</p>
+
+<pre><code>$ git status
+# On branch master
+nothing to commit (working directory clean)
+</code></pre>
+
+<p>以上输出说明我们在最近一次提交之后，没有做任何改动，是一个"干净的工作目录"。</p>
+
+<p>如果你觉得 git add 提交缓存的流程太过繁琐，Git 也允许你用 -a 选项跳过这一步。命令格式如下：</p>
+
+<pre><code>git commit -a
+</code></pre>
+
+<h4>git reset HEAD</h4>
+
+<p>git reset HEAD 命令用于取消缓存已缓存的内容。
+这里我们有两个最近提交之后又有所改动的文件。我们将两个都缓存，并取消缓存其中一个。</p>
+
+<pre><code>$ git status -s
+ M README
+ M hello.php
+$ git add .
+$ git status -s
+ M  README
+ M  hello.pp
+$ git reset HEAD -- hello.php
+ Unstaged changes after reset:
+ M hello.php
+$ git status -s
+ M  README
+ M hello.php
+</code></pre>
+
+<p>现在你执行 git commit 将只记录 README 文件的改动，并不含现在并不在缓存中的 hello.pp。</p>
+
+<h4>git rm</h4>
+
+<p>git rm 将文件从缓存区中移除。如我们删除 hello.php文件：</p>
+
+<pre><code>$ git rm hello.php
+rm 'hello.php'
+$ ls
+README
+</code></pre>
+
+<p>默认情况下，git rm file 会将文件从缓存区和你的硬盘中（工作目录）删除。 如果要在工作目录中留着该文件，可以使用命令：</p>
+
+<pre><code>git rm --cached
+</code></pre>
+
+<h4>git mv</h4>
+
+<p>git mv 命令做得所有事情就是 git rm &ndash;cached， 重命名磁盘上的文件，然后再执行 git add 把新文件添加到缓存区。因此，虽然有 git mv 命令，但它有点多余 。</p>
+
 <h2>Git分支模型图</h2>
 
 <p><img src="http://www.openwudi.com/images/2015/1432791784.png" alt="git branch" /></p>
