@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-05-28T19:41:43+08:00</updated>
+  <updated>2015-05-28T19:43:11+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -572,6 +572,8 @@ README
 <h2>Git分支模型图</h2>
 
 <p><img src="http://www.openwudi.com/images/2015/1432791784.png" alt="git branch" /></p>
+
+<p><a href="http://www.w3cschool.cc/">参考来源：w3cschool.cc</a></p>
 ]]></content>
   </entry>
   
