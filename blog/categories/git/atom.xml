@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | Open Tech Pub]]></title>
   <link href="http://wodis.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-05-28T18:00:38+08:00</updated>
+  <updated>2015-05-28T18:02:01+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Git Learning]]></title>
-    <link href="http://wodis.github.io/blog/2015/05/28/git-learning/"/>
-    <updated>2015-05-28T13:47:06+08:00</updated>
-    <id>http://wodis.github.io/blog/2015/05/28/git-learning</id>
+    <link href="http://wodis.github.io/blog/2014/07/01/git-learning/"/>
+    <updated>2014-07-01T13:47:06+08:00</updated>
+    <id>http://wodis.github.io/blog/2014/07/01/git-learning</id>
     <content type="html"><![CDATA[<h2>Git 工作流程</h2>
 
 <p>一般工作流程如下：</p>
