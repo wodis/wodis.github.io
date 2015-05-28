@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-05-28T17:56:42+08:00</updated>
+  <updated>2015-05-28T18:00:38+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -18,7 +18,23 @@
     <link href="http://wodis.github.io/blog/2015/05/28/git-learning/"/>
     <updated>2015-05-28T13:47:06+08:00</updated>
     <id>http://wodis.github.io/blog/2015/05/28/git-learning</id>
-    <content type="html"><![CDATA[<p>Git分支模型图</p>
+    <content type="html"><![CDATA[<h2>Git 工作流程</h2>
+
+<p>一般工作流程如下：</p>
+
+<ul>
+<li>克隆 Git 资源作为工作目录。</li>
+<li>在克隆的资源上添加或修改文件。</li>
+<li>如果其他人修改了，你可以更新资源。</li>
+<li>在提交前查看修改。</li>
+<li>提交修改。</li>
+<li>在修改完成后，如果发现错误，可以撤回提交并再次修改并提交。</li>
+</ul>
+
+
+<p><img src="http://www.openwudi.com/images/2015/1432807147.png" alt="工作流程" /></p>
+
+<h2>Git分支模型图</h2>
 
 <p><img src="http://www.openwudi.com/images/2015/1432791784.png" alt="git branch" /></p>
 ]]></content>
