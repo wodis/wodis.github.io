@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-05-28T18:02:01+08:00</updated>
+  <updated>2015-05-28T19:01:41+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -296,6 +296,77 @@
 
 
 <p><img src="http://www.openwudi.com/images/2015/1432807147.png" alt="工作流程" /></p>
+
+<h2>Git 创建仓库</h2>
+
+<p>使用您当前目录作为Git仓库，我们只需使它初始化。</p>
+
+<pre><code>git init
+</code></pre>
+
+<p>使用指定目录作为Git仓库。</p>
+
+<pre><code>git init newrepo
+</code></pre>
+
+<p>初始化后，在当前目录下会出现一个名为 .git 的目录，所有 Git 需要的数据和资源都存放在这个目录中。
+如果当前目录下有几个文件想要纳入版本控制，需要先用 git add 命令告诉 Git 开始对这些文件进行跟踪，然后提交：</p>
+
+<pre><code>$ git add *.c
+$ git add README
+$ git commit -m 'initial project version'
+</code></pre>
+
+<h3>从现有仓库克隆</h3>
+
+<p>克隆仓库的命令格式为：</p>
+
+<pre><code>git clone [url]
+</code></pre>
+
+<p>比如，要克隆 Ruby 语言的 Git 代码仓库 Grit，可以用下面的命令：</p>
+
+<pre><code>$ git clone git://github.com/schacon/grit.git
+</code></pre>
+
+<p>执行该命令后，会在当前目录下创建一个名为grit的目录，其中包含一个 .git 的目录，用于保存下载下来的所有版本记录。
+如果要自己定义要新建的项目目录名称，可以在上面的命令末尾指定新的名字：</p>
+
+<pre><code>$ git clone git://github.com/schacon/grit.git mygrit
+</code></pre>
+
+<h2>Git 工作区、暂存区和版本库</h2>
+
+<p>我们先来理解下Git 工作区、暂存区和版本库概念</p>
+
+<ul>
+<li>工作区：就是你在电脑里能看到的目录。</li>
+<li>暂存区：英文叫stage, 或index。一般存放在"git目录"下的index文件（.git/index）中，所以我们把暂存区有时也叫作索引（index）。</li>
+<li>版本库：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。</li>
+</ul>
+
+
+<p>下面这个图展示了工作区、版本库中的暂存区和版本库之间的关系：</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1432810388.jpg" alt="工作区、暂存区和版本库" /></p>
+
+<p>图中左侧为工作区，右侧为版本库。在版本库中标记为 &ldquo;index&rdquo; 的区域是暂存区（stage, index），标记为 &ldquo;master&rdquo; 的是 master 分支所代表的目录树。</p>
+
+<p>图中我们可以看出此时 &ldquo;HEAD&rdquo; 实际是指向 master 分支的一个"游标"。所以图示的命令中出现 HEAD 的地方可以用 master 来替换。</p>
+
+<p>图中的 objects 标识的区域为 Git 的对象库，实际位于 &ldquo;.git/objects&rdquo; 目录下，里面包含了创建的各种对象及内容。</p>
+
+<p>当对工作区修改（或新增）的文件执行 &ldquo;git add&rdquo; 命令时，暂存区的目录树被更新，同时工作区修改（或新增）的文件内容被写入到对象库中的一个新的对象中，而该对象的ID被记录在暂存区的文件索引中。</p>
+
+<p>当执行提交操作（git commit）时，暂存区的目录树写到版本库（对象库）中，master 分支会做相应的更新。即 master 指向的目录树就是提交时暂存区的目录树。</p>
+
+<p>当执行 &ldquo;git reset HEAD&rdquo; 命令时，暂存区的目录树会被重写，被 master 分支指向的目录树所替换，但是工作区不受影响。</p>
+
+<p>当执行 &ldquo;git rm &ndash;cached <file>&rdquo; 命令时，会直接从暂存区删除文件，工作区则不做出改变。</p>
+
+<p>当执行 &ldquo;git checkout .&rdquo; 或者 &ldquo;git checkout &ndash; <file>&rdquo; 命令时，会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未添加到暂存区的改动。</p>
+
+<p>当执行 &ldquo;git checkout HEAD .&rdquo; 或者 &ldquo;git checkout HEAD <file>&rdquo; 命令时，会用 HEAD 指向的 master 分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。</p>
 
 <h2>Git分支模型图</h2>
 
