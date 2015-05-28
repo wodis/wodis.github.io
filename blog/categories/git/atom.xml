@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | Open Tech Pub]]></title>
   <link href="http://wodis.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-05-28T19:01:41+08:00</updated>
+  <updated>2015-05-28T19:18:23+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -104,6 +104,75 @@ $ git commit -m 'initial project version'
 <p>当执行 &ldquo;git checkout .&rdquo; 或者 &ldquo;git checkout &ndash; <file>&rdquo; 命令时，会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未添加到暂存区的改动。</p>
 
 <p>当执行 &ldquo;git checkout HEAD .&rdquo; 或者 &ldquo;git checkout HEAD <file>&rdquo; 命令时，会用 HEAD 指向的 master 分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。</p>
+
+<h2>Git 基本操作</h2>
+
+<p>Git 的工作就是创建和保存你的项目的快照及与之后的快照进行对比。</p>
+
+<h3>基本快照</h3>
+
+<h4>git add</h4>
+
+<p>git add 命令可将该文件添加到缓存，如我们添加以下两个文件：</p>
+
+<pre><code>$ touch README
+$ touch hello.php
+$ ls
+README      hello.php
+$ git status -s
+?? README
+?? hello.php
+$
+</code></pre>
+
+<p>git status 命令用于查看项目的当前状态。接下来我们执行 git add 命令来添加文件：</p>
+
+<pre><code>$ git add README hello.php
+</code></pre>
+
+<p>现在我们再执行 git status，就可以看到这两个文件已经加上去了。</p>
+
+<pre><code>$ git status -s
+A  README
+A  hello.php
+$
+</code></pre>
+
+<p>新项目中，添加所有文件很普遍，可以在当前工作目录执行命令：git add .。
+现在我们改个文件，再执行一下 git status：</p>
+
+<pre><code>$ vim README
+$ git status -s
+AM README
+A  hello.php
+</code></pre>
+
+<p>&ldquo;AM&rdquo; 状态的意思是，这个文件在我们将它添加到缓存之后又有改动。改动后我们在执行 git add 命令将其添加到缓存中：</p>
+
+<pre><code>$ git add .
+$ git status -s
+A  README
+A  hello.php
+</code></pre>
+
+<p>当你要将你的修改包含在即将提交的快照里的时候，需要执行 git add。</p>
+
+<h4>git status</h4>
+
+<p>git status 以查看在你上次提交之后是否有修改。
+演示该命令的时候加了 -s 参数，以获得简短的结果输出。如果没加该参数会详细输出内容：</p>
+
+<pre><code>$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached &lt;file&gt;..." to unstage)
+
+    new file:   README
+    new file:   hello.php
+</code></pre>
 
 <h2>Git分支模型图</h2>
 
