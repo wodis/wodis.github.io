@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-05-28T11:40:58+08:00</updated>
+  <updated>2015-05-28T11:57:00+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -171,8 +171,6 @@
 <hr />
 
 <p>2014年加入新浪微博，进行Java平台的研发工作，现担任新浪微博-微人脉项目工程师，完成Android客户端1.3以前版本，并切入服务器端开发到现在。2013年参加DCU的Kuali Student开源项目，经历了从调研，立项，到研发的整个过程，学业结束回国。</p>
-
-<p>这个Github账号从我入职新浪微博才注册，打算以后维护一些项目常用的代码。</p>
 
 <p>欢迎随时与我交流Android/Java开发中所遇到的问题。</p>
 ]]></content>
