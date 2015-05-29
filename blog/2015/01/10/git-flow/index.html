@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Java - Open Tech Pub</title>
+  <title>Git分支模型图 - Open Tech Pub</title>
   <meta name="author" content="Wu Di">
 
   
-  <meta name="description" content="Category: java">
+  <meta name="description" content="上图为Vincent Driessen在2010年发布的“一个成功的Git分支模型”。其实基本的概念很清晰： 开发分支（develop） 这是主要的开发分支，所以的关于下一个版本的更改都应该在这个分支下完成。可以提交更改或者从其他分支合并一些功能。 生产分支（master） &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://wodis.github.io/blog/categories/java/">
+  <link rel="canonical" href="http://wodis.github.io/blog/2015/01/10/git-flow/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Open Tech Pub" type="application/atom+xml">
@@ -78,35 +78,112 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Java</h1>
+    
+      <h1 class="entry-title">Git分支模型图</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-01-10T15:58:07+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:58 pm</span></time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p><img src="http://www.openwudi.com/images/2015/1432791784.png" alt="git branch" /></p>
 
-  
-  <h2>2014</h2>
+<p>上图为Vincent Driessen在2010年发布的“一个成功的Git分支模型”。其实基本的概念很清晰：</p>
 
-<article>
-  
-<h1><a href="/blog/2014/09/02/google-guava-library-tips/">Google Guava Library Tips</a></h1>
-<time datetime="2014-09-02T18:58:38+08:00" pubdate><span class='month'>Sep</span> <span class='day'>02</span> <span class='year'>2014</span></time>
+<h3>开发分支（develop）</h3>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/java/'>java</a></span>
-</footer>
+<p>这是主要的开发分支，所以的关于下一个版本的更改都应该在这个分支下完成。可以提交更改或者从其他分支合并一些功能。</p>
 
+<h3>生产分支（master）</h3>
 
-</article>
+<p>这个分支表示最新发布或开发的代码。只从其他分支合并。</p>
 
+<h3>特征分支（feature前缀）</h3>
+
+<p>当需要进行一些琐碎功能开发的时候，可以创建一个feature，然后再合并到开发分支。</p>
+
+<h3>发布分支（release前缀）</h3>
+
+<p>当需要打包一个发布版本的时候，通常会从开发分支创建一个新的分支。也可以继续在这个分支下提交代码，等到需要发布的时候同时合并到开发分支和生产分支。</p>
+
+<h3>补丁分支（hotfix前缀）</h3>
+
+<p>当一个产品发布后遇到问题，将从生产分支创建一个补丁分支修复问题。修改完成后再合并回生产分支，进行发布。</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Wu Di</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-01-10T15:58:07+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:58 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/git/'>git</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+    
+    
+    
+
+    
+    <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<br>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2035019"></script>
+<!-- UY END -->
+    
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/01/04/linux-command-line-tips/" title="Previous Post: Linux Command Line Tips">&laquo; Linux Command Line Tips</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/02/19/nginxzhuan-ti/" title="Next Post: Nginx专题">Nginx专题 &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
 
 </div>
