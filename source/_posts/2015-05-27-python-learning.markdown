@@ -36,3 +36,5 @@ categories: Python
 9. JSON
 10. Log
 11. 面向对象 OOP
+12. 多线程 Thread
+13. Redis
