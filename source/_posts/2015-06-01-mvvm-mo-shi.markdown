@@ -16,6 +16,8 @@ Presenter作为整个逻辑的控制者，与Controller的区别在于它并不�
 这个系统相当强大，让我们可以使用一种在Windows世界常见的开发模式Model-View-ViewModel (MVVM)。
 我们先熟悉一下基本的概念，对于整个架构的理解很重要，并且看它如何使你的app更好。
 
+![MVVM设计模式](http://www.openwudi.com/images/2015/1433142732.png)
+
 MVVM设计模式包含3部分：
 
 * Model – 表示你的业务逻辑

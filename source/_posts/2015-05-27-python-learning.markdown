@@ -38,3 +38,4 @@ categories: Python
 11. 面向对象 OOP
 12. 多线程 Thread
 13. Redis
+14. MySQLdb
