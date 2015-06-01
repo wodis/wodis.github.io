@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | Open Tech Pub]]></title>
   <link href="http://wodis.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-06-01T12:16:27+08:00</updated>
+  <updated>2015-06-01T15:13:35+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -56,6 +56,7 @@
 <li>面向对象 OOP</li>
 <li>多线程 Thread</li>
 <li>Redis</li>
+<li>MySQLdb</li>
 </ol>
 
 ]]></content>
