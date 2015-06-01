@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | Open Tech Pub]]></title>
   <link href="http://wodis.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-05-31T22:58:56+08:00</updated>
+  <updated>2015-06-01T12:16:27+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -22,8 +22,8 @@
 
 <p>最近整理了一下微人脉现有的脚本，整体都基于PHP编写，然后通过Crontab做定时任务。
 但是，PHP来作为脚本的话，语法并不简洁，尝试使用Python。
-两者比较各有优势，Python的可读性非常好，对于OO化繁为简，就语法而言PHP变量的$总容易混淆（当然可能是我主观这么认为）。
-直接摘一个其他人总结的：</p>
+两者比较各有优势，Python的可读性非常好，对于OO化繁为简，就语法而言比PHP更容易适应（当然可能是我主观这么认为）。
+直接摘一个总结：</p>
 
 <ul>
 <li>Python is more readable, and more general purpose</li>
