@@ -9,8 +9,8 @@ categories: Python
 # 为什么我要用Python
 最近整理了一下微人脉现有的脚本，整体都基于PHP编写，然后通过Crontab做定时任务。
 但是，PHP来作为脚本的话，语法并不简洁，尝试使用Python。
-两者比较各有优势，Python的可读性非常好，对于OO化繁为简，就语法而言PHP变量的$总容易混淆（当然可能是我主观这么认为）。
-直接摘一个其他人总结的：
+两者比较各有优势，Python的可读性非常好，对于OO化繁为简，就语法而言比PHP更容易适应（当然可能是我主观这么认为）。
+直接摘一个总结：
 
 - Python is more readable, and more general purpose
 - PHP has awful backward compatibility
