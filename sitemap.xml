@@ -33,10 +33,17 @@
     <lastmod>2014-07-01T13:47:06+08:00</lastmod>
   </url>
   <url>
+    <loc>http://wodis.github.io/blog/2014/06/27/android-tips-round-up/</loc>
+    <lastmod>2014-06-27T15:20:27+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://wodis.github.io/blog/archives/</loc>
   </url>
   <url>
     <loc>http://wodis.github.io/</loc>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/categories/android/</loc>
   </url>
   <url>
     <loc>http://wodis.github.io/blog/categories/git/</loc>
@@ -49,8 +56,5 @@
   </url>
   <url>
     <loc>http://wodis.github.io/blog/categories/python/</loc>
-  </url>
-  <url>
-    <loc>http://wodis.github.io/blog/categories/android/</loc>
   </url>
 </urlset>

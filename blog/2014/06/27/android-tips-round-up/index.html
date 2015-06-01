@@ -1,74 +1,104 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Android | Open Tech Pub]]></title>
-  <link href="http://wodis.github.io/blog/categories/android/atom.xml" rel="self"/>
-  <link href="http://wodis.github.io/"/>
-  <updated>2015-06-01T16:23:03+08:00</updated>
-  <id>http://wodis.github.io/</id>
-  <author>
-    <name><![CDATA[Wu Di]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Android Tips Round-Up - Open Tech Pub</title>
+  <meta name="author" content="Wu Di">
 
   
-  <entry>
-    <title type="html"><![CDATA[Android开发中的MVVM模式]]></title>
-    <link href="http://wodis.github.io/blog/2015/06/01/mvvm-mo-shi/"/>
-    <updated>2015-06-01T18:27:14+08:00</updated>
-    <id>http://wodis.github.io/blog/2015/06/01/mvvm-mo-shi</id>
-    <content type="html"><![CDATA[<p>从去年开始我们的Android项目就已经从传统的MVC架构切换为Model-View-Presenter（MVP）架构，使得整个分层更加清晰。
-Presenter作为整个逻辑的控制者，与Controller的区别在于它并不包含任何的显示逻辑，只处理网络请求和数据填充操作，
-并通知View何时更新，当View收到更新请求，将数据根据需求展示在不同View中。</p>
+  <meta name="description" content="Activity.startActivities() - Nice for launching to the middle of an app flow. TextUtils.isEmpty() - Simple utility I use everywhere. Html.fromHtml &hellip;">
+  
 
-<p>今年的Google IO为Android开发者介绍了一个非常棒的新框架，允许将视图绑定（Binding）到任意对象的成员变量上。
-当成员变量更新，框架会通知视图 <strong>自动更新</strong>。</p>
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<p>这个系统相当强大，让我们可以使用一种在Windows世界常见的开发模式Model-View-ViewModel (MVVM)。
-我们先熟悉一下基本的概念，对于整个架构的理解很重要，并且看它如何使你的app更好。</p>
+  
+  <link rel="canonical" href="http://wodis.github.io/blog/2014/06/27/android-tips-round-up/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Open Tech Pub" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+    <!-- googleapis is fucked by gfw -->
+  <script src="http://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!-- 
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+ -->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?16937d74824f50bd02daa98ce1ba6048";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
 
-<p><img src="http://www.openwudi.com/images/2015/1433142732.png" alt="MVVM设计模式" /></p>
 
-<p>MVVM设计模式包含3部分：</p>
+  
 
-<ul>
-<li>Model – 表示你的业务逻辑</li>
-<li>View – 显示的内容</li>
-<li>ViewModel – 将View和Model联系到一起</li>
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Open Tech Pub</a></h1>
+  
+    <h2>那些年关注的技术</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="wodis.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+    <li><a href="/">首页</a></li>
+    <li><a href="/blog/archives">所有文章</a></li>
+    <li><a href="http://www.weibo.com/wodis">我的微博</a></li>
 </ul>
 
-
-<p>ViewModel接口做两件事：行为(Actions)和数据(Data)。行为改变底层的模型（点击事件，文本变化事件等），数据则表示这个模型的内容。</p>
-
-<p>例如，一个拍卖系统的ViewModel数据可能是图片、标题、描述和价格。行为可能是竞拍、购买、或者联系卖家。</p>
-
-<p>传统的Android架构中，控制器（Controller）将数据直接赋值给View，再从Activity中找到View，更新内容。
-使用MVVM模式，ViewModel改变内容并通知绑定（Binding）框架内容已经变化。框架将会自动更新被绑定的View。
-这两个容器只通过数据接口和命令进行松散耦合。</p>
-
-<p>除了看起来智能的View绑定，也让测试变得方便。</p>
-
-<p>因为ViewModel并不依赖于View，你可以只测试一个ViewModel，甚至不需要View存在。通过适当的依赖注入，测试就很简单了。</p>
-
-<p>希望你已经理解了MVVM模式的基本概念，并且已经了解使用它的好处。后续我会发布实现MVVM的代码，和一些绑定框架的使用技巧。</p>
-
-<p>参考资料：</p>
-
-<ol>
-<li><a href="http://www.codeproject.com/Articles/66585/Comparison-of-Architecture-presentation-patterns-M">Comparison of Architecture presentation patterns MVP(SC),MVP(PV),PM,MVVM and MVC</a></li>
-<li><a href="http://konmik.github.io/introduction-to-model-view-presenter-on-android.html?utm_source=Android+Weekly&amp;utm_campaign=5589504b56-Android_Weekly_148&amp;utm_medium=email&amp;utm_term=0_4eb677ad19-5589504b56-337845481">Introduction to Model-View-Presenter on Android</a></li>
-</ol>
-
-]]></content>
-  </entry>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
   
-  <entry>
-    <title type="html"><![CDATA[Android Tips Round-Up]]></title>
-    <link href="http://wodis.github.io/blog/2014/06/27/android-tips-round-up/"/>
-    <updated>2014-06-27T15:20:27+08:00</updated>
-    <id>http://wodis.github.io/blog/2014/06/27/android-tips-round-up</id>
-    <content type="html"><![CDATA[<p><a href="http://developer.android.com/reference/android/app/Activity.html#startActivities(android.content.Intent[])">Activity.startActivities()</a> - Nice for launching to the middle of an app flow.</p>
+  <header>
+    
+      <h1 class="entry-title">Android Tips Round-Up</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-06-27T15:20:27+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:20 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://developer.android.com/reference/android/app/Activity.html#startActivities(android.content.Intent[])">Activity.startActivities()</a> - Nice for launching to the middle of an app flow.</p>
 
 <p><a href="http://developer.android.com/reference/android/text/TextUtils.html#isEmpty(java.lang.CharSequence)">TextUtils.isEmpty()</a> - Simple utility I use everywhere.</p>
 
@@ -211,7 +241,142 @@ Presenter作为整个逻辑的控制者，与Controller的区别在于它并不�
 <p><a href="http://developer.android.com/reference/android/widget/AdapterViewFlipper.html#fyiWillBeAdvancedByHostKThx%28%29">AdapterViewFlipper.fyiWillBeAdvancedByHostKThx()</a> - Because it&rsquo;s funny and for no other reason. There are other amusing tidbits in AOSP (like GRAVITY_DEATH_STAR_I) but unlike those this one is actually useful.</p>
 
 <p><a href="http://developer.android.com/reference/android/view/ViewParent.html#requestDisallowInterceptTouchEvent%28boolean%29">ViewParent.requestDisallowInterceptTouchEvent()</a> - The Android touch event system defaults handle what you want most of the time, but sometimes you need this method to wrest event control from parents. (By the way, if you want to know about the touch system, this talk is amazing.)</p>
-]]></content>
-  </entry>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-</feed>
+
+<span class="byline author vcard">Posted by <span class="fn">Wu Di</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-06-27T15:20:27+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:20 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+    
+    
+    
+
+    
+    <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<br>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2035019"></script>
+<!-- UY END -->
+    
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/07/01/git-learning/" title="Next Post: Git Learning">Git Learning &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/06/01/mvvm-mo-shi/">Android开发中的MVVM模式</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/05/27/python-learning/">Python Learning</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/02/19/nginxzhuan-ti/">Nginx专题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/10/git-flow/">Git分支模型图</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/04/linux-command-line-tips/">Linux Command Line Tips</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+    <h1>About Me</h1>
+
+    <p>帝都成长，华中求学，爱尔兰漂泊一年有余，就职于新浪微博-微人脉。Google死忠</p>
+
+    <p>Android开发工程师，曾开发微人脉客户端、WiFi胶卷。</p>
+    <p>Java开发工程师，曾开发Kuali Student开源项目，现在负责微人脉后端开发。</p>
+
+    <p>新浪微博：<a href="http://weibo.com/wodis">@讨厌茄子的老科特</a></p>
+    <p>我的微信账号：</p>
+    <p><img src="/images/weixin.jpg"></p>
+
+    <p>Wu Di -- “ I am a programmer who principally focused on Android/Java design and development. Dual master's degree in telecommunication and software engineering. Graduated from Dublin City University and Wuhan University. Working in Beijing. ”</p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy; 2015 - Wu Di -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> -
+    <span class="credit">Thanks for <a href="https://gitcafe.com">GitCafe</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
