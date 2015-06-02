@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>关于我 - Open Tech Pub - 2015-01-01 16:07:32 +0800</title>
+  <title>提升Gradle性能 - Open Tech Pub - 2015-06-02 11:42:39 +0800</title>
   <meta name="author" content="Wu Di">
 
   
-  <meta name="description" content="姓名： Di Wu 微博： @讨厌茄子的老科特 博客： http://www.openwudi.com 所在地： 北京 就职于： 新浪微博 教育经历： 2012~2013 Dublin City University
-2006~2012 武汉大学 2014年加入新浪微博， &hellip;">
+  <meta name="description" content="是不是感觉一整天都在等着Android Studio编译完成？我也是 幸亏现在有方法让编译速度提升一些。虽然这些操作仍然有一定的风险，但还是值得尝试一下。
+当我修改了一小部分的代码后，使用这个方法，编译速度直接减少了2.5秒。 Android现在通常使用Gradle进行编译。发布这篇文章的时候， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://wodis.github.io/blog/2015/01/01/first-blog/">
+  <link rel="canonical" href="http://wodis.github.io/blog/2015/06/02/ti-sheng-gradle-xing-neng/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Open Tech Pub" type="application/atom+xml">
@@ -83,7 +83,7 @@
   
   <header>
     
-      <h1 class="entry-title">关于我</h1>
+      <h1 class="entry-title">提升Gradle性能</h1>
     
     
       <p class="meta">
@@ -92,33 +92,75 @@
 
 
 
-<time class='entry-date' datetime='2015-01-01T16:07:32+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>4:07 pm</span></time>
+<time class='entry-date' datetime='2015-06-02T11:42:39+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:42 am</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p><img src="http://tp2.sinaimg.cn/1690201701/50/5679941181/1" alt="my icon" /></p>
+<div class="entry-content"><p>是不是感觉一整天都在等着Android Studio编译完成？我也是</p>
 
-<p><strong>姓名：</strong> Di Wu</p>
+<p>幸亏现在有方法让编译速度提升一些。虽然这些操作仍然有一定的风险，但还是值得尝试一下。
+当我修改了一小部分的代码后，使用这个方法，编译速度直接减少了2.5秒。</p>
 
-<p><strong>微博：</strong> <a href="http://weibo.com/wodis">@讨厌茄子的老科特</a></p>
+<p>Android现在通常使用Gradle进行编译。发布这篇文章的时候，默认的Gradle版本是2.2。
+最新的为2.4，它比之前的版本已经有了很大的提升。</p>
 
-<p><strong>博客：</strong> <a href="http://www.openwudi.com">http://www.openwudi.com</a></p>
+<p>有两种方法配制新版Gradle，直接手动修改build脚本，或者更改Android Studio的配置。</p>
 
-<p><strong>所在地：</strong> 北京</p>
+<ol>
+<li><p>手动修改build脚本，通过在项目根目录的build.grade中添加以下代码</p>
 
-<p><strong>就职于：</strong> 新浪微博</p>
+<p> task wrapper(type: Wrapper) {
+     gradleVersion = &lsquo;2.4&rsquo;
+ }</p></li>
+</ol>
 
-<p><strong>教育经历：</strong> <code>2012~2013 Dublin City University</code>
-<code>2006~2012 武汉大学</code></p>
 
-<hr />
+<p>现在打开终端并且运行./gradlew，它会自动下载并安装Gradle 2.4作为本地版本。
+<a href="http://gradle.org/docs/current/userguide/gradle_wrapper.html">官方文档</a></p>
 
-<p>2014年加入新浪微博，进行Java平台的研发工作，现担任新浪微博-微人脉项目工程师，完成Android客户端1.3以前版本，并切入服务器端开发到现在。2013年参加DCU的Kuali Student开源项目，经历了从调研，立项，到研发的整个过程，学业结束回国。</p>
+<ol>
+<li>如果打算修改Android Studio的配制，需要打开Project Structure Dialog（OS X: ⌘+;），
+在左边的列表中选择Project，然后修改Gradle version为2.4。单击OK，Android Studio会自动安装和同步Gradle的配置。</li>
+</ol>
 
-<p>欢迎随时与我交流Android/Java开发中所遇到的问题。</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1433219043.png" alt="1433219043.png" /></p>
+
+<p>下一步是确保Gradle守护进程和并行编译可用。使用守护进程编译速度会提高，因为它并不会每次都编译完整的项目。
+并行编译会将项目分成多模块编译，这样可以提升大型多模块项目的编译速度。</p>
+
+<p>当然这些设置需要添加到.gradle目录的gradle.properties中。(i.e., ~/.gradle/gradle.properties)</p>
+
+<pre><code>org.gradle.daemon=true
+org.gradle.parallel=true
+</code></pre>
+
+<p>守护进程已经在Android Studio中开启，这样做是为了在终端中使用。</p>
+
+<p>注意：并行编译可能导致一些项目不安全。原因是需要你所有的项目是解耦的，不然会编译失败。<a href="http://gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects">多模块编译</a>
+认真测试所有的build variants，保证都可以正常工作。</p>
+
+<p>添加以下代码可以增加JVM的最大堆内存：</p>
+
+<pre><code>org.gradle.jvmargs=-Xmx768m
+org.gradle.java.home=/path/to/jvm
+</code></pre>
+
+<p>其他的gradle.properties配制，可以参考<a href="http://gradle.org/docs/current/userguide/userguide_single.html#sec:gradle_configuration_properties">官方文档</a>。</p>
+
+<p>最后的更改是增量打包dex，这是一个实验性的功能，默认是不开启的。它可能会导致你编译失败，但是还是建议你去试一下，看看你能否使用。</p>
+
+<p>增加以下代码到app模块的build.gradle中：</p>
+
+<pre><code>dexOptions {
+        incremental true
+}
+</code></pre>
+
+<p>如果你有其他的技巧欢迎与我交流。</p>
 </div>
 
 
@@ -134,8 +176,14 @@
 
 
 
-<time class='entry-date' datetime='2015-01-01T16:07:32+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>4:07 pm</span></time>
+<time class='entry-date' datetime='2015-06-02T11:42:39+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:42 am</span></time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
 
 
     </p>
@@ -169,10 +217,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/09/02/google-guava-library-tips/" title="Previous Post: Google Guava Library Tips">&laquo; Google Guava Library Tips</a>
+        <a class="basic-alignment left" href="/blog/2015/06/01/mvvm-mo-shi/" title="Previous Post: Android开发中的MVVM模式">&laquo; Android开发中的MVVM模式</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2015/01/04/linux-command-line-tips/" title="Next Post: Linux Command Line Tips">Linux Command Line Tips &raquo;</a>
       
     </p>
   </footer>
