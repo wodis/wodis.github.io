@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>提升Gradle性能 - Open Tech Pub - 2015-06-02 11:42:39 +0800</title>
+  <title>Android开发中提升Gradle性能 - Open Tech Pub - 2015-06-02 11:42:39 +0800</title>
   <meta name="author" content="Wu Di">
 
   
@@ -83,7 +83,7 @@
   
   <header>
     
-      <h1 class="entry-title">提升Gradle性能</h1>
+      <h1 class="entry-title">Android开发中提升Gradle性能</h1>
     
     
       <p class="meta">
@@ -109,23 +109,18 @@
 
 <p>有两种方法配制新版Gradle，直接手动修改build脚本，或者更改Android Studio的配置。</p>
 
-<ol>
-<li><p>手动修改build脚本，通过在项目根目录的build.grade中添加以下代码</p>
+<p>1.手动修改build脚本，通过在项目根目录的build.grade中添加以下代码</p>
 
-<p> task wrapper(type: Wrapper) {
-     gradleVersion = &lsquo;2.4&rsquo;
- }</p></li>
-</ol>
-
+<pre><code>task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}
+</code></pre>
 
 <p>现在打开终端并且运行./gradlew，它会自动下载并安装Gradle 2.4作为本地版本。
 <a href="http://gradle.org/docs/current/userguide/gradle_wrapper.html">官方文档</a></p>
 
-<ol>
-<li>如果打算修改Android Studio的配制，需要打开Project Structure Dialog（OS X: ⌘+;），
-在左边的列表中选择Project，然后修改Gradle version为2.4。单击OK，Android Studio会自动安装和同步Gradle的配置。</li>
-</ol>
-
+<p>2.如果打算修改Android Studio的配制，需要打开Project Structure Dialog（OS X: ⌘+;），
+在左边的列表中选择Project，然后修改Gradle version为2.4。单击OK，Android Studio会自动安装和同步Gradle的配置。</p>
 
 <p><img src="http://www.openwudi.com/images/2015/1433219043.png" alt="1433219043.png" /></p>
 
@@ -233,7 +228,7 @@ org.gradle.java.home=/path/to/jvm
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/06/02/ti-sheng-gradle-xing-neng/">提升Gradle性能</a>
+        <a href="/blog/2015/06/02/ti-sheng-gradle-xing-neng/">Android开发中提升Gradle性能</a>
       </li>
     
       <li class="post">

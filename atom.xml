@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-06-02T13:25:46+08:00</updated>
+  <updated>2015-06-02T13:28:49+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[提升Gradle性能]]></title>
+    <title type="html"><![CDATA[Android开发中提升Gradle性能]]></title>
     <link href="http://wodis.github.io/blog/2015/06/02/ti-sheng-gradle-xing-neng/"/>
     <updated>2015-06-02T11:42:39+08:00</updated>
     <id>http://wodis.github.io/blog/2015/06/02/ti-sheng-gradle-xing-neng</id>
@@ -28,23 +28,18 @@
 
 <p>有两种方法配制新版Gradle，直接手动修改build脚本，或者更改Android Studio的配置。</p>
 
-<ol>
-<li><p>手动修改build脚本，通过在项目根目录的build.grade中添加以下代码</p>
+<p>1.手动修改build脚本，通过在项目根目录的build.grade中添加以下代码</p>
 
-<p> task wrapper(type: Wrapper) {
-     gradleVersion = &lsquo;2.4&rsquo;
- }</p></li>
-</ol>
-
+<pre><code>task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}
+</code></pre>
 
 <p>现在打开终端并且运行./gradlew，它会自动下载并安装Gradle 2.4作为本地版本。
 <a href="http://gradle.org/docs/current/userguide/gradle_wrapper.html">官方文档</a></p>
 
-<ol>
-<li>如果打算修改Android Studio的配制，需要打开Project Structure Dialog（OS X: ⌘+;），
-在左边的列表中选择Project，然后修改Gradle version为2.4。单击OK，Android Studio会自动安装和同步Gradle的配置。</li>
-</ol>
-
+<p>2.如果打算修改Android Studio的配制，需要打开Project Structure Dialog（OS X: ⌘+;），
+在左边的列表中选择Project，然后修改Gradle version为2.4。单击OK，Android Studio会自动安装和同步Gradle的配置。</p>
 
 <p><img src="http://www.openwudi.com/images/2015/1433219043.png" alt="1433219043.png" /></p>
 
