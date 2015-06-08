@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-06-02T13:56:04+08:00</updated>
+  <updated>2015-06-08T14:24:58+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Google I/O回顾:Android开发工具的新玩意]]></title>
+    <link href="http://wodis.github.io/blog/2015/06/08/android-xin-kai-fa-gong-ju/"/>
+    <updated>2015-06-08T12:52:33+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/06/08/android-xin-kai-fa-gong-ju</id>
+    <content type="html"><![CDATA[<p>每年我们都在期待Google I/O大会中Android相关的新东西。然而，在线看视频简直太花时间了（拜GFW所赐还得使用一些小手段观看）。
+这篇文章对整个视频做了总结，希望可以帮到大家。</p>
+
+<h1>Easing Design</h1>
+
+<p><img src="http://www.openwudi.com/images/2015/1433733652.png" alt="1433733652.png" /></p>
+
+<p><a href="http://android-developers.blogspot.co.at/2015/05/android-design-support-library.html">Android Design Support Library</a>
+可以帮你遵循最新的Material Design风格。这个库包含了一系列Material Design组件，
+例如Navigation Drawer、Floating Labels for Editing Text、Floating Action Buttons和Snackbar，
+所有的组件都兼容Android 2.1以上版本。</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1433733704.png" alt="1433733704.png" /></p>
+
+<p>Android L已经介绍了Vector Drawables。随着Android Studio 1.3更改了Android Gradle插件，我们可以使用编译系统通过SVG和Vector Drawables生成不同dp的raster图像。</p>
+
+<p>最终，开发工具团队开始重写了整个可视化设计编辑器、它帮你实现更多所见即所得的方式。</p>
+
+<h1>Improving the Grade Plugin &amp; Build System</h1>
+
+<p><img src="http://www.openwudi.com/images/2015/1433736364.png" alt="1433736364.png" /></p>
+
+<p>Android Gradle插件有时会靠不住，特别是它作为依赖管理，相关问题已经得到了修复。</p>
+
+<p>Android Gradle插件最令人纠结的当然是超长的编译时间。工具团队从多个层面去解决这个问题。
+<a href="http://tools.android.com/tech-docs/jackandjill">Jack</a>，Java Android Compiler Kit的缩写，
+它将Java源码直接编译成Android的Dex文件格式。它是基于Eclispse Java编译器的，这个过程减少了一步。换句话说就是，不需要在转成Dex前编译成JVM字节码。另外，它还支持增量编译。</p>
+
+<p>压缩处理PNG图片同样花费了巨大的时间。工具团队已经提升了这方面的性能，将500张PNG和.9图从4秒减低到400毫秒。</p>
+
+<p>aapt(Android Asset Packaging Tool)，负责打包所以的Dex和资源文件，同样也得到了优化。</p>
+
+<p>另外一个编译开销是因为Gradle自己造成的，当Gradle开始编译Android项目的时候，它不得不创建一个模块去描述variants(flavor + build type)，
+解析所有variants的依赖，即使只打算构建一个。并且它会执行你自定义的逻辑。开发团队使用Gradle Ware优化了这些步骤。这是结果：</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1433743364.png" alt="1433743364.png" /></p>
+
+<p>当然，还没有说完。开发工具团队正在致力于新的Android Gradle插件，它基于Gradle Ware新的API。
+新的API允许Gradle直接管理模块，并且可以让它做一些事情，比如缓存、并行和增量构建。这是下一代插件的结果：</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1433744540.png" alt="1433744540.png" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Android开发中提升Gradle性能]]></title>
