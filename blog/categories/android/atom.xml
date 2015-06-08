@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Open Tech Pub]]></title>
   <link href="http://wodis.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-06-08T14:24:58+08:00</updated>
+  <updated>2015-06-08T22:42:31+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -59,6 +59,74 @@
 新的API允许Gradle直接管理模块，并且可以让它做一些事情，比如缓存、并行和增量构建。这是下一代插件的结果：</p>
 
 <p><img src="http://www.openwudi.com/images/2015/1433744540.png" alt="1433744540.png" /></p>
+
+<p>这些数字并不包括缓存的优化，因为它还没实现。有一个小缺点，就是这个新插件使用新的DSL，而且不能向下兼容。预览版将在几周后放出，但是正式版可能会在年末。</p>
+
+<p>开发工具团队也介绍了一个Data Binding Library。它需要构建系统的支持，因为它会从XML文件声明中生成Java源文件。老版和新版的Android Gradle插件都支持。Android Studio还开始支持C/C++进行NDK开发。</p>
+
+<h1>Testing</h1>
+
+<p><img src="http://www.openwudi.com/images/2015/1433747802.svg" alt="1433747802.png" /></p>
+
+<p>今年Android测试新发布了<a href="https://developers.google.com/cloud-test-lab/">Cloud Test lab</a>。
+它允许你使用Google测试云上的虚拟设备和物理设备进行app测试。而且，它支持自动抓取，并不需求自己写用例，当然如果你愿意也是支持的。</p>
+
+<h1>Emulator</h1>
+
+<p><img src="http://www.openwudi.com/images/2015/1433748302.png" alt="1433748302.png" /></p>
+
+<p>模拟器上并没有什么太多的变化，开发工具团队主要致力于稳定、正确性和可配置。Android Studio将下载并安装HAXM，性能上有很大的提升。
+Android Auto模拟器中将会提供指纹识别的支持。</p>
+
+<h1>New Support Annotations</h1>
+
+<p><img src="http://www.openwudi.com/images/2015/1433748585.png" alt="1433748585.png" /></p>
+
+<p>Java注解可以在编译和运行时进行很多神奇的事情。新增了13种注解可以帮助你避免一些Bug。</p>
+
+<p>例如，@WorkerThread注解。方法中声明此注解会自动检查代码是否在UI线程。Android Studio会高亮显示错误。</p>
+
+<p>另一个例子是，@RequiresPermission。一旦你使用的API没有在manifest文件中声明权限，Android Studio将会提醒你插入权限。
+在Android M中权限控制有了一些变化，用户可以选择同意和拒绝某种权限，这意味着你的代码不得不去处理拒绝后的逻辑。
+Android Studio将自动产生一个代码块帮助你完成这件事。</p>
+
+<h1>Data Binding</h1>
+
+<p><img src="http://www.openwudi.com/images/2015/1433750019.png" alt="1433750019.png" /></p>
+
+<p>这个可能是给开发者印象最深的变化。当你开发Android的UI时，通常使用findViewByID()查找XML文件中的布局，并将Java POJO填充到里面。
+Data Binding库可以让这个操作变简单。你可以声明POJO类型，变量表达式引用POJO，以及监听XML文件的布局，用来代替原来手动的操作。
+在编译时期，构建系统会生成绑定的Java类，关联你的布局和POJO。</p>
+
+<p>使用它只需要两步：POJO实现<code>android.databindings.Observable</code>接口，改变POJO则会反射到UI，反之亦然。
+Data Binding库当前还属于beta阶段，需要Android Studio 1.3版本和最新的Gradle插件。更多内容请参考
+<a href="https://developer.android.com/tools/data-binding/guide.html">https://developer.android.com/tools/data-binding/guide.html</a></p>
+
+<h1>Profiling Tools</h1>
+
+<p><img src="http://www.openwudi.com/images/2015/1433770237.png" alt="1433770237.png" /></p>
+
+<p>这个内存和性能分析工具做了一些优化。你现在可以查看在Android Studio中堆和方法路径的快照，通过一个下拉的界面，你可以发现问题在哪。
+它还能可视化的查看和跟踪，你不需要手动的生成<a href="http://docs.oracle.com/javase/7/docs/technotes/samples/hprof.html">HPROF</a>文件。</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1433770818.png" alt="1433770818.png" /></p>
+
+<p>现在内存快照是下拉显示的，看起来非常简洁。通过调试器可以查看当前的对象。它也可以让你去追踪引用链直到GC的根节点，这样你就可以知道谁持有了垃圾的引用。</p>
+
+<h1>New Features in Upcoming Releases</h1>
+
+<p><img src="http://www.openwudi.com/images/2015/1433771186.png" alt="1433771186.png" /></p>
+
+<p>这个新的视觉设计器暂时还没加入到Android Studio 1.3版本。令人兴奋的是，它减轻了创建UI的负担。上图展示了一个新的主题编辑器，让你通过可视化查看和修改主题文件。
+并且可以预览该主题的UI控件。</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1433773948.png" alt="1433773948.png" /></p>
+
+<p>布局编辑器也加入了一些新的功能，上图蓝色的部分可以让你只关注UI的布局。它还提供通过拖拽的方式修改组件。</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1433774256.png" alt="1433774256.png" /></p>
+
+<p>XML预览模式已经被扩展到可以显示系统参数，但是最重要的特点是通过所见即所得的方式直接在预览窗口进行编辑，包括从工具面板拖拽控件。</p>
 ]]></content>
   </entry>
   
