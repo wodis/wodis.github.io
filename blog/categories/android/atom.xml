@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Open Tech Pub]]></title>
   <link href="http://wodis.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-06-08T22:59:12+08:00</updated>
+  <updated>2015-06-08T23:28:09+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -48,10 +48,10 @@
 
 <p>压缩处理PNG图片同样花费了巨大的时间。工具团队已经提升了这方面的性能，将500张PNG和.9图从4秒减低到400毫秒。</p>
 
-<p>aapt(Android Asset Packaging Tool)，负责打包所以的Dex和资源文件，同样也得到了优化。</p>
+<p>aapt(Android Asset Packaging Tool)，负责打包所有的Dex和资源文件，同样也得到了优化。</p>
 
-<p>另外一个编译开销是因为Gradle自己造成的，当Gradle开始编译Android项目的时候，它不得不创建一个模块去描述variants(flavor + build type)，
-解析所有variants的依赖，即使只打算构建一个。并且它会执行你自定义的逻辑。开发团队使用Gradle Ware优化了这些步骤。这是结果：</p>
+<p>另外一个开销是因为Gradle自己造成的，当Gradle开始编译Android项目的时候，它不得不创建一个模块去描述variants(flavor + build type)，
+即使只打算构建一个，它也会解析所有variants的依赖。并且它会执行自定义的逻辑。开发团队使用Gradle Ware优化了这些步骤。这是结果：</p>
 
 <p><img src="http://www.openwudi.com/images/2015/1433743364.png" alt="1433743364.png" /></p>
 
@@ -60,16 +60,16 @@
 
 <p><img src="http://www.openwudi.com/images/2015/1433744540.png" alt="1433744540.png" /></p>
 
-<p>这些数字并不包括缓存的优化，因为它还没实现。有一个小缺点，就是这个新插件使用新的DSL，而且不能向下兼容。预览版将在几周后放出，但是正式版可能会在年末。</p>
+<p>这些数字并不包括缓存的优化，因为它还没开发完成。但它有一个小缺点，就是新插件使用新的DSL，而且还不能向下兼容。预览版将在几周后放出，但是正式版可能会在年末。</p>
 
-<p>开发工具团队也介绍了一个Data Binding Library。它需要构建系统的支持，因为它会从XML文件声明中生成Java源文件。老版和新版的Android Gradle插件都支持。Android Studio还开始支持C/C++进行NDK开发。</p>
+<p>开发工具团队也介绍了一个Data Binding Library。它需要构建系统的支持，因为它会从XML文件声明中生成Java源文件。老版和新版的Android Gradle插件都可以支持。Android Studio还开始支持C/C++进行NDK开发。</p>
 
 <h1>Testing</h1>
 
 <p><img src="http://www.openwudi.com/images/2015/1433747802.svg" alt="1433747802.png" /></p>
 
 <p>今年Android测试新发布了<a href="https://developers.google.com/cloud-test-lab/">Cloud Test lab</a>。
-它允许你使用Google测试云上的虚拟设备和物理设备进行app测试。而且，它支持自动抓取，并不需求自己写用例，当然如果你愿意也是支持的。</p>
+它允许你使用Google测试云上的虚拟设备和物理设备进行app测试。并支持自动抓取，不需求自己写用例，当然如果你愿意也是支持的。</p>
 
 <h1>Emulator</h1>
 
