@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-07-04T21:16:48+08:00</updated>
+  <updated>2015-07-04T22:46:55+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -14,11 +14,28 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Anroid Service深入理解]]></title>
-    <link href="http://wodis.github.io/blog/2015/07/04/anroid-serviceshen-ru-li-jie/"/>
+    <title type="html"><![CDATA[Anroid深入理解Service]]></title>
+    <link href="http://wodis.github.io/blog/2015/07/04/anroid-service-shen-ru-li-jie/"/>
     <updated>2015-07-04T21:16:11+08:00</updated>
-    <id>http://wodis.github.io/blog/2015/07/04/anroid-serviceshen-ru-li-jie</id>
-    <content type="html"><![CDATA[
+    <id>http://wodis.github.io/blog/2015/07/04/anroid-service-shen-ru-li-jie</id>
+    <content type="html"><![CDATA[<h1>Service</h1>
+
+<p>官方文档给出的解释为。Service是一个无界面，长时间在后台运行的应用组件。
+其他的应用组件可以启动一个Service，即使用户切换到其他应用后Service任然在后台运行。
+另外，组件可以通过绑定(Bind)的方式与Service进行交互，甚至使用Interprocess Communication(IPC)的方式。</p>
+
+<p>Service基本上可以采取两种形式：</p>
+
+<p>Started</p>
+
+<p>当一个组件调用startService()方法后，Service将启动。一旦被启动，无论启动它的组件是否被销毁，Service都会在后台运行。
+这种方式通常为了执行一个单独的操作，并且我们不需要Service返回状态。</p>
+
+<p>Bound</p>
+
+<p>当一个组件调用bindService()方法后，Service提供了一个接口使得可以与组件进行交互。包括发送请求，获得结果，甚至进程间通信IPC。</p>
+
+<p>一般会分开讨论这两种Service的启动类型，但我们可以使Service在这两种方式下运行。这取决于你是否实现了一对回调方法：onStartCommand()允许组件启动；onBind()允许组件绑定。</p>
 ]]></content>
   </entry>
   
