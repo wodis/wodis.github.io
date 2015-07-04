@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://wodis.github.io/blog/2015/07/04/anroid-serviceshen-ru-li-jie/</loc>
+    <lastmod>2015-07-04T21:16:11+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://wodis.github.io/blog/2015/06/08/android-xin-kai-fa-gong-ju/</loc>
     <lastmod>2015-06-08T12:52:33+08:00</lastmod>
   </url>
@@ -64,8 +68,5 @@
   </url>
   <url>
     <loc>http://wodis.github.io/blog/categories/python/</loc>
-  </url>
-  <url>
-    <loc>http://wodis.github.io/posts/2/</loc>
   </url>
 </urlset>

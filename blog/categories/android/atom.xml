@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Open Tech Pub]]></title>
   <link href="http://wodis.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-06-08T23:35:08+08:00</updated>
+  <updated>2015-07-04T21:16:48+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Anroid Service深入理解]]></title>
+    <link href="http://wodis.github.io/blog/2015/07/04/anroid-serviceshen-ru-li-jie/"/>
+    <updated>2015-07-04T21:16:11+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/07/04/anroid-serviceshen-ru-li-jie</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Google I/O回顾:Android开发工具的新玩意]]></title>
