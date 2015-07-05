@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-07-05T21:01:10+08:00</updated>
+  <updated>2015-07-05T21:04:10+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Anroid深入理解Service]]></title>
-    <link href="http://wodis.github.io/blog/2015/07/04/anroid-service-shen-ru-li-jie/"/>
+    <title type="html"><![CDATA[Android深入理解Service]]></title>
+    <link href="http://wodis.github.io/blog/2015/07/04/android-service-shen-ru-li-jie/"/>
     <updated>2015-07-04T21:16:11+08:00</updated>
-    <id>http://wodis.github.io/blog/2015/07/04/anroid-service-shen-ru-li-jie</id>
+    <id>http://wodis.github.io/blog/2015/07/04/android-service-shen-ru-li-jie</id>
     <content type="html"><![CDATA[<h1>Service</h1>
 
 <p>官方文档给出的解释为。Service是一个无界面，长时间在后台运行的应用组件。
