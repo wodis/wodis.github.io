@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-07-04T23:12:26+08:00</updated>
+  <updated>2015-07-05T21:01:10+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -38,6 +38,18 @@
 <p>一般会分开讨论这两种Service的启动类型，但我们可以使Service在这两种方式下运行。这取决于你是否实现了一对回调方法：onStartCommand()允许组件启动；onBind()允许组件绑定。</p>
 
 <p><code>值得注意的是Service是运行在主线程中的，这意味着Service不能创建它自己的线程，也不能运行在其他进程中（除非特别指定）。一旦你需要做一些消耗CPU的工作或者阻塞操作，你应该在Service中创建一个新的线程去完成。</code></p>
+
+<p><strong>何时使用Service或者Thread：</strong>Service因为是Android中的一个组件，会一直在后台运行，请确认是否需要一个常驻的功能。Thread通常是处理一个异步的任务，任务执行完就不再需要，它避免阻塞主线程。</p>
+
+<h1>Service常用基类</h1>
+
+<h3>Service</h3>
+
+<p>这是所有服务类的基类，继承该类，对于在服务中创建新线程很重要。因为默认服务使用应用的主线程，可能会降低程序的性能。</p>
+
+<h3>IntentService</h3>
+
+<p>这是一个Service的子类，该子类使用线程处理所有启动请求，一次一个。这是不使用服务处理多任务请求的最佳选择。你需要做的只是实现onHandleIntent()方法即可。可以为每个启动请求接收到intent，放到后台工作即可。</p>
 ]]></content>
   </entry>
   
