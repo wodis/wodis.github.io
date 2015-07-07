@@ -87,7 +87,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/07/04/android-service-shen-ru-li-jie/">Android深入理解Service</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/07/04/android-service-shen-ru-li-jie/">Android详细理解Service</a></h1>
     
     
       <p class="meta">
@@ -134,7 +134,18 @@
 
 <h3>IntentService</h3>
 
-<p>这是一个Service的子类，该子类使用线程处理所有启动请求，一次一个。这是不使用服务处理多任务请求的最佳选择。你需要做的只是实现onHandleIntent()方法即可。可以为每个启动请求接收到intent，放到后台工作即可。</p>
+<p>这是一个Service的子类，该子类使用线程处理所有启动请求，一次一个。这是不使用服务处理多任务请求的最佳选择。你需要做的只是实现onHandleIntent()方法即可。可以为每个启动请求接收到intent，放到后台工作即可。
+内部使用一个Handler和Looper来实现子线程处理.</p>
+
+<h1>Service生命周期</h1>
+
+<h3>未绑定的服务</h3>
+
+<p>startService() -> onCreate() -> onStartCommand() -> 运行服务 -> 停止 -> onDestroy() -> 服务关闭</p>
+
+<h3>绑定的服务</h3>
+
+<p>bindService() -> onCreate() -> onBind() -> 客户端绑定到服务 -> 客户端调用unbindService() -> onUnbind() -> onDestroy() -> 服务关闭</p>
 </div>
   
   
@@ -866,7 +877,7 @@ Presenter作为整个逻辑的控制者，与Controller的区别在于它并不�
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/07/04/android-service-shen-ru-li-jie/">Android深入理解Service</a>
+        <a href="/blog/2015/07/04/android-service-shen-ru-li-jie/">Android详细理解Service</a>
       </li>
     
       <li class="post">

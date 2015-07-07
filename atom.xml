@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-07-05T21:04:10+08:00</updated>
+  <updated>2015-07-07T10:59:21+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Android深入理解Service]]></title>
+    <title type="html"><![CDATA[Android详细理解Service]]></title>
     <link href="http://wodis.github.io/blog/2015/07/04/android-service-shen-ru-li-jie/"/>
     <updated>2015-07-04T21:16:11+08:00</updated>
     <id>http://wodis.github.io/blog/2015/07/04/android-service-shen-ru-li-jie</id>
@@ -49,7 +49,18 @@
 
 <h3>IntentService</h3>
 
-<p>这是一个Service的子类，该子类使用线程处理所有启动请求，一次一个。这是不使用服务处理多任务请求的最佳选择。你需要做的只是实现onHandleIntent()方法即可。可以为每个启动请求接收到intent，放到后台工作即可。</p>
+<p>这是一个Service的子类，该子类使用线程处理所有启动请求，一次一个。这是不使用服务处理多任务请求的最佳选择。你需要做的只是实现onHandleIntent()方法即可。可以为每个启动请求接收到intent，放到后台工作即可。
+内部使用一个Handler和Looper来实现子线程处理.</p>
+
+<h1>Service生命周期</h1>
+
+<h3>未绑定的服务</h3>
+
+<p>startService() -> onCreate() -> onStartCommand() -> 运行服务 -> 停止 -> onDestroy() -> 服务关闭</p>
+
+<h3>绑定的服务</h3>
+
+<p>bindService() -> onCreate() -> onBind() -> 客户端绑定到服务 -> 客户端调用unbindService() -> onUnbind() -> onDestroy() -> 服务关闭</p>
 ]]></content>
   </entry>
   
