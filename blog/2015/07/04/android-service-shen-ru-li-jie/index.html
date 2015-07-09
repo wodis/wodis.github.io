@@ -143,6 +143,10 @@
 <h3>绑定的服务</h3>
 
 <p>bindService() -> onCreate() -> onBind() -> 客户端绑定到服务 -> 客户端调用unbindService() -> onUnbind() -> onDestroy() -> 服务关闭</p>
+
+<h1>自动启动Service</h1>
+
+<p>通常的办法是实现一个BroadcastReceiver，监听ACTION_BOOT_COMPLETED即可，并在接收完该广播后通过AlarmManager轮询发送自定义广播，再通过另一个BroadcastReceiver启动Service。</p>
 </div>
 
 
