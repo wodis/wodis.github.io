@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-07-09T15:12:55+08:00</updated>
+  <updated>2015-07-09T15:27:12+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -65,6 +65,8 @@
 <h1>自动启动Service</h1>
 
 <p>通常的办法是实现一个BroadcastReceiver，监听ACTION_BOOT_COMPLETED即可，并在接收完该广播后通过AlarmManager轮询发送自定义广播，再通过另一个BroadcastReceiver启动Service。</p>
+
+<p>如果通过某种方式将整个进程杀死，所有的服务也会被杀死，此时将无法定期启动服务了。要想达到即使杀死了也可以自动启动服务，需要注册一个系统级别的BroadcastReceiver。</p>
 ]]></content>
   </entry>
   
