@@ -9,9 +9,7 @@
   <meta name="author" content="Wu Di">
 
   
-  <meta name="description" content="Service 官方文档给出的解释为。Service是一个无界面，长时间在后台运行的应用组件。
-其他的应用组件可以启动一个Service，即使用户切换到其他应用后Service任然在后台运行。
-另外，组件可以通过绑定(Bind)的方式与Service进行交互，甚至使用Interprocess &hellip;">
+  <meta name="description" content="参加了几个面试都涉及到HTTP协议的问题，虽然可以简述出来，但是有些细节记不清了，整理一些关键点。 HTTP 1.1与HTTP 1.0的比较 HTTP 1.0规定浏览器与服务器只保持短暂的连接，浏览器的每次请求都需要与服务器建立一个TCP连接，服务器完成请求处理后立即断开TCP连接， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +79,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/07/15/http-xiang-jie/">HTTP协议</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-07-15T10:05:37+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:05 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>参加了几个面试都涉及到HTTP协议的问题，虽然可以简述出来，但是有些细节记不清了，整理一些关键点。</p>
+
+<h1>HTTP 1.1与HTTP 1.0的比较</h1>
+
+<p>HTTP 1.0规定浏览器与服务器只保持短暂的连接，浏览器的每次请求都需要与服务器建立一个TCP连接，服务器完成请求处理后立即断开TCP连接，服务器不跟踪每个客户也不记录过去的请求。但是，这也造成了一些性能上的缺陷。</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1436943671.svg" alt="1436943671.svg" /></p>
+
+<p>上图为一个网页请求模型，它包含网页文档和几个图片元素。加载整个网页需要进行4次请求和响应。</p>
+
+<p>为了克服HTTP 1.0的这个缺陷，HTTP 1.1支持持久连接，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟。
+一个包含有许多图像的网页文件的多个请求和应答可以在一个连接中传输，但每个单独的网页文件的请求和应答仍然需要使用各自的连接。HTTP 1.1还允许客户端不用等待上一次请求结果返回，就可以发出下一次请求，但服务器端必须按照接收到客户端请求的先后顺序依次回送响应结果，以保证客户端能够区分出每次请求的响应内容，这样也显著地减少了整个下载过程所需要的时间。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -748,126 +786,6 @@ Presenter作为整个逻辑的控制者，与Controller的区别在于它并不�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/02/google-guava-library-tips/">Google Guava Library Tips</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-09-02T18:58:38+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>6:58 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>String</h1>
-
-<ul>
-<li>CharMatcher (which can be considered as a light form of JDK&rsquo;s Pattern+Matcher with string manipulation capabilities)</li>
-<li>Joiner and MapJoiner (which are useful for joining iterables or arrays into string representations)</li>
-<li>Splitter (which is split() of JDK on steroids).</li>
-</ul>
-
-
-<h3>CharMatcher.JAVA_LETTER_OR_DIGIT</h3>
-
-<p>.countIn(&ldquo;&rdquo;)</p>
-
-<p>.matchesAllOf(&ldquo;&rdquo;)</p>
-
-<p>.matchesNoneOf(&ldquo;&rdquo;)</p>
-
-<p>.negate()</p>
-
-<p>.removeFrom(&ldquo;&rdquo;)</p>
-
-<p>.retainFrom(&ldquo;&rdquo;)</p>
-
-<p>.indexIn(&ldquo;&rdquo;)</p>
-
-<p>.anyOf(&ldquo;&rdquo;)</p>
-
-<p>.noneOf(&ldquo;&rdquo;)</p>
-
-<p>.inRange(&lsquo;&rsquo;, &lsquo;&rsquo;)</p>
-
-<p>.or(CharMatcher)</p>
-
-<p>.and(CharMatcher)</p>
-
-<h3>Joiner</h3>
-
-<p>.on(&ldquo;&rdquo;)</p>
-
-<p>.join(List)</p>
-
-<p>.skipNulls()</p>
-
-<p>.useForNull(&ldquo;&rdquo;)</p>
-
-<h3>Splitter</h3>
-
-<p>.on(&ldquo;&rdquo;)</p>
-
-<p>.omitEmptyStrings()</p>
-
-<p>.trimResults()</p>
-
-<p>.split(&ldquo;&rdquo;)</p>
-
-<p>.fixedLength(int)</p>
-
-<h3>Strings</h3>
-
-<p>.emptyToNull(&ldquo;&rdquo;)</p>
-
-<p>.isNullOrEmpty(&ldquo;&rdquo;)</p>
-
-<p>.repeat(&ldquo;&rdquo;, int)</p>
-
-<p>.padEnd(&ldquo;&rdquo;, int, &lsquo;&rsquo;)</p>
-
-<p>.padStart(&ldquo;&rdquo;, int, &lsquo;&rsquo;)</p>
-
-<h1>Ordering</h1>
-
-<p>This class is really useful if you need to order your Iterable, find the maximum/minimum element in your Iterable, find the index of an arbitrary element. It implements Comparator interface for backward compatibility..from(Comparator)</p>
-
-<p>.sortedCopy(List)</p>
-
-<p>.explicit(enum)</p>
-
-<p>.usingToString()</p>
-
-<p>.natural()</p>
-
-<p>.binarySearch(List,Object)</p>
-
-<p>.max(List)</p>
-
-<p>.min(List)</p>
-
-<p>.reverse()</p>
-
-<p>.isOrdered()</p>
-
-<p>.isStrictlyOrdered()</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -883,6 +801,10 @@ Presenter作为整个逻辑的控制者，与Controller的区别在于它并不�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/07/15/http-xiang-jie/">HTTP协议</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/07/04/android-service-shen-ru-li-jie/">Android详细理解Service</a>
       </li>
     
@@ -896,10 +818,6 @@ Presenter作为整个逻辑的控制者，与Controller的区别在于它并不�
     
       <li class="post">
         <a href="/blog/2015/06/01/mvvm-mo-shi/">Android开发中的MVVM模式</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/05/27/python-learning/">Python Learning</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-07-09T15:27:12+08:00</updated>
+  <updated>2015-07-15T15:08:45+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -12,6 +12,26 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[HTTP协议]]></title>
+    <link href="http://wodis.github.io/blog/2015/07/15/http-xiang-jie/"/>
+    <updated>2015-07-15T10:05:37+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/07/15/http-xiang-jie</id>
+    <content type="html"><![CDATA[<p>参加了几个面试都涉及到HTTP协议的问题，虽然可以简述出来，但是有些细节记不清了，整理一些关键点。</p>
+
+<h1>HTTP 1.1与HTTP 1.0的比较</h1>
+
+<p>HTTP 1.0规定浏览器与服务器只保持短暂的连接，浏览器的每次请求都需要与服务器建立一个TCP连接，服务器完成请求处理后立即断开TCP连接，服务器不跟踪每个客户也不记录过去的请求。但是，这也造成了一些性能上的缺陷。</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1436943671.svg" alt="1436943671.svg" /></p>
+
+<p>上图为一个网页请求模型，它包含网页文档和几个图片元素。加载整个网页需要进行4次请求和响应。</p>
+
+<p>为了克服HTTP 1.0的这个缺陷，HTTP 1.1支持持久连接，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟。
+一个包含有许多图像的网页文件的多个请求和应答可以在一个连接中传输，但每个单独的网页文件的请求和应答仍然需要使用各自的连接。HTTP 1.1还允许客户端不用等待上一次请求结果返回，就可以发出下一次请求，但服务器端必须按照接收到客户端请求的先后顺序依次回送响应结果，以保证客户端能够区分出每次请求的响应内容，这样也显著地减少了整个下载过程所需要的时间。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Android详细理解Service]]></title>

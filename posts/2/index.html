@@ -9,12 +9,8 @@
   <meta name="author" content="Wu Di">
 
   
-  <meta name="description" content="Git 工作流程 一般工作流程如下： 克隆 Git 资源作为工作目录。
-在克隆的资源上添加或修改文件。
-如果其他人修改了，你可以更新资源。
-在提交前查看修改。
-提交修改。
-在修改完成后，如果发现错误，可以撤回提交并再次修改并提交。 Git 创建仓库 使用您当前目录作为Git仓库，我们只需使它初始化 &hellip;">
+  <meta name="description" content="String CharMatcher (which can be considered as a light form of JDK&rsquo;s Pattern+Matcher with string manipulation capabilities)
+Joiner and &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +80,126 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/02/google-guava-library-tips/">Google Guava Library Tips</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-09-02T18:58:38+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>6:58 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>String</h1>
+
+<ul>
+<li>CharMatcher (which can be considered as a light form of JDK&rsquo;s Pattern+Matcher with string manipulation capabilities)</li>
+<li>Joiner and MapJoiner (which are useful for joining iterables or arrays into string representations)</li>
+<li>Splitter (which is split() of JDK on steroids).</li>
+</ul>
+
+
+<h3>CharMatcher.JAVA_LETTER_OR_DIGIT</h3>
+
+<p>.countIn(&ldquo;&rdquo;)</p>
+
+<p>.matchesAllOf(&ldquo;&rdquo;)</p>
+
+<p>.matchesNoneOf(&ldquo;&rdquo;)</p>
+
+<p>.negate()</p>
+
+<p>.removeFrom(&ldquo;&rdquo;)</p>
+
+<p>.retainFrom(&ldquo;&rdquo;)</p>
+
+<p>.indexIn(&ldquo;&rdquo;)</p>
+
+<p>.anyOf(&ldquo;&rdquo;)</p>
+
+<p>.noneOf(&ldquo;&rdquo;)</p>
+
+<p>.inRange(&lsquo;&rsquo;, &lsquo;&rsquo;)</p>
+
+<p>.or(CharMatcher)</p>
+
+<p>.and(CharMatcher)</p>
+
+<h3>Joiner</h3>
+
+<p>.on(&ldquo;&rdquo;)</p>
+
+<p>.join(List)</p>
+
+<p>.skipNulls()</p>
+
+<p>.useForNull(&ldquo;&rdquo;)</p>
+
+<h3>Splitter</h3>
+
+<p>.on(&ldquo;&rdquo;)</p>
+
+<p>.omitEmptyStrings()</p>
+
+<p>.trimResults()</p>
+
+<p>.split(&ldquo;&rdquo;)</p>
+
+<p>.fixedLength(int)</p>
+
+<h3>Strings</h3>
+
+<p>.emptyToNull(&ldquo;&rdquo;)</p>
+
+<p>.isNullOrEmpty(&ldquo;&rdquo;)</p>
+
+<p>.repeat(&ldquo;&rdquo;, int)</p>
+
+<p>.padEnd(&ldquo;&rdquo;, int, &lsquo;&rsquo;)</p>
+
+<p>.padStart(&ldquo;&rdquo;, int, &lsquo;&rsquo;)</p>
+
+<h1>Ordering</h1>
+
+<p>This class is really useful if you need to order your Iterable, find the maximum/minimum element in your Iterable, find the index of an arbitrary element. It implements Comparator interface for backward compatibility..from(Comparator)</p>
+
+<p>.sortedCopy(List)</p>
+
+<p>.explicit(enum)</p>
+
+<p>.usingToString()</p>
+
+<p>.natural()</p>
+
+<p>.binarySearch(List,Object)</p>
+
+<p>.max(List)</p>
+
+<p>.min(List)</p>
+
+<p>.reverse()</p>
+
+<p>.isOrdered()</p>
+
+<p>.isStrictlyOrdered()</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -879,6 +995,10 @@ v1.0
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/07/15/http-xiang-jie/">HTTP协议</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/07/04/android-service-shen-ru-li-jie/">Android详细理解Service</a>
       </li>
     
@@ -892,10 +1012,6 @@ v1.0
     
       <li class="post">
         <a href="/blog/2015/06/01/mvvm-mo-shi/">Android开发中的MVVM模式</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/05/27/python-learning/">Python Learning</a>
       </li>
     
   </ul>
