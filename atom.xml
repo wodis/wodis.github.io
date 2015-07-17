@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-07-17T13:54:21+08:00</updated>
+  <updated>2015-07-17T13:58:11+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -21,14 +21,14 @@
     <content type="html"><![CDATA[<p>你将从这篇文章中了解到什么是Stream，并且如何在Android开发中使用它。</p>
 
 <p>不幸的是Android还不支持Java 8，Kitkat（Android 4.4+）以后的版本可以支持Java 7。
-那么只能和新特性说再见了吗？当然不能，一些聪明人想出了一个解决办法：</p>
+那么只能和新特性说再见了吗？当然不是，一些聪明人想出了一个解决办法：</p>
 
 <p><a href="https://github.com/orfjackal/retrolambda">RETROLAMBDA</a></p>
 
 <h1>如何安装RETROLAMBDA</h1>
 
-<p>作为热身，让我们来看看如何快速使用Retrolambda在我们的项目中。
-（假设你已经知道Android Studio的gradle构建系统以及它是如何工作的）</p>
+<p>作为热身，让我们来看看如何快速的在项目中使用Retrolambda。
+（假设你已经了解Android Studio的gradle构建系统以及它是如何工作的）</p>
 
 <p>1.在./build.gradle文件中添加新的classpath:</p>
 
