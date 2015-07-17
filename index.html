@@ -9,7 +9,8 @@
   <meta name="author" content="Wu Di">
 
   
-  <meta name="description" content="参加了几个面试都涉及到HTTP协议的问题，虽然可以简述出来，但是有些细节记不清了，整理一些关键点。 HTTP 1.1与HTTP 1.0的比较 HTTP 1.0规定浏览器与服务器只保持短暂的连接，浏览器的每次请求都需要与服务器建立一个TCP连接，服务器完成请求处理后立即断开TCP连接， &hellip;">
+  <meta name="description" content="你将从这篇文章中了解到什么是Stream，并且如何在Android开发中使用它。 不幸的是Android还不支持Java 8，Kitkat（Android 4.4+）以后的版本可以支持Java 7。
+那么只能和新特性说再见了吗？当然不能，一些聪明人想出了一个解决办法： RETROLAMBDA &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +80,100 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/07/17/java-8-stream-android/">Android开发中使用Java 8 Stream</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-07-17T11:48:52+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:48 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>你将从这篇文章中了解到什么是Stream，并且如何在Android开发中使用它。</p>
+
+<p>不幸的是Android还不支持Java 8，Kitkat（Android 4.4+）以后的版本可以支持Java 7。
+那么只能和新特性说再见了吗？当然不能，一些聪明人想出了一个解决办法：</p>
+
+<p><a href="https://github.com/orfjackal/retrolambda">RETROLAMBDA</a></p>
+
+<h1>如何安装RETROLAMBDA</h1>
+
+<p>作为热身，让我们来看看如何快速使用Retrolambda在我们的项目中。
+（假设你已经知道Android Studio的gradle构建系统以及它是如何工作的）</p>
+
+<p>1.在./build.gradle文件中添加新的classpath:</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1437106139.png" alt="1437106139.png" /></p>
+
+<p>2.在./app/build.gradle文件中添加Retrolambda插件:</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1437106186.png" alt="1437106186.png" /></p>
+
+<p>3.还需要添加:</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1437106215.png" alt="1437106215.png" /></p>
+
+<p>4.编译gradle</p>
+
+<h1>STREAM</h1>
+
+<p><code>A stream is an abstraction for specifying aggregate computations on a DataSet</code></p>
+
+<p>Java 8 Stream API引入的目的在于弥补Java函数式编程的缺陷。对于很多支持函数式编程的语言，map()、reduce()基本上都内置到语言的标准库中了，不过，Java 8的Stream API总体来讲仍然是非常完善和强大，足以用很少的代码完成许多复杂的功能。</p>
+
+<p>创建一个Stream有很多方法，最简单的方法是把一个Collection变成Stream。我们来看最基本的几个操作：</p>
+
+<pre><code>public static void main(String[] args) {
+    List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    Stream&lt;Integer&gt; stream = numbers.stream();
+    stream.filter((x) -&gt; {
+        return x % 2 == 0;
+    }).map((x) -&gt; {
+        return x * x;
+    }).forEach(System.out::println);
+}
+</code></pre>
+
+<p>集合类新增的stream()方法用于把一个集合变成Stream，然后，通过filter()、map()等实现Stream的变换。Stream还有一个forEach()来完成每个元素的迭代。</p>
+
+<p>使用Stream的两个原因：</p>
+
+<p>1.集合类会持有所有元素在内存中，大集合会占用大量内存。而Stream的元素是在访问的时候被计算出来，内存占用小。</p>
+
+<p>2.二是集合类的迭代逻辑是调用者负责，通常是for循环，而Stream的迭代是隐含在对Stream的各种操作中，例如map()。</p>
+
+<p>更多特性参考InfoQ的文章<a href="http://www.infoq.com/cn/articles/java8-new-features-new-stream-api">Java 8新特性：全新的Stream API</a></p>
+
+<h1>Android中使用轻量级Stream API</h1>
+
+<p>上一部分介绍了Java 8 Stream的使用，但是我们的目的是讨论Android如何去使用这个特性。我们可以通过
+<a href="https://github.com/aNNiMON/Lightweight-Stream-API">Lightweight-Stream-API</a>，只需要增加它的classpath。</p>
+
+<p><code>compile 'com.annimon:stream:1.0.1'</code></p>
+
+<h1>JAVA 8 vs Lightweight-Stream-API（LSA）</h1>
+
+<p>虽然Java 8的Stream和LSA工作方式一样，但他们间仍有少量的区别。例如使用LSA创建Stream时使用Stream.of(YourCollection)，而Java 8中使用Stream<YourCollectionItem>。
+另一个区别为排序操作，Java 8中使用‘sort()’，而LSA中使用‘sorted()’。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -826,54 +921,6 @@ Presenter作为整个逻辑的控制者，与Controller的区别在于它并不�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/01/01/first-blog/">关于我</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-01-01T16:07:32+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>4:07 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="http://tp2.sinaimg.cn/1690201701/50/5679941181/1" alt="my icon" /></p>
-
-<p><strong>姓名：</strong> Di Wu</p>
-
-<p><strong>微博：</strong> <a href="http://weibo.com/wodis">@讨厌茄子的老科特</a></p>
-
-<p><strong>博客：</strong> <a href="http://www.openwudi.com">http://www.openwudi.com</a></p>
-
-<p><strong>所在地：</strong> 北京</p>
-
-<p><strong>就职于：</strong> 新浪微博</p>
-
-<p><strong>教育经历：</strong> <code>2012~2013 Dublin City University</code>
-<code>2006~2012 武汉大学</code></p>
-
-<hr />
-
-<p>2014年加入新浪微博，进行Java平台的研发工作，现担任新浪微博-微人脉项目工程师，完成Android客户端1.3以前版本，并切入服务器端开发到现在。2013年参加DCU的Kuali Student开源项目，经历了从调研，立项，到研发的整个过程，学业结束回国。</p>
-
-<p>欢迎随时与我交流Android/Java开发中所遇到的问题。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -889,6 +936,10 @@ Presenter作为整个逻辑的控制者，与Controller的区别在于它并不�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/07/17/java-8-stream-android/">Android开发中使用Java 8 Stream</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/07/15/http-xiang-jie/">HTTP协议</a>
       </li>
     
@@ -902,10 +953,6 @@ Presenter作为整个逻辑的控制者，与Controller的区别在于它并不�
     
       <li class="post">
         <a href="/blog/2015/06/02/ti-sheng-gradle-xing-neng/">Android开发中提升Gradle性能</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/01/mvvm-mo-shi/">Android开发中的MVVM模式</a>
       </li>
     
   </ul>

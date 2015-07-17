@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-07-15T15:31:55+08:00</updated>
+  <updated>2015-07-17T13:54:21+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Android开发中使用Java 8 Stream]]></title>
+    <link href="http://wodis.github.io/blog/2015/07/17/java-8-stream-android/"/>
+    <updated>2015-07-17T11:48:52+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/07/17/java-8-stream-android</id>
+    <content type="html"><![CDATA[<p>你将从这篇文章中了解到什么是Stream，并且如何在Android开发中使用它。</p>
+
+<p>不幸的是Android还不支持Java 8，Kitkat（Android 4.4+）以后的版本可以支持Java 7。
+那么只能和新特性说再见了吗？当然不能，一些聪明人想出了一个解决办法：</p>
+
+<p><a href="https://github.com/orfjackal/retrolambda">RETROLAMBDA</a></p>
+
+<h1>如何安装RETROLAMBDA</h1>
+
+<p>作为热身，让我们来看看如何快速使用Retrolambda在我们的项目中。
+（假设你已经知道Android Studio的gradle构建系统以及它是如何工作的）</p>
+
+<p>1.在./build.gradle文件中添加新的classpath:</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1437106139.png" alt="1437106139.png" /></p>
+
+<p>2.在./app/build.gradle文件中添加Retrolambda插件:</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1437106186.png" alt="1437106186.png" /></p>
+
+<p>3.还需要添加:</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1437106215.png" alt="1437106215.png" /></p>
+
+<p>4.编译gradle</p>
+
+<h1>STREAM</h1>
+
+<p><code>A stream is an abstraction for specifying aggregate computations on a DataSet</code></p>
+
+<p>Java 8 Stream API引入的目的在于弥补Java函数式编程的缺陷。对于很多支持函数式编程的语言，map()、reduce()基本上都内置到语言的标准库中了，不过，Java 8的Stream API总体来讲仍然是非常完善和强大，足以用很少的代码完成许多复杂的功能。</p>
+
+<p>创建一个Stream有很多方法，最简单的方法是把一个Collection变成Stream。我们来看最基本的几个操作：</p>
+
+<pre><code>public static void main(String[] args) {
+    List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    Stream&lt;Integer&gt; stream = numbers.stream();
+    stream.filter((x) -&gt; {
+        return x % 2 == 0;
+    }).map((x) -&gt; {
+        return x * x;
+    }).forEach(System.out::println);
+}
+</code></pre>
+
+<p>集合类新增的stream()方法用于把一个集合变成Stream，然后，通过filter()、map()等实现Stream的变换。Stream还有一个forEach()来完成每个元素的迭代。</p>
+
+<p>使用Stream的两个原因：</p>
+
+<p>1.集合类会持有所有元素在内存中，大集合会占用大量内存。而Stream的元素是在访问的时候被计算出来，内存占用小。</p>
+
+<p>2.二是集合类的迭代逻辑是调用者负责，通常是for循环，而Stream的迭代是隐含在对Stream的各种操作中，例如map()。</p>
+
+<p>更多特性参考InfoQ的文章<a href="http://www.infoq.com/cn/articles/java8-new-features-new-stream-api">Java 8新特性：全新的Stream API</a></p>
+
+<h1>Android中使用轻量级Stream API</h1>
+
+<p>上一部分介绍了Java 8 Stream的使用，但是我们的目的是讨论Android如何去使用这个特性。我们可以通过
+<a href="https://github.com/aNNiMON/Lightweight-Stream-API">Lightweight-Stream-API</a>，只需要增加它的classpath。</p>
+
+<p><code>compile 'com.annimon:stream:1.0.1'</code></p>
+
+<h1>JAVA 8 vs Lightweight-Stream-API（LSA）</h1>
+
+<p>虽然Java 8的Stream和LSA工作方式一样，但他们间仍有少量的区别。例如使用LSA创建Stream时使用Stream.of(YourCollection)，而Java 8中使用Stream<YourCollectionItem>。
+另一个区别为排序操作，Java 8中使用‘sort()’，而LSA中使用‘sorted()’。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[HTTP协议]]></title>
