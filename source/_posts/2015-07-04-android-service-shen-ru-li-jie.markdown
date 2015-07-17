@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Anroid深入理解Service"
+title: "Android详细理解Service"
 date: 2015-07-04 21:16:11 +0800
 comments: true
 categories: Android
@@ -33,3 +33,16 @@ Bound
 这是所有服务类的基类，继承该类，对于在服务中创建新线程很重要。因为默认服务使用应用的主线程，可能会降低程序的性能。
 ###IntentService
 这是一个Service的子类，该子类使用线程处理所有启动请求，一次一个。这是不使用服务处理多任务请求的最佳选择。你需要做的只是实现onHandleIntent()方法即可。可以为每个启动请求接收到intent，放到后台工作即可。
+内部使用一个Handler和Looper来实现子线程处理.
+
+#Service生命周期
+###未绑定的服务
+startService() -> onCreate() -> onStartCommand() -> 运行服务 -> 停止 -> onDestroy() -> 服务关闭
+
+###绑定的服务
+bindService() -> onCreate() -> onBind() -> 客户端绑定到服务 -> 客户端调用unbindService() -> onUnbind() -> onDestroy() -> 服务关闭
+
+#自动启动Service
+通常的办法是实现一个BroadcastReceiver，监听ACTION_BOOT_COMPLETED即可，并在接收完该广播后通过AlarmManager轮询发送自定义广播，再通过另一个BroadcastReceiver启动Service。
+
+如果通过某种方式将整个进程杀死，所有的服务也会被杀死，此时将无法定期启动服务了。要想达到即使杀死了也可以自动启动服务，需要注册一个系统级别的BroadcastReceiver。
