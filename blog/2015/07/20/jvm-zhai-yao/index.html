@@ -1,24 +1,104 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Java | Open Tech Pub]]></title>
-  <link href="http://wodis.github.io/blog/categories/java/atom.xml" rel="self"/>
-  <link href="http://wodis.github.io/"/>
-  <updated>2015-07-20T17:11:41+08:00</updated>
-  <id>http://wodis.github.io/</id>
-  <author>
-    <name><![CDATA[Wu Di]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>JVM工作原理摘要 - Open Tech Pub - 2015-07-20 16:34:57 +0800</title>
+  <meta name="author" content="Wu Di">
 
   
-  <entry>
-    <title type="html"><![CDATA[JVM工作原理摘要]]></title>
-    <link href="http://wodis.github.io/blog/2015/07/20/jvm-zhai-yao/"/>
-    <updated>2015-07-20T16:34:57+08:00</updated>
-    <id>http://wodis.github.io/blog/2015/07/20/jvm-zhai-yao</id>
-    <content type="html"><![CDATA[<h1>一、JVM的生命周期</h1>
+  <meta name="description" content="一、JVM的生命周期 1.JVM实例对应了一个独立运行的java程序它是进程级别 a)启动。启动一个Java程序时，一个JVM实例就产生了，任何一个拥有public static void main(String[] args)函数的class都可以作为JVM实例运行的起点 b)运行。main() &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wodis.github.io/blog/2015/07/20/jvm-zhai-yao/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Open Tech Pub" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+    <!-- googleapis is fucked by gfw -->
+  <script src="http://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!-- 
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+ -->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?16937d74824f50bd02daa98ce1ba6048";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Open Tech Pub</a></h1>
+  
+    <h2>那些年关注的技术</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="wodis.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+    <li><a href="/">首页</a></li>
+    <li><a href="/blog/archives">所有文章</a></li>
+    <li><a href="http://www.weibo.com/wodis">我的微博</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">JVM工作原理摘要</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-07-20T16:34:57+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:34 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h1>一、JVM的生命周期</h1>
 
 <p>1.JVM实例对应了一个独立运行的java程序它是进程级别</p>
 
@@ -250,107 +330,146 @@
 
 <p>Dalvik主要是完成对象生命周期管理，堆栈管理，线程管理，安全和异常管理，以及垃圾回收等等重要功能。
 Dalvik负责进程隔离和线程管理，每一个Android应用在底层都会对应一个独立的Dalvik虚拟机实例，其代码在虚拟机的解释下得以执行。</p>
-]]></content>
-  </entry>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-  <entry>
-    <title type="html"><![CDATA[Google Guava Library Tips]]></title>
-    <link href="http://wodis.github.io/blog/2014/09/02/google-guava-library-tips/"/>
-    <updated>2014-09-02T18:58:38+08:00</updated>
-    <id>http://wodis.github.io/blog/2014/09/02/google-guava-library-tips</id>
-    <content type="html"><![CDATA[<h1>String</h1>
 
-<ul>
-<li>CharMatcher (which can be considered as a light form of JDK&rsquo;s Pattern+Matcher with string manipulation capabilities)</li>
-<li>Joiner and MapJoiner (which are useful for joining iterables or arrays into string representations)</li>
-<li>Splitter (which is split() of JDK on steroids).</li>
-</ul>
+<span class="byline author vcard">Posted by <span class="fn">Wu Di</span></span>
+
+      
 
 
-<h3>CharMatcher.JAVA_LETTER_OR_DIGIT</h3>
 
-<p>.countIn(&ldquo;&rdquo;)</p>
 
-<p>.matchesAllOf(&ldquo;&rdquo;)</p>
+<time class='entry-date' datetime='2015-07-20T16:34:57+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:34 pm</span></time>
+      
 
-<p>.matchesNoneOf(&ldquo;&rdquo;)</p>
-
-<p>.negate()</p>
-
-<p>.removeFrom(&ldquo;&rdquo;)</p>
-
-<p>.retainFrom(&ldquo;&rdquo;)</p>
-
-<p>.indexIn(&ldquo;&rdquo;)</p>
-
-<p>.anyOf(&ldquo;&rdquo;)</p>
-
-<p>.noneOf(&ldquo;&rdquo;)</p>
-
-<p>.inRange(&lsquo;&rsquo;, &lsquo;&rsquo;)</p>
-
-<p>.or(CharMatcher)</p>
-
-<p>.and(CharMatcher)</p>
-
-<h3>Joiner</h3>
-
-<p>.on(&ldquo;&rdquo;)</p>
-
-<p>.join(List)</p>
-
-<p>.skipNulls()</p>
-
-<p>.useForNull(&ldquo;&rdquo;)</p>
-
-<h3>Splitter</h3>
-
-<p>.on(&ldquo;&rdquo;)</p>
-
-<p>.omitEmptyStrings()</p>
-
-<p>.trimResults()</p>
-
-<p>.split(&ldquo;&rdquo;)</p>
-
-<p>.fixedLength(int)</p>
-
-<h3>Strings</h3>
-
-<p>.emptyToNull(&ldquo;&rdquo;)</p>
-
-<p>.isNullOrEmpty(&ldquo;&rdquo;)</p>
-
-<p>.repeat(&ldquo;&rdquo;, int)</p>
-
-<p>.padEnd(&ldquo;&rdquo;, int, &lsquo;&rsquo;)</p>
-
-<p>.padStart(&ldquo;&rdquo;, int, &lsquo;&rsquo;)</p>
-
-<h1>Ordering</h1>
-
-<p>This class is really useful if you need to order your Iterable, find the maximum/minimum element in your Iterable, find the index of an arbitrary element. It implements Comparator interface for backward compatibility..from(Comparator)</p>
-
-<p>.sortedCopy(List)</p>
-
-<p>.explicit(enum)</p>
-
-<p>.usingToString()</p>
-
-<p>.natural()</p>
-
-<p>.binarySearch(List,Object)</p>
-
-<p>.max(List)</p>
-
-<p>.min(List)</p>
-
-<p>.reverse()</p>
-
-<p>.isOrdered()</p>
-
-<p>.isStrictlyOrdered()</p>
-]]></content>
-  </entry>
+<span class="categories">
   
-</feed>
+    <a class='category' href='/blog/categories/android/'>android</a>, <a class='category' href='/blog/categories/java/'>java</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+    
+    
+    
+
+    
+    <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<br>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2035019"></script>
+<!-- UY END -->
+    
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/07/17/java-8-stream-android/" title="Previous Post: Android开发中使用Java 8 Stream">&laquo; Android开发中使用Java 8 Stream</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/07/20/jvm-zhai-yao/">JVM工作原理摘要</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/17/java-8-stream-android/">Android开发中使用Java 8 Stream</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/15/http-xiang-jie/">HTTP协议</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/04/android-service-shen-ru-li-jie/">Android详细理解Service</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/08/android-xin-kai-fa-gong-ju/">Google I/O回顾:Android开发工具的新玩意</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+    <h1>About Me</h1>
+
+    <p>帝都成长，华中求学，爱尔兰漂泊一年有余，就职于新浪微博-微人脉。Google死忠</p>
+
+    <p>Android开发工程师，曾开发微人脉客户端、WiFi胶卷。</p>
+    <p>Java开发工程师，曾开发Kuali Student开源项目，现在负责微人脉后端开发。</p>
+
+    <p>新浪微博：<a href="http://weibo.com/wodis">@讨厌茄子的老科特</a></p>
+    
+    <p>微信公众号：</p>
+    <p><img src="/images/qrcode_for_androiddevtips.jpg"></p>
+    
+    <p>我的微信账号：</p>
+    <p><img src="/images/weixin.jpg"></p>
+
+    <p>Wu Di -- “ I am a programmer who principally focused on Android/Java design and development. Dual master's degree in telecommunication and software engineering. Graduated from Dublin City University and Wuhan University. Working in Beijing. ”</p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy; 2015 - Wu Di -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> -
+    <span class="credit">Thanks for <a href="https://gitcafe.com">GitCafe</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
