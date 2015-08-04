@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-07-20T17:16:02+08:00</updated>
+  <updated>2015-08-04T17:38:25+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Eclipse ADT Bundle下载]]></title>
+    <link href="http://wodis.github.io/blog/2015/08/04/adt-bundle/"/>
+    <updated>2015-08-04T17:32:10+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/08/04/adt-bundle</id>
+    <content type="html"><![CDATA[<p>Android官方主页不再提供Eclipse ADT Bundle的下载，并且声明放弃维护。</p>
+
+<p>以下是20140702对应操作系统的下载地址：</p>
+
+<p>windows 32: <a href="https://dl.google.com/android/adt/adt-bundle-windows-x86-20140702.zip">https://dl.google.com/android/adt/adt-bundle-windows-x86-20140702.zip</a></p>
+
+<p>windows 64: <a href="https://dl.google.com/android/adt/adt-bundle-windows-x86_64-20140702.zip">https://dl.google.com/android/adt/adt-bundle-windows-x86_64-20140702.zip</a></p>
+
+<p>Mac 64: <a href="dl.google.com/android/adt/adt-bundle-mac-x86_64-20140702.zip">dl.google.com/android/adt/adt-bundle-mac-x86_64-20140702.zip</a></p>
+
+<p>Linux 86: <a href="dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip">dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip</a></p>
+
+<p>Linux 64: <a href="dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip">dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[JVM工作原理摘要]]></title>

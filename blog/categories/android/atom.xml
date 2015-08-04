@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Open Tech Pub]]></title>
   <link href="http://wodis.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-07-20T17:16:02+08:00</updated>
+  <updated>2015-08-04T17:38:25+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Eclipse ADT Bundle下载]]></title>
+    <link href="http://wodis.github.io/blog/2015/08/04/adt-bundle/"/>
+    <updated>2015-08-04T17:32:10+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/08/04/adt-bundle</id>
+    <content type="html"><![CDATA[<p>Android官方主页不再提供Eclipse ADT Bundle的下载，并且声明放弃维护。</p>
+
+<p>以下是20140702对应操作系统的下载地址：</p>
+
+<p>windows 32: <a href="https://dl.google.com/android/adt/adt-bundle-windows-x86-20140702.zip">https://dl.google.com/android/adt/adt-bundle-windows-x86-20140702.zip</a></p>
+
+<p>windows 64: <a href="https://dl.google.com/android/adt/adt-bundle-windows-x86_64-20140702.zip">https://dl.google.com/android/adt/adt-bundle-windows-x86_64-20140702.zip</a></p>
+
+<p>Mac 64: <a href="dl.google.com/android/adt/adt-bundle-mac-x86_64-20140702.zip">dl.google.com/android/adt/adt-bundle-mac-x86_64-20140702.zip</a></p>
+
+<p>Linux 86: <a href="dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip">dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip</a></p>
+
+<p>Linux 64: <a href="dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip">dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[JVM工作原理摘要]]></title>
@@ -498,71 +519,6 @@ Data Binding库当前还属于beta阶段，需要Android Studio 1.3版本和最�
 <p><img src="http://www.openwudi.com/images/2015/1433774256.png" alt="1433774256.png" /></p>
 
 <p>XML预览模式已经被扩展到可以显示系统参数，但是最重要的特点是通过所见即所得的方式直接在预览窗口进行编辑，包括从工具面板拖拽控件。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Android开发中提升Gradle性能]]></title>
-    <link href="http://wodis.github.io/blog/2015/06/02/ti-sheng-gradle-xing-neng/"/>
-    <updated>2015-06-02T11:42:39+08:00</updated>
-    <id>http://wodis.github.io/blog/2015/06/02/ti-sheng-gradle-xing-neng</id>
-    <content type="html"><![CDATA[<p>是不是感觉一整天都在等着Android Studio编译完成？我也是</p>
-
-<p>幸亏现在有方法让编译速度提升一些。虽然这些操作仍然有一定的风险，但还是值得尝试一下。
-当我修改了一小部分的代码后，使用这个方法，编译速度直接减少了2.5秒。</p>
-
-<p>Android现在通常使用Gradle进行编译。发布这篇文章的时候，默认的Gradle版本是2.2。
-最新的为2.4，它比之前的版本已经有了很大的提升。</p>
-
-<p>有两种方法配制新版Gradle，直接手动修改build脚本，或者更改Android Studio的配置。</p>
-
-<p>1.手动修改build脚本，通过在项目根目录的build.grade中添加以下代码</p>
-
-<pre><code>task wrapper(type: Wrapper) {
-    gradleVersion = '2.4'
-}
-</code></pre>
-
-<p>现在打开终端并且运行./gradlew，它会自动下载并安装Gradle 2.4作为本地版本。
-<a href="http://gradle.org/docs/current/userguide/gradle_wrapper.html">官方文档</a></p>
-
-<p>2.如果打算修改Android Studio的配制，需要打开Project Structure Dialog（OS X: ⌘+;），
-在左边的列表中选择Project，然后修改Gradle version为2.4。单击OK，Android Studio会自动安装和同步Gradle的配置。</p>
-
-<p><img src="http://www.openwudi.com/images/2015/1433219043.png" alt="1433219043.png" /></p>
-
-<p>下一步是确保Gradle守护进程和并行编译可用。使用守护进程编译速度会提高，因为它并不会每次都编译完整的项目。
-并行编译会将项目分成多模块编译，这样可以提升大型多模块项目的编译速度。</p>
-
-<p>当然这些设置需要添加到.gradle目录的gradle.properties中。(i.e., ~/.gradle/gradle.properties)</p>
-
-<pre><code>org.gradle.daemon=true
-org.gradle.parallel=true
-</code></pre>
-
-<p>守护进程已经在Android Studio中开启，这样做是为了在终端中使用。</p>
-
-<p>注意：并行编译可能导致一些项目不安全。原因是需要你所有的项目是解耦的，不然会编译失败。<a href="http://gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects">多模块编译</a>
-认真测试所有的build variants，保证都可以正常工作。</p>
-
-<p>添加以下代码可以增加JVM的最大堆内存：</p>
-
-<pre><code>org.gradle.jvmargs=-Xmx768m
-org.gradle.java.home=/path/to/jvm
-</code></pre>
-
-<p>其他的gradle.properties配制，可以参考<a href="http://gradle.org/docs/current/userguide/userguide_single.html#sec:gradle_configuration_properties">官方文档</a>。</p>
-
-<p>最后的更改是增量打包dex，这是一个实验性的功能，默认是不开启的。它可能会导致你编译失败，但是还是建议你去试一下，看看你能否使用。</p>
-
-<p>增加以下代码到app模块的build.gradle中：</p>
-
-<pre><code>dexOptions {
-        incremental true
-}
-</code></pre>
-
-<p>如果你有其他的技巧欢迎与我交流。</p>
 ]]></content>
   </entry>
   

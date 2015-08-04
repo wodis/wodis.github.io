@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Google Guava Library Tips - Open Tech Pub - 2014-09-02 18:58:38 +0800</title>
+  <title>Eclipse ADT Bundle下载 - Open Tech Pub - 2015-08-04 17:32:10 +0800</title>
   <meta name="author" content="Wu Di">
 
   
-  <meta name="description" content="String CharMatcher (which can be considered as a light form of JDK&rsquo;s Pattern+Matcher with string manipulation capabilities)
-Joiner and &hellip;">
+  <meta name="description" content="Android官方主页不再提供Eclipse ADT Bundle的下载，并且声明放弃维护。 以下是20140702对应操作系统的下载地址： windows 32: https://dl.google.com/android/adt/adt-bundle-windows-x86-20140702. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ Joiner and &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://wodis.github.io/blog/2014/09/02/google-guava-library-tips/">
+  <link rel="canonical" href="http://wodis.github.io/blog/2015/08/04/adt-bundle/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Open Tech Pub" type="application/atom+xml">
@@ -83,7 +82,7 @@ Joiner and &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Google Guava Library Tips</h1>
+      <h1 class="entry-title">Eclipse ADT Bundle下载</h1>
     
     
       <p class="meta">
@@ -92,105 +91,26 @@ Joiner and &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-09-02T18:58:38+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>6:58 pm</span></time>
+<time class='entry-date' datetime='2015-08-04T17:32:10+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:32 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h1>String</h1>
+<div class="entry-content"><p>Android官方主页不再提供Eclipse ADT Bundle的下载，并且声明放弃维护。</p>
 
-<ul>
-<li>CharMatcher (which can be considered as a light form of JDK&rsquo;s Pattern+Matcher with string manipulation capabilities)</li>
-<li>Joiner and MapJoiner (which are useful for joining iterables or arrays into string representations)</li>
-<li>Splitter (which is split() of JDK on steroids).</li>
-</ul>
+<p>以下是20140702对应操作系统的下载地址：</p>
 
+<p>windows 32: <a href="https://dl.google.com/android/adt/adt-bundle-windows-x86-20140702.zip">https://dl.google.com/android/adt/adt-bundle-windows-x86-20140702.zip</a></p>
 
-<h3>CharMatcher.JAVA_LETTER_OR_DIGIT</h3>
+<p>windows 64: <a href="https://dl.google.com/android/adt/adt-bundle-windows-x86_64-20140702.zip">https://dl.google.com/android/adt/adt-bundle-windows-x86_64-20140702.zip</a></p>
 
-<p>.countIn(&ldquo;&rdquo;)</p>
+<p>Mac 64: <a href="dl.google.com/android/adt/adt-bundle-mac-x86_64-20140702.zip">dl.google.com/android/adt/adt-bundle-mac-x86_64-20140702.zip</a></p>
 
-<p>.matchesAllOf(&ldquo;&rdquo;)</p>
+<p>Linux 86: <a href="dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip">dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip</a></p>
 
-<p>.matchesNoneOf(&ldquo;&rdquo;)</p>
-
-<p>.negate()</p>
-
-<p>.removeFrom(&ldquo;&rdquo;)</p>
-
-<p>.retainFrom(&ldquo;&rdquo;)</p>
-
-<p>.indexIn(&ldquo;&rdquo;)</p>
-
-<p>.anyOf(&ldquo;&rdquo;)</p>
-
-<p>.noneOf(&ldquo;&rdquo;)</p>
-
-<p>.inRange(&lsquo;&rsquo;, &lsquo;&rsquo;)</p>
-
-<p>.or(CharMatcher)</p>
-
-<p>.and(CharMatcher)</p>
-
-<h3>Joiner</h3>
-
-<p>.on(&ldquo;&rdquo;)</p>
-
-<p>.join(List)</p>
-
-<p>.skipNulls()</p>
-
-<p>.useForNull(&ldquo;&rdquo;)</p>
-
-<h3>Splitter</h3>
-
-<p>.on(&ldquo;&rdquo;)</p>
-
-<p>.omitEmptyStrings()</p>
-
-<p>.trimResults()</p>
-
-<p>.split(&ldquo;&rdquo;)</p>
-
-<p>.fixedLength(int)</p>
-
-<h3>Strings</h3>
-
-<p>.emptyToNull(&ldquo;&rdquo;)</p>
-
-<p>.isNullOrEmpty(&ldquo;&rdquo;)</p>
-
-<p>.repeat(&ldquo;&rdquo;, int)</p>
-
-<p>.padEnd(&ldquo;&rdquo;, int, &lsquo;&rsquo;)</p>
-
-<p>.padStart(&ldquo;&rdquo;, int, &lsquo;&rsquo;)</p>
-
-<h1>Ordering</h1>
-
-<p>This class is really useful if you need to order your Iterable, find the maximum/minimum element in your Iterable, find the index of an arbitrary element. It implements Comparator interface for backward compatibility..from(Comparator)</p>
-
-<p>.sortedCopy(List)</p>
-
-<p>.explicit(enum)</p>
-
-<p>.usingToString()</p>
-
-<p>.natural()</p>
-
-<p>.binarySearch(List,Object)</p>
-
-<p>.max(List)</p>
-
-<p>.min(List)</p>
-
-<p>.reverse()</p>
-
-<p>.isOrdered()</p>
-
-<p>.isStrictlyOrdered()</p>
+<p>Linux 64: <a href="dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip">dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip</a></p>
 </div>
 
 
@@ -206,12 +126,12 @@ Joiner and &hellip;">
 
 
 
-<time class='entry-date' datetime='2014-09-02T18:58:38+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>6:58 pm</span></time>
+<time class='entry-date' datetime='2015-08-04T17:32:10+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:32 pm</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/java/'>java</a>
+    <a class='category' href='/blog/categories/android/'>android</a>
   
 </span>
 
@@ -247,10 +167,8 @@ Joiner and &hellip;">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/07/01/git-learning/" title="Previous Post: Git Learning">&laquo; Git Learning</a>
+        <a class="basic-alignment left" href="/blog/2015/07/20/jvm-zhai-yao/" title="Previous Post: JVM工作原理摘要">&laquo; JVM工作原理摘要</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2015/01/01/first-blog/" title="Next Post: 关于我">关于我 &raquo;</a>
       
     </p>
   </footer>
