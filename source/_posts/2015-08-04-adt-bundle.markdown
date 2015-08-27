@@ -14,8 +14,8 @@ windows 32: [https://dl.google.com/android/adt/adt-bundle-windows-x86-20140702.z
 
 windows 64: [https://dl.google.com/android/adt/adt-bundle-windows-x86_64-20140702.zip](https://dl.google.com/android/adt/adt-bundle-windows-x86_64-20140702.zip)
 
-Mac 64: [dl.google.com/android/adt/adt-bundle-mac-x86_64-20140702.zip](dl.google.com/android/adt/adt-bundle-mac-x86_64-20140702.zip)
+Mac 64: [https://dl.google.com/android/adt/adt-bundle-mac-x86_64-20140702.zip](https://dl.google.com/android/adt/adt-bundle-mac-x86_64-20140702.zip)
 
-Linux 86: [dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip](dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip)
+Linux 86: [https://dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip](https://dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip)
 
-Linux 64: [dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip](dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip)
+Linux 64: [https://dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip](https://dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip)
