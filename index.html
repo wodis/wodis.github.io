@@ -9,7 +9,8 @@
   <meta name="author" content="Wu Di">
 
   
-  <meta name="description" content="Android官方主页不再提供Eclipse ADT Bundle的下载，并且声明放弃维护。 以下是20140702对应操作系统的下载地址： windows 32: https://dl.google.com/android/adt/adt-bundle-windows-x86-20140702. &hellip;">
+  <meta name="description" content="最近群里面有些小伙伴问我，希望可以解释一下View间的绘制关系，所以简单的写一下。 Android是如何绘制View的 一旦Activity获得焦点之后，将会触发绘制布局的流程。
+绘制过程是从布局的根节点(root node)开始的，根据布局的树状结构测量(measure)并绘制(draw)。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +80,148 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/26/android-viewde-hui-zhi-guo-cheng/">Android绘制过程</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-26T17:23:01+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:23 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近群里面有些小伙伴问我，希望可以解释一下View间的绘制关系，所以简单的写一下。</p>
+
+<h1>Android是如何绘制View的</h1>
+
+<p>一旦Activity获得焦点之后，将会触发绘制布局的流程。
+绘制过程是从布局的根节点(root node)开始的，根据布局的树状结构测量(measure)并绘制(draw)。
+这个过程用于规定每一个View的区域，然后绘制对应的界面。
+ViewGroup用于负责请求每一个它的子View进行绘制，当子View接到请求则开始绘制自己的界面。
+注意树的遍历是有序的，意味着父View将在子View绘制之前被调用。</p>
+
+<h2>Measure与Layout</h2>
+
+<p>绘制布局分为两个过程：measure和layout。</p>
+
+<p>measure(int, int)方法用来自上而下的遍历View，每个View都是递归的测量自己所占的大小。</p>
+
+<p>layout(int, int, int, int)方法同样是自上而下的，它的功能是将子View放置在合适的位置。</p>
+
+<p>当View对象调用了measure方法之后，通过getMeasuredWidth()和getMeasuredHeight()方法就可以获取到测量后的值。
+注意一点，子View的宽和高不得超过在父View。这可以确保所有的子View都被父View所包含。</p>
+
+<h2>ViewGroup.LayoutParams</h2>
+
+<p>父类如何得知子类想要如何布局呢，ViewGroup.LayoutParams类用于告诉父类它们的布局预期。
+我们可以使用3种配置方式：</p>
+
+<ul>
+<li>准确的值</li>
+<li>MATCH_PARENT，子View想与父View一样大小</li>
+<li>WRAP_CONTENT，子View的大小足以包括它的内容</li>
+</ul>
+
+
+<h2>MeasureSpec</h2>
+
+<p>MeasureSpec用于父View向下要求子View的绘制模式，MeasureSpec有3种模式：</p>
+
+<ul>
+<li>UNSPECIFIED，表示大小并不明确</li>
+<li>EXACTLY，表示父类给定一个准确的大小</li>
+<li>AT MOST，表示父类限制了子类的最大值</li>
+</ul>
+
+
+<p><code>上面的逻辑是不是太抽象了？简单来说就是一个View如果想要展示出来需要两步：1、计算自己所占空间的大小。2、子View摆放的位置。(所有过程都是从父View发起，直到子View计算完成向它的父View返回结果)</code></p>
+
+<h1>自定义一个ViewGroup</h1>
+
+<p>我们自定义一个ViewGroup通常分为以下几步：</p>
+
+<p>1.继承ViewGroup并且重写父类的三个构造函数</p>
+
+<pre><code>public class CustomViewGroup extends ViewGroup {
+
+  public CustomViewGroup(Context context) {
+      super(context);
+    }
+
+  public CustomViewGroup(Context context, AttributeSet attrs) {
+      super(context, attrs);
+    }
+
+  public CustomViewGroup(Context context, AttributeSet attrs, intdefStyle) {
+      super(context, attrs, defStyle);
+    }
+}
+</code></pre>
+
+<p>2.重载onMeasure()方法
+自定义ViewGroup的onMeasure()方法中，除了计算自身的尺寸外，还需要调用measureChildren()函数来计算子控件的尺寸。</p>
+
+<p>onMeasure()的定义不是本文的讨论重点，因此这里我直接使用默认的onMeasure()定义，当然measureChildren()是必须得加的，或者我们针对性的调用子View的measure方法。
+通常我们使用MeasureSpec.makeMeasureSpec(int size, int mode)来产生一个规格。
+使用getChildCount()获取子View个数。使用getChildAt(i)获得对应的子View。在最后不要忘记使用setMeasuredDimension方法设置当前View的规格。</p>
+
+<p>3.实现onLayout()方法
+通常我们在这个方法里面调用getMeasuredWidth()和getMeasuredHeight()获取已经测量过的View大小，
+然后根据这些数据来计算每个View对应的位置。通过layout(int l, int t, int r, int b)设置子View在当前View中的位置。</p>
+
+<p>4.添加LayoutParams
+generateLayoutParams()用于返回一个LayoutParams给子View，这样子View就可以将对应layout布局的参数传入，
+我们自定义的父View可以使用getLayoutParams()获取我们传入的LayoutParams。</p>
+
+<p>你可以跟踪源码看看，其实XML文件中View的layout_xxx参数都是被传递到了各种自定义ViewGroup.LayoutParams派生类对象中。例如LinearLayout的LayoutParams定义的关键部分如下：</p>
+
+<pre><code>public class LinearLayout extends ViewGroup {
+
+    public static class LayoutParams extends ViewGroup.MarginLayoutParams {
+
+        public float weight;
+        public int gravity = -1;
+
+        public LayoutParams(Context c, AttributeSet attrs) {
+
+                super(c, attrs);
+
+                TypedArray a = c.obtainStyledAttributes(attrs, com.android.internal.R.styleable.LinearLayout_Layout);
+                weight = a.getFloat(com.android.internal.R.styleable.LinearLayout_Layout_layout_weight, 0);
+                gravity = a.getInt(com.android.internal.R.styleable.LinearLayout_Layout_layout_gravity, -1);
+
+                a.recycle();
+        }
+    }
+
+    @Override
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new LinearLayout.LayoutParams(getContext(), attrs);
+    }
+}
+</code></pre>
+
+<p>这样你大概就可以理解为什么LinearLayout的子控件支持weight和gravity的设置了吧，当然我们也可以这样自定义一些属于我们ViewGroup特有的params。</p>
+
+<p>这样修改之后，我们就可以在onLayout()函数中获取子控件的layout_xxx值了。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1041,54 +1184,6 @@ Presenter作为整个逻辑的控制者，与Controller的区别在于它并不�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/02/19/nginxzhuan-ti/">Nginx专题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-02-19T14:40:19+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:40 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>起因：由于工作内容变化的原因，需要多了解后端所使用的技术。
-但是一直没有时间去从头学习，过年在家抢红包无意间看见一篇用Nginx做代理并通过log自己动手做一个报警工具
-<a href="http://mp.weixin.qq.com/s?__biz=MjM5NDMwNjMzNA==&amp;amp;amp;mid=203292077&amp;amp;amp;idx=3&amp;amp;amp;sn=815dcf56c4d60ef7251c7c18cfa0fc81&amp;amp;amp;3rd=MzA3MDU4NTYzMw==&amp;amp;amp;scene=6#rd">原文</a>。
-所以这才从头开始搭一下Nginx。现在为学习Nginx做一个整合，争取过年期间快速浏览一遍。</p>
-
-<hr />
-
-<ul>
-<li><a href="http://my.oschina.net/boonya/blog/286422">Nginx学习之一：从权威途径(wiki)了解Nginx</a></li>
-<li><a href="http://my.oschina.net/boonya/blog/287189">Nginx学习之二：Nginx 学习地图梗概</a></li>
-<li><a href="http://my.oschina.net/boonya/blog/287201">Nginx学习之三：对应平台的Nginx下载和安装</a></li>
-<li><a href="http://my.oschina.net/boonya/blog/287265">Nginx学习之四：Nginx支持模块的安装及描述</a></li>
-<li><a href="http://my.oschina.net/boonya/blog/287300">Nginx学习之五：Nginx第三方模块</a></li>
-<li><a href="http://my.oschina.net/boonya/blog/287313">Nginx学习之六：Nginx配置操作导航</a></li>
-<li><a href="http://my.oschina.net/boonya/blog/287322">Nginx学习之七：通过Nginx社区进行技术交流</a></li>
-<li><a href="http://my.oschina.net/boonya/blog/287330">Nginx开发者学习资源攻略</a></li>
-<li><a href="http://my.oschina.net/boonya/blog/288874">Nginx学习之九：实践学习指南</a></li>
-<li><a href="http://my.oschina.net/boonya/blog/289423">Nginx学习之十：Nginx+Tomcat多站点访问默认主页问题</a></li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1104,6 +1199,10 @@ Presenter作为整个逻辑的控制者，与Controller的区别在于它并不�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/26/android-viewde-hui-zhi-guo-cheng/">Android绘制过程</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/04/adt-bundle/">Eclipse ADT Bundle下载</a>
       </li>
     
@@ -1117,10 +1216,6 @@ Presenter作为整个逻辑的控制者，与Controller的区别在于它并不�
     
       <li class="post">
         <a href="/blog/2015/07/15/http-xiang-jie/">HTTP协议</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/07/04/android-service-shen-ru-li-jie/">Android详细理解Service</a>
       </li>
     
   </ul>
