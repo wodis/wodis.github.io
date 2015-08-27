@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-08-27T10:11:18+08:00</updated>
+  <updated>2015-08-27T16:37:55+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Android绘制过程]]></title>
-    <link href="http://wodis.github.io/blog/2015/08/26/android-viewde-hui-zhi-guo-cheng/"/>
+    <link href="http://wodis.github.io/blog/2015/08/26/android-view-de-hui-zhi-guo-cheng/"/>
     <updated>2015-08-26T17:23:01+08:00</updated>
-    <id>http://wodis.github.io/blog/2015/08/26/android-viewde-hui-zhi-guo-cheng</id>
+    <id>http://wodis.github.io/blog/2015/08/26/android-view-de-hui-zhi-guo-cheng</id>
     <content type="html"><![CDATA[<p>最近群里面有些小伙伴问我，希望可以解释一下View间的绘制关系，所以简单的写一下。</p>
 
 <h1>Android是如何绘制View的</h1>
