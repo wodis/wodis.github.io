@@ -1,0 +1,437 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>浅谈Android动画 - Open Tech Pub - 2015-09-06 18:26:51 +0800</title>
+  <meta name="author" content="Wu Di">
+
+  
+  <meta name="description" content="在Android中动画分为以下4种： Tween Animation 补间动画
+Frame Animation 帧动画
+Layout Animation 布局动画
+Property Animation 属性动画 动画实现流程： 创建Animation
+设置相关属性 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wodis.github.io/blog/2015/09/06/android-animation/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Open Tech Pub" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+    <!-- googleapis is fucked by gfw -->
+  <script src="http://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!-- 
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+ -->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?16937d74824f50bd02daa98ce1ba6048";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Open Tech Pub</a></h1>
+  
+    <h2>那些年关注的技术</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="wodis.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+    <li><a href="/">首页</a></li>
+    <li><a href="/blog/archives">所有文章</a></li>
+    <li><a href="http://www.weibo.com/wodis">我的微博</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">浅谈Android动画</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-06T18:26:51+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>6:26 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>在Android中动画分为以下4种：</p>
+
+<ol>
+<li>Tween Animation  补间动画</li>
+<li>Frame Animation  帧动画</li>
+<li>Layout Animation 布局动画</li>
+<li>Property Animation 属性动画</li>
+</ol>
+
+
+<p>动画实现流程：</p>
+
+<ol>
+<li>创建Animation</li>
+<li>设置相关属性</li>
+<li>View调用startAnimation方法启动动画</li>
+</ol>
+
+
+<h1>Animation</h1>
+
+<p>Animation类是Android系统的一个动画抽象类，所有其他一些动画类都要继承该类中的实现方法。Animation类主要用于补间动画效果，提供了动画启动、停止、重复、持续时间等方法。Animation类中的方法适用于任何一种补间动画对象。</p>
+
+<p>常用方法：</p>
+
+<p>start() 启动</p>
+
+<p>startNow() 立即启动</p>
+
+<p>cancel() 取消动画</p>
+
+<p>setDuration(long) 设置持续时间</p>
+
+<p>setRepeatMode(int) 设置重复模式</p>
+
+<p>setRepeatCount(int) 设置重复次数</p>
+
+<p>setFillEnabled(boolean) 能否填充位置</p>
+
+<p>setFillBefore(boolean) 回到起始填充位置</p>
+
+<p>setFillAfter(boolean) 回到结束填充位置</p>
+
+<p>setStartOffset(long) 设置延时启动时间</p>
+
+<p>setInterpolator(Interpolator) 设置加速曲线</p>
+
+<p>setAnimationListener(AnimationListener) 设置动画的回调</p>
+
+<h1>Tween Animation</h1>
+
+<p>该类Animations提供了旋转、移动、伸展和淡出等效果。Alpha——淡入淡出，Scale——缩放效果，Rotate——旋转，Translate——移动效果。</p>
+
+<h2>TranslateAnimation</h2>
+
+<p>TranslateAnimation类是Android系统中的位置变化动画类，用于控制View对象的位置变化，该类继承于Animation类。TranslateAnimation类中的很多方法都与Animation类一致，该类中最常用的方法便是TranslateAnimation构造方法。</p>
+
+<p>public TranslateAnimation (float fromXDelta, float toXDelta, float fromYDelta, float toYDelta)</p>
+
+<p>参数说明</p>
+
+<p>fromXDelta：位置变化的起始点X坐标。</p>
+
+<p>toXDelta：位置变化的结束点X坐标。</p>
+
+<p>fromYDelta：位置变化的起始点Y坐标。</p>
+
+<p>toYDelta：位置变化的结束点Y坐标。</p>
+
+<h2>RotateAnimation</h2>
+
+<p>RotateAnimation类是Android系统中的旋转变化动画类，用于控制View对象的旋转动作，该类继承于Animation类。RotateAnimation类中的很多方法都与Animation类一致，该类中最常用的方法便是RotateAnimation构造方法。</p>
+
+<p>public RotateAnimation (float fromDegrees, float toDegrees, int pivotXType, float pivotXValue, int pivotYType, float pivotYValue)</p>
+
+<p>参数说明</p>
+
+<p>fromDegrees：旋转的开始角度。</p>
+
+<p>toDegrees：旋转的结束角度。</p>
+
+<p>pivotXType：X轴的伸缩模式，可以取值为ABSOLUTE、RELATIVE_TO_SELF、RELATIVE_TO_PARENT。</p>
+
+<p>pivotXValue：X坐标的伸缩值。</p>
+
+<p>pivotYType：Y轴的伸缩模式，可以取值为ABSOLUTE、RELATIVE_TO_SELF、RELATIVE_TO_PARENT。</p>
+
+<p>pivotYValue：Y坐标的伸缩值。</p>
+
+<h2>ScaleAnimation</h2>
+
+<p>ScaleAnimation类是Android系统中的尺寸变化动画类，用于控制View对象的尺寸变化，该类继承于Animation类。ScaleAnimation类中的很多方法都与Animation类一致，该类中最常用的方法便是ScaleAnimation构造方法。</p>
+
+<p>public ScaleAnimation (float fromX, float toX, float fromY, float toY, int pivotXType, float pivotXValue, int pivotYType, float pivotYValue)</p>
+
+<p>参数说明</p>
+
+<p>fromX：起始X坐标上的伸缩尺寸。</p>
+
+<p>toX：结束X坐标上的伸缩尺寸。</p>
+
+<p>fromY：起始Y坐标上的伸缩尺寸。</p>
+
+<p>toY：结束Y坐标上的伸缩尺寸。</p>
+
+<p>pivotXType：X轴的伸缩模式，可以取值为ABSOLUTE、RELATIVE_TO_SELF、RELATIVE_TO_PARENT。</p>
+
+<p>pivotXValue：X坐标的伸缩值。</p>
+
+<p>pivotYType：Y轴的伸缩模式，可以取值为ABSOLUTE、RELATIVE_TO_SELF、RELATIVE_TO_PARENT。</p>
+
+<p>pivotYValue：Y坐标的伸缩值。</p>
+
+<h2>AlphaAnimation</h2>
+
+<p>AlphaAnimation类是Android系统中的透明度变化动画类，用于控制View对象的透明度变化，该类继承于Animation类。AlphaAnimation类中的很多方法都与Animation类一致，该类中最常用的方法便是AlphaAnimation构造方法。</p>
+
+<p>public AlphaAnimation (float fromAlpha, float toAlpha)</p>
+
+<p>参数说明</p>
+
+<p>fromAlpha：开始时刻的透明度，取值范围0~1。</p>
+
+<p>toAlpha：结束时刻的透明度，取值范围0~1。</p>
+
+<h2>AnimationSet</h2>
+
+<p>AnimationSet类是Android系统中的动画集合类，用于控制View对象进行多个动作的组合，该类继承于Animation类。AnimationSet类中的很多方法都与Animation类一致，该类中最常用的方法便是addAnimation方法，该方法用于为动画集合对象添加动画对象。</p>
+
+<p>public void addAnimation (Animation a)</p>
+
+<p>其中，参数a为Animation动画对象，可以是前述任何一种补间动作。</p>
+
+<h2>AnimationUtils</h2>
+
+<p>AnimationUtils类是Android系统中的动画工具类，提供了控制View对象的一些工具。该类中最常用的方法便是loadAnimation方法，该方法用于加载XML格式的动画配置文件。在Android系统中，除了在代码中设置动画效果外，还可以在XML配置文件中设置动画的组合动作，这种方式适用性更好。</p>
+
+<p>public static Animation loadAnimation (Context context, int id)</p>
+
+<p>参数说明</p>
+
+<p>context：上下文对象。</p>
+
+<p>id：动画配置文件的ID。</p>
+
+<h1>Frame Animation</h1>
+
+<p>AnimationDrawable类：帧动画类</p>
+
+<p>AnimationDrawable类是Android系统中的帧动画类。帧动画方式类似于放电影的原理，是通过顺序播放多张图片来实现动画效果的，图片之间有一定的动作连贯性，这样人眼看来就像对象真正在运动一样。AnimationDrawable类位于android.graphics.drawable软件包中，本节将介绍帧动画类中的主要编程方法。</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+                android:oneshot="true"&gt;
+    &lt;item android:drawable="@drawable/p0" android:duration="50"/&gt;
+    &lt;item android:drawable="@drawable/p1" android:duration="50"/&gt;
+    &lt;item android:drawable="@drawable/p2" android:duration="50"/&gt;
+    &lt;item android:drawable="@drawable/p3" android:duration="50"/&gt;
+    &lt;item android:drawable="@drawable/p4" android:duration="50"/&gt;
+&lt;/animation-list&gt;
+</code></pre>
+
+<p>通过动画配置文件，将其加载到ImageView的背景中，再start启动。</p>
+
+<h1>Layout Animations</h1>
+
+<p>LayoutAnimationsController可以用于实现使多个控件按顺序一个一个的显示。</p>
+
+<ol>
+<li>LayoutAnimationsController用于为一个layout里面的控件，或者是一个ViewGroup里面的控件设置统一的动画效果。</li>
+<li>每一个控件都有相同的动画效果。</li>
+<li>控件的动画效果可以在不同的时间显示出来。</li>
+<li><p>LayoutAnimationsController可以在xml文件当中设置，以可以在代码当中进行设置。</p>
+
+<p> //1.加载动画set的XML文件
+ Animation animation = (Animation) AnimationUtils.loadAnimation(Animation2Activity.this, R.anim.list_anim);
+ //2.初始化LayoutAnimationController
+ LayoutAnimationController controller = new LayoutAnimationController(animation);
+ //3.设置子View动画顺序
+ controller.setOrder(LayoutAnimationController.ORDER_NORMAL);
+ //4.设置动画延迟
+ controller.setDelay(0.5f);
+ //5.将LayoutAnimation设置给ViewGroup
+ listView.setLayoutAnimation(controller);</p></li>
+</ol>
+
+
+<h1>Property Animation</h1>
+
+<p>待更新。。。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Wu Di</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-09-06T18:26:51+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>6:26 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+    
+    
+    
+
+    
+    <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<br>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2035019"></script>
+<!-- UY END -->
+    
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/08/26/android-view-de-hui-zhi-guo-cheng/" title="Previous Post: Android绘制过程">&laquo; Android绘制过程</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/09/06/android-animation/">浅谈Android动画</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/26/android-view-de-hui-zhi-guo-cheng/">Android绘制过程</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/04/adt-bundle/">Eclipse ADT Bundle下载</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/20/jvm-zhai-yao/">JVM工作原理摘要</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/17/java-8-stream-android/">Android开发中使用Java 8 Stream</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+    <h1>About Me</h1>
+
+    <p>帝都成长，华中求学，爱尔兰漂泊一年有余，就职于新浪微博。Google死忠</p>
+
+    <p>Android开发工程师，曾开发微人脉客户端、WiFi胶卷，现在手机微博。</p>
+    <p>Java开发工程师，曾开发Kuali Student开源项目，后负责微人脉后端开发。</p>
+
+    <p>新浪微博：<a href="http://weibo.com/wodis">@讨厌茄子的老科特</a></p>
+    
+    <p>微信公众号：</p>
+    <p><img src="/images/qrcode_for_androiddevtips.jpg"></p>
+    
+    <p>我的微信账号：</p>
+    <p><img src="/images/weixin.jpg"></p>
+
+    <p>Wu Di -- “ I am a programmer who principally focused on Android/Java design and development. Dual master's degree in telecommunication and software engineering. Graduated from Dublin City University and Wuhan University. Working in Beijing. ”</p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy; 2015 - Wu Di -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> -
+    <span class="credit">Thanks for <a href="https://gitcafe.com">GitCafe</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

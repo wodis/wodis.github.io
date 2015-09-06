@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-08-27T16:37:55+08:00</updated>
+  <updated>2015-09-06T19:25:28+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -12,6 +12,204 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[浅谈Android动画]]></title>
+    <link href="http://wodis.github.io/blog/2015/09/06/android-animation/"/>
+    <updated>2015-09-06T18:26:51+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/09/06/android-animation</id>
+    <content type="html"><![CDATA[<p>在Android中动画分为以下4种：</p>
+
+<ol>
+<li>Tween Animation  补间动画</li>
+<li>Frame Animation  帧动画</li>
+<li>Layout Animation 布局动画</li>
+<li>Property Animation 属性动画</li>
+</ol>
+
+
+<p>动画实现流程：</p>
+
+<ol>
+<li>创建Animation</li>
+<li>设置相关属性</li>
+<li>View调用startAnimation方法启动动画</li>
+</ol>
+
+
+<h1>Animation</h1>
+
+<p>Animation类是Android系统的一个动画抽象类，所有其他一些动画类都要继承该类中的实现方法。Animation类主要用于补间动画效果，提供了动画启动、停止、重复、持续时间等方法。Animation类中的方法适用于任何一种补间动画对象。</p>
+
+<p>常用方法：</p>
+
+<p>start() 启动</p>
+
+<p>startNow() 立即启动</p>
+
+<p>cancel() 取消动画</p>
+
+<p>setDuration(long) 设置持续时间</p>
+
+<p>setRepeatMode(int) 设置重复模式</p>
+
+<p>setRepeatCount(int) 设置重复次数</p>
+
+<p>setFillEnabled(boolean) 能否填充位置</p>
+
+<p>setFillBefore(boolean) 回到起始填充位置</p>
+
+<p>setFillAfter(boolean) 回到结束填充位置</p>
+
+<p>setStartOffset(long) 设置延时启动时间</p>
+
+<p>setInterpolator(Interpolator) 设置加速曲线</p>
+
+<p>setAnimationListener(AnimationListener) 设置动画的回调</p>
+
+<h1>Tween Animation</h1>
+
+<p>该类Animations提供了旋转、移动、伸展和淡出等效果。Alpha——淡入淡出，Scale——缩放效果，Rotate——旋转，Translate——移动效果。</p>
+
+<h2>TranslateAnimation</h2>
+
+<p>TranslateAnimation类是Android系统中的位置变化动画类，用于控制View对象的位置变化，该类继承于Animation类。TranslateAnimation类中的很多方法都与Animation类一致，该类中最常用的方法便是TranslateAnimation构造方法。</p>
+
+<p>public TranslateAnimation (float fromXDelta, float toXDelta, float fromYDelta, float toYDelta)</p>
+
+<p>参数说明</p>
+
+<p>fromXDelta：位置变化的起始点X坐标。</p>
+
+<p>toXDelta：位置变化的结束点X坐标。</p>
+
+<p>fromYDelta：位置变化的起始点Y坐标。</p>
+
+<p>toYDelta：位置变化的结束点Y坐标。</p>
+
+<h2>RotateAnimation</h2>
+
+<p>RotateAnimation类是Android系统中的旋转变化动画类，用于控制View对象的旋转动作，该类继承于Animation类。RotateAnimation类中的很多方法都与Animation类一致，该类中最常用的方法便是RotateAnimation构造方法。</p>
+
+<p>public RotateAnimation (float fromDegrees, float toDegrees, int pivotXType, float pivotXValue, int pivotYType, float pivotYValue)</p>
+
+<p>参数说明</p>
+
+<p>fromDegrees：旋转的开始角度。</p>
+
+<p>toDegrees：旋转的结束角度。</p>
+
+<p>pivotXType：X轴的伸缩模式，可以取值为ABSOLUTE、RELATIVE_TO_SELF、RELATIVE_TO_PARENT。</p>
+
+<p>pivotXValue：X坐标的伸缩值。</p>
+
+<p>pivotYType：Y轴的伸缩模式，可以取值为ABSOLUTE、RELATIVE_TO_SELF、RELATIVE_TO_PARENT。</p>
+
+<p>pivotYValue：Y坐标的伸缩值。</p>
+
+<h2>ScaleAnimation</h2>
+
+<p>ScaleAnimation类是Android系统中的尺寸变化动画类，用于控制View对象的尺寸变化，该类继承于Animation类。ScaleAnimation类中的很多方法都与Animation类一致，该类中最常用的方法便是ScaleAnimation构造方法。</p>
+
+<p>public ScaleAnimation (float fromX, float toX, float fromY, float toY, int pivotXType, float pivotXValue, int pivotYType, float pivotYValue)</p>
+
+<p>参数说明</p>
+
+<p>fromX：起始X坐标上的伸缩尺寸。</p>
+
+<p>toX：结束X坐标上的伸缩尺寸。</p>
+
+<p>fromY：起始Y坐标上的伸缩尺寸。</p>
+
+<p>toY：结束Y坐标上的伸缩尺寸。</p>
+
+<p>pivotXType：X轴的伸缩模式，可以取值为ABSOLUTE、RELATIVE_TO_SELF、RELATIVE_TO_PARENT。</p>
+
+<p>pivotXValue：X坐标的伸缩值。</p>
+
+<p>pivotYType：Y轴的伸缩模式，可以取值为ABSOLUTE、RELATIVE_TO_SELF、RELATIVE_TO_PARENT。</p>
+
+<p>pivotYValue：Y坐标的伸缩值。</p>
+
+<h2>AlphaAnimation</h2>
+
+<p>AlphaAnimation类是Android系统中的透明度变化动画类，用于控制View对象的透明度变化，该类继承于Animation类。AlphaAnimation类中的很多方法都与Animation类一致，该类中最常用的方法便是AlphaAnimation构造方法。</p>
+
+<p>public AlphaAnimation (float fromAlpha, float toAlpha)</p>
+
+<p>参数说明</p>
+
+<p>fromAlpha：开始时刻的透明度，取值范围0~1。</p>
+
+<p>toAlpha：结束时刻的透明度，取值范围0~1。</p>
+
+<h2>AnimationSet</h2>
+
+<p>AnimationSet类是Android系统中的动画集合类，用于控制View对象进行多个动作的组合，该类继承于Animation类。AnimationSet类中的很多方法都与Animation类一致，该类中最常用的方法便是addAnimation方法，该方法用于为动画集合对象添加动画对象。</p>
+
+<p>public void addAnimation (Animation a)</p>
+
+<p>其中，参数a为Animation动画对象，可以是前述任何一种补间动作。</p>
+
+<h2>AnimationUtils</h2>
+
+<p>AnimationUtils类是Android系统中的动画工具类，提供了控制View对象的一些工具。该类中最常用的方法便是loadAnimation方法，该方法用于加载XML格式的动画配置文件。在Android系统中，除了在代码中设置动画效果外，还可以在XML配置文件中设置动画的组合动作，这种方式适用性更好。</p>
+
+<p>public static Animation loadAnimation (Context context, int id)</p>
+
+<p>参数说明</p>
+
+<p>context：上下文对象。</p>
+
+<p>id：动画配置文件的ID。</p>
+
+<h1>Frame Animation</h1>
+
+<p>AnimationDrawable类：帧动画类</p>
+
+<p>AnimationDrawable类是Android系统中的帧动画类。帧动画方式类似于放电影的原理，是通过顺序播放多张图片来实现动画效果的，图片之间有一定的动作连贯性，这样人眼看来就像对象真正在运动一样。AnimationDrawable类位于android.graphics.drawable软件包中，本节将介绍帧动画类中的主要编程方法。</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+                android:oneshot="true"&gt;
+    &lt;item android:drawable="@drawable/p0" android:duration="50"/&gt;
+    &lt;item android:drawable="@drawable/p1" android:duration="50"/&gt;
+    &lt;item android:drawable="@drawable/p2" android:duration="50"/&gt;
+    &lt;item android:drawable="@drawable/p3" android:duration="50"/&gt;
+    &lt;item android:drawable="@drawable/p4" android:duration="50"/&gt;
+&lt;/animation-list&gt;
+</code></pre>
+
+<p>通过动画配置文件，将其加载到ImageView的背景中，再start启动。</p>
+
+<h1>Layout Animations</h1>
+
+<p>LayoutAnimationsController可以用于实现使多个控件按顺序一个一个的显示。</p>
+
+<ol>
+<li>LayoutAnimationsController用于为一个layout里面的控件，或者是一个ViewGroup里面的控件设置统一的动画效果。</li>
+<li>每一个控件都有相同的动画效果。</li>
+<li>控件的动画效果可以在不同的时间显示出来。</li>
+<li><p>LayoutAnimationsController可以在xml文件当中设置，以可以在代码当中进行设置。</p>
+
+<p> //1.加载动画set的XML文件
+ Animation animation = (Animation) AnimationUtils.loadAnimation(Animation2Activity.this, R.anim.list_anim);
+ //2.初始化LayoutAnimationController
+ LayoutAnimationController controller = new LayoutAnimationController(animation);
+ //3.设置子View动画顺序
+ controller.setOrder(LayoutAnimationController.ORDER_NORMAL);
+ //4.设置动画延迟
+ controller.setDelay(0.5f);
+ //5.将LayoutAnimation设置给ViewGroup
+ listView.setLayoutAnimation(controller);</p></li>
+</ol>
+
+
+<h1>Property Animation</h1>
+
+<p>待更新。。。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Android绘制过程]]></title>
