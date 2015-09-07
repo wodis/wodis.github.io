@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-09-07T16:39:31+08:00</updated>
+  <updated>2015-09-07T16:47:37+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -194,8 +194,7 @@
 </ol>
 
 
-<figure class='code'><figcaption><span>java </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>LayoutAnimations</span><a href='http://www.openwudi.com/blog/2015/09/06/android-animation/'>首页</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -205,16 +204,17 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>//1.加载动画set的XML文件
-</span><span class='line'>Animation animation = (Animation) AnimationUtils.loadAnimation(Animation2Activity.this, R.anim.list_anim);
-</span><span class='line'>//2.初始化LayoutAnimationController
-</span><span class='line'>LayoutAnimationController controller = new LayoutAnimationController(animation);
-</span><span class='line'>//3.设置子View动画顺序
-</span><span class='line'>controller.setOrder(LayoutAnimationController.ORDER_NORMAL);
-</span><span class='line'>//4.设置动画延迟
-</span><span class='line'>controller.setDelay(0.5f);
-</span><span class='line'>//5.将LayoutAnimation设置给ViewGroup
-</span><span class='line'>listView.setLayoutAnimation(controller);</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//1.加载动画set的XML文件</span>
+</span><span class='line'><span class="n">Animation</span> <span class="n">animation</span> <span class="o">=</span> <span class="o">(</span><span class="n">Animation</span><span class="o">)</span> <span class="n">AnimationUtils</span><span class="o">.</span><span class="na">loadAnimation</span><span class="o">(</span><span class="n">Animation2Activity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">anim</span><span class="o">.</span><span class="na">list_anim</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//2.初始化LayoutAnimationController</span>
+</span><span class='line'><span class="n">LayoutAnimationController</span> <span class="n">controller</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">LayoutAnimationController</span><span class="o">(</span><span class="n">animation</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//3.设置子View动画顺序</span>
+</span><span class='line'><span class="n">controller</span><span class="o">.</span><span class="na">setOrder</span><span class="o">(</span><span class="n">LayoutAnimationController</span><span class="o">.</span><span class="na">ORDER_NORMAL</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//4.设置动画延迟</span>
+</span><span class='line'><span class="n">controller</span><span class="o">.</span><span class="na">setDelay</span><span class="o">(</span><span class="mf">0.5f</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//5.将LayoutAnimation设置给ViewGroup</span>
+</span><span class='line'><span class="n">listView</span><span class="o">.</span><span class="na">setLayoutAnimation</span><span class="o">(</span><span class="n">controller</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h1>Property Animation</h1>
