@@ -253,16 +253,26 @@ Property Animation 属性动画 动画实现流程： 创建Animation
 
 <p>AnimationDrawable类是Android系统中的帧动画类。帧动画方式类似于放电影的原理，是通过顺序播放多张图片来实现动画效果的，图片之间有一定的动作连贯性，这样人眼看来就像对象真正在运动一样。AnimationDrawable类位于android.graphics.drawable软件包中，本节将介绍帧动画类中的主要编程方法。</p>
 
-<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;animation-list xmlns:android="http://schemas.android.com/apk/res/android"
-                android:oneshot="true"&gt;
-    &lt;item android:drawable="@drawable/p0" android:duration="50"/&gt;
-    &lt;item android:drawable="@drawable/p1" android:duration="50"/&gt;
-    &lt;item android:drawable="@drawable/p2" android:duration="50"/&gt;
-    &lt;item android:drawable="@drawable/p3" android:duration="50"/&gt;
-    &lt;item android:drawable="@drawable/p4" android:duration="50"/&gt;
-&lt;/animation-list&gt;
-</code></pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;animation-list</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+</span><span class='line'>                <span class="na">android:oneshot=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;item</span> <span class="na">android:drawable=</span><span class="s">&quot;@drawable/p0&quot;</span> <span class="na">android:duration=</span><span class="s">&quot;50&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;item</span> <span class="na">android:drawable=</span><span class="s">&quot;@drawable/p1&quot;</span> <span class="na">android:duration=</span><span class="s">&quot;50&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;item</span> <span class="na">android:drawable=</span><span class="s">&quot;@drawable/p2&quot;</span> <span class="na">android:duration=</span><span class="s">&quot;50&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;item</span> <span class="na">android:drawable=</span><span class="s">&quot;@drawable/p3&quot;</span> <span class="na">android:duration=</span><span class="s">&quot;50&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;item</span> <span class="na">android:drawable=</span><span class="s">&quot;@drawable/p4&quot;</span> <span class="na">android:duration=</span><span class="s">&quot;50&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/animation-list&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>通过动画配置文件，将其加载到ImageView的背景中，再start启动。</p>
 

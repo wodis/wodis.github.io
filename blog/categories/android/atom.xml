@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Open Tech Pub]]></title>
   <link href="http://wodis.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-09-07T16:49:26+08:00</updated>
+  <updated>2015-09-07T16:50:47+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -169,7 +169,7 @@
 
 <p>AnimationDrawable类是Android系统中的帧动画类。帧动画方式类似于放电影的原理，是通过顺序播放多张图片来实现动画效果的，图片之间有一定的动作连贯性，这样人眼看来就像对象真正在运动一样。AnimationDrawable类位于android.graphics.drawable软件包中，本节将介绍帧动画类中的主要编程方法。</p>
 
-<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+<pre><code class="xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;animation-list xmlns:android="http://schemas.android.com/apk/res/android"
                 android:oneshot="true"&gt;
     &lt;item android:drawable="@drawable/p0" android:duration="50"/&gt;
