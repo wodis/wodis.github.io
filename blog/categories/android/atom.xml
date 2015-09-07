@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Open Tech Pub]]></title>
   <link href="http://wodis.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-09-07T16:47:37+08:00</updated>
+  <updated>2015-09-07T16:49:26+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -194,7 +194,7 @@
 </ol>
 
 
-<pre><code class="java LayoutAnimations http://www.openwudi.com/blog/2015/09/06/android-animation/ 首页">//1.加载动画set的XML文件
+<pre><code class="java LayoutAnimations">//1.加载动画set的XML文件
 Animation animation = (Animation) AnimationUtils.loadAnimation(Animation2Activity.this, R.anim.list_anim);
 //2.初始化LayoutAnimationController
 LayoutAnimationController controller = new LayoutAnimationController(animation);
