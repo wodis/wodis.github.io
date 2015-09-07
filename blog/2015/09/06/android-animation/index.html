@@ -274,19 +274,31 @@ Property Animation 属性动画 动画实现流程： 创建Animation
 <li>LayoutAnimationsController用于为一个layout里面的控件，或者是一个ViewGroup里面的控件设置统一的动画效果。</li>
 <li>每一个控件都有相同的动画效果。</li>
 <li>控件的动画效果可以在不同的时间显示出来。</li>
-<li><p>LayoutAnimationsController可以在xml文件当中设置，以可以在代码当中进行设置。</p>
-
-<p> //1.加载动画set的XML文件
- Animation animation = (Animation) AnimationUtils.loadAnimation(Animation2Activity.this, R.anim.list_anim);
- //2.初始化LayoutAnimationController
- LayoutAnimationController controller = new LayoutAnimationController(animation);
- //3.设置子View动画顺序
- controller.setOrder(LayoutAnimationController.ORDER_NORMAL);
- //4.设置动画延迟
- controller.setDelay(0.5f);
- //5.将LayoutAnimation设置给ViewGroup
- listView.setLayoutAnimation(controller);</p></li>
+<li>LayoutAnimationsController可以在xml文件当中设置，以可以在代码当中进行设置。</li>
 </ol>
+
+
+<figure class='code'><figcaption><span>java </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>//1.加载动画set的XML文件
+</span><span class='line'>Animation animation = (Animation) AnimationUtils.loadAnimation(Animation2Activity.this, R.anim.list_anim);
+</span><span class='line'>//2.初始化LayoutAnimationController
+</span><span class='line'>LayoutAnimationController controller = new LayoutAnimationController(animation);
+</span><span class='line'>//3.设置子View动画顺序
+</span><span class='line'>controller.setOrder(LayoutAnimationController.ORDER_NORMAL);
+</span><span class='line'>//4.设置动画延迟
+</span><span class='line'>controller.setDelay(0.5f);
+</span><span class='line'>//5.将LayoutAnimation设置给ViewGroup
+</span><span class='line'>listView.setLayoutAnimation(controller);</span></code></pre></td></tr></table></div></figure>
 
 
 <h1>Property Animation</h1>
