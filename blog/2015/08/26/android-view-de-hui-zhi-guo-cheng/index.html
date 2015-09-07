@@ -151,21 +151,36 @@ ViewGroup用于负责请求每一个它的子View进行绘制，当子View接到
 
 <p>1.继承ViewGroup并且重写父类的三个构造函数</p>
 
-<pre><code>public class CustomViewGroup extends ViewGroup {
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomViewGroup</span> <span class="kd">extends</span> <span class="n">ViewGroup</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">CustomViewGroup</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">super</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">CustomViewGroup</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="n">AttributeSet</span> <span class="n">attrs</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">super</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">attrs</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">CustomViewGroup</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="n">AttributeSet</span> <span class="n">attrs</span><span class="o">,</span> <span class="n">intdefStyle</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">super</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">attrs</span><span class="o">,</span> <span class="n">defStyle</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-  public CustomViewGroup(Context context) {
-      super(context);
-    }
-
-  public CustomViewGroup(Context context, AttributeSet attrs) {
-      super(context, attrs);
-    }
-
-  public CustomViewGroup(Context context, AttributeSet attrs, intdefStyle) {
-      super(context, attrs, defStyle);
-    }
-}
-</code></pre>
 
 <p>2.重载onMeasure()方法
 自定义ViewGroup的onMeasure()方法中，除了计算自身的尺寸外，还需要调用measureChildren()函数来计算子控件的尺寸。</p>
@@ -184,31 +199,56 @@ generateLayoutParams()用于返回一个LayoutParams给子View，这样子View�
 
 <p>你可以跟踪源码看看，其实XML文件中View的layout_xxx参数都是被传递到了各种自定义ViewGroup.LayoutParams派生类对象中。例如LinearLayout的LayoutParams定义的关键部分如下：</p>
 
-<pre><code>public class LinearLayout extends ViewGroup {
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LinearLayout</span> <span class="kd">extends</span> <span class="n">ViewGroup</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">LayoutParams</span> <span class="kd">extends</span> <span class="n">ViewGroup</span><span class="o">.</span><span class="na">MarginLayoutParams</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">public</span> <span class="kt">float</span> <span class="n">weight</span><span class="o">;</span>
+</span><span class='line'>        <span class="kd">public</span> <span class="kt">int</span> <span class="n">gravity</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">public</span> <span class="nf">LayoutParams</span><span class="o">(</span><span class="n">Context</span> <span class="n">c</span><span class="o">,</span> <span class="n">AttributeSet</span> <span class="n">attrs</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="kd">super</span><span class="o">(</span><span class="n">c</span><span class="o">,</span> <span class="n">attrs</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">TypedArray</span> <span class="n">a</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">obtainStyledAttributes</span><span class="o">(</span><span class="n">attrs</span><span class="o">,</span> <span class="n">com</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">styleable</span><span class="o">.</span><span class="na">LinearLayout_Layout</span><span class="o">);</span>
+</span><span class='line'>                <span class="n">weight</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="na">getFloat</span><span class="o">(</span><span class="n">com</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">styleable</span><span class="o">.</span><span class="na">LinearLayout_Layout_layout_weight</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>                <span class="n">gravity</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="n">com</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">styleable</span><span class="o">.</span><span class="na">LinearLayout_Layout_layout_gravity</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">a</span><span class="o">.</span><span class="na">recycle</span><span class="o">();</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">LayoutParams</span> <span class="nf">generateLayoutParams</span><span class="o">(</span><span class="n">AttributeSet</span> <span class="n">attrs</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="k">new</span> <span class="n">LinearLayout</span><span class="o">.</span><span class="na">LayoutParams</span><span class="o">(</span><span class="n">getContext</span><span class="o">(),</span> <span class="n">attrs</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-    public static class LayoutParams extends ViewGroup.MarginLayoutParams {
-
-        public float weight;
-        public int gravity = -1;
-
-        public LayoutParams(Context c, AttributeSet attrs) {
-
-                super(c, attrs);
-
-                TypedArray a = c.obtainStyledAttributes(attrs, com.android.internal.R.styleable.LinearLayout_Layout);
-                weight = a.getFloat(com.android.internal.R.styleable.LinearLayout_Layout_layout_weight, 0);
-                gravity = a.getInt(com.android.internal.R.styleable.LinearLayout_Layout_layout_gravity, -1);
-
-                a.recycle();
-        }
-    }
-
-    @Override
-    public LayoutParams generateLayoutParams(AttributeSet attrs) {
-        return new LinearLayout.LayoutParams(getContext(), attrs);
-    }
-}
-</code></pre>
 
 <p>这样你大概就可以理解为什么LinearLayout的子控件支持weight和gravity的设置了吧，当然我们也可以这样自定义一些属于我们ViewGroup特有的params。</p>
 

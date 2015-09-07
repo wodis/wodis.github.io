@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Open Tech Pub]]></title>
   <link href="http://wodis.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-09-07T16:50:47+08:00</updated>
+  <updated>2015-09-07T16:54:03+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -269,7 +269,7 @@ ViewGroup用于负责请求每一个它的子View进行绘制，当子View接到
 
 <p>1.继承ViewGroup并且重写父类的三个构造函数</p>
 
-<pre><code>public class CustomViewGroup extends ViewGroup {
+<pre><code class="java">public class CustomViewGroup extends ViewGroup {
 
   public CustomViewGroup(Context context) {
       super(context);
@@ -302,7 +302,7 @@ generateLayoutParams()用于返回一个LayoutParams给子View，这样子View�
 
 <p>你可以跟踪源码看看，其实XML文件中View的layout_xxx参数都是被传递到了各种自定义ViewGroup.LayoutParams派生类对象中。例如LinearLayout的LayoutParams定义的关键部分如下：</p>
 
-<pre><code>public class LinearLayout extends ViewGroup {
+<pre><code class="java">public class LinearLayout extends ViewGroup {
 
     public static class LayoutParams extends ViewGroup.MarginLayoutParams {
 
