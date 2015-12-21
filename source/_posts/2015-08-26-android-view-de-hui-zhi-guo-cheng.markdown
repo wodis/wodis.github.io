@@ -48,20 +48,22 @@ MeasureSpec用于父View向下要求子View的绘制模式，MeasureSpec有3种�
 1.继承ViewGroup并且重写父类的三个构造函数
 
 
-	public class CustomViewGroup extends ViewGroup {
+``` java
+public class CustomViewGroup extends ViewGroup {
 
-	  public CustomViewGroup(Context context) {
-	      super(context);
-	    }
+  public CustomViewGroup(Context context) {
+      super(context);
+    }
 
-	  public CustomViewGroup(Context context, AttributeSet attrs) {
-	      super(context, attrs);
-	    }
+  public CustomViewGroup(Context context, AttributeSet attrs) {
+      super(context, attrs);
+    }
 
-	  public CustomViewGroup(Context context, AttributeSet attrs, intdefStyle) {
-	      super(context, attrs, defStyle);
-	    }
-	}
+  public CustomViewGroup(Context context, AttributeSet attrs, intdefStyle) {
+      super(context, attrs, defStyle);
+    }
+}
+```
 
 2.重载onMeasure()方法
 自定义ViewGroup的onMeasure()方法中，除了计算自身的尺寸外，还需要调用measureChildren()函数来计算子控件的尺寸。
@@ -80,31 +82,32 @@ generateLayoutParams()用于返回一个LayoutParams给子View，这样子View�
 
 你可以跟踪源码看看，其实XML文件中View的layout_xxx参数都是被传递到了各种自定义ViewGroup.LayoutParams派生类对象中。例如LinearLayout的LayoutParams定义的关键部分如下：
 
+``` java
+public class LinearLayout extends ViewGroup {
 
-    public class LinearLayout extends ViewGroup {
+    public static class LayoutParams extends ViewGroup.MarginLayoutParams {
 
-        public static class LayoutParams extends ViewGroup.MarginLayoutParams {
+        public float weight;
+        public int gravity = -1;
 
-            public float weight;
-            public int gravity = -1;
+        public LayoutParams(Context c, AttributeSet attrs) {
 
-            public LayoutParams(Context c, AttributeSet attrs) {
+                super(c, attrs);
 
-                    super(c, attrs);
+                TypedArray a = c.obtainStyledAttributes(attrs, com.android.internal.R.styleable.LinearLayout_Layout);
+                weight = a.getFloat(com.android.internal.R.styleable.LinearLayout_Layout_layout_weight, 0);
+                gravity = a.getInt(com.android.internal.R.styleable.LinearLayout_Layout_layout_gravity, -1);
 
-                    TypedArray a = c.obtainStyledAttributes(attrs, com.android.internal.R.styleable.LinearLayout_Layout);
-                    weight = a.getFloat(com.android.internal.R.styleable.LinearLayout_Layout_layout_weight, 0);
-                    gravity = a.getInt(com.android.internal.R.styleable.LinearLayout_Layout_layout_gravity, -1);
-
-                    a.recycle();
-            }
-        }
-
-        @Override
-        public LayoutParams generateLayoutParams(AttributeSet attrs) {
-            return new LinearLayout.LayoutParams(getContext(), attrs);
+                a.recycle();
         }
     }
+
+    @Override
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new LinearLayout.LayoutParams(getContext(), attrs);
+    }
+}
+```
 
 这样你大概就可以理解为什么LinearLayout的子控件支持weight和gravity的设置了吧，当然我们也可以这样自定义一些属于我们ViewGroup特有的params。
 
