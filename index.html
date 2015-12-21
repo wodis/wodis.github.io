@@ -287,7 +287,7 @@ Property Animation 属性动画 动画实现流程： 创建Animation
 <li>LayoutAnimationsController用于为一个layout里面的控件，或者是一个ViewGroup里面的控件设置统一的动画效果。</li>
 <li>每一个控件都有相同的动画效果。</li>
 <li>控件的动画效果可以在不同的时间显示出来。</li>
-<li>LayoutAnimationsController可以在xml文件当中设置，以可以在代码当中进行设置。</li>
+<li>LayoutAnimationsController可以在xml文件当中设置，也可以在代码当中进行设置。</li>
 </ol>
 
 
@@ -316,7 +316,178 @@ Property Animation 属性动画 动画实现流程： 创建Animation
 
 <h1>Property Animation</h1>
 
-<p>待更新。。。</p>
+<p>属性动画要求对象必须实现对应的get和set方法，属性动画根据传递的初始值和最终值，以动画的效果多次调用对应的set方法，根据时间的推移越来越接近最终值。</p>
+
+<p>如果需要对属性xxx做动画，必须满足两个条件：</p>
+
+<ol>
+<li>object必须提供set方法，如果不指定初始状态则必须提供get方法（系统会通过get方法拿初始属性）。</li>
+<li>object的set方法必须通过UI反应出来，不然动画无效（这点比较好理解，使UI布局更新）。</li>
+</ol>
+
+
+<p>Google给出了3个解决方法：</p>
+
+<ol>
+<li>给对象添加set和get方法，前提是拥有权限</li>
+<li>用一个包装类，实现对应的set和get方法</li>
+<li>采用ValueAnimator，监听动画过程，自己实现属性的改变</li>
+</ol>
+
+
+<h3>对象直接添加set和get方法</h3>
+
+<p>这个方式很简单，但是局限性较大。假如你想对Android SDK中的对象添加方法，正常是无法实现的。</p>
+
+<h3>使用包装类间接实现set和get方法</h3>
+
+<figure class='code'><figcaption><span>ViewWrapper</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">private</span> <span class="kt">void</span> <span class="nf">performAnimate</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">ViewWrapper</span> <span class="n">wrapper</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ViewWrapper</span><span class="o">(</span><span class="n">mButton</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">ObjectAnimator</span><span class="o">.</span><span class="na">ofInt</span><span class="o">(</span><span class="n">wrapper</span><span class="o">,</span> <span class="s">&quot;width&quot;</span><span class="o">,</span> <span class="mi">500</span><span class="o">).</span><span class="na">setDuration</span><span class="o">(</span><span class="mi">5000</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nd">@Override</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">mButton</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">performAnimate</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">ViewWrapper</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">View</span> <span class="n">mTarget</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="nf">ViewWrapper</span><span class="o">(</span><span class="n">View</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">mTarget</span> <span class="o">=</span> <span class="n">target</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getWidth</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">mTarget</span><span class="o">.</span><span class="na">getLayoutParams</span><span class="o">().</span><span class="na">width</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setWidth</span><span class="o">(</span><span class="kt">int</span> <span class="n">width</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">mTarget</span><span class="o">.</span><span class="na">getLayoutParams</span><span class="o">().</span><span class="na">width</span> <span class="o">=</span> <span class="n">width</span><span class="o">;</span>
+</span><span class='line'>        <span class="n">mTarget</span><span class="o">.</span><span class="na">requestLayout</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上述代码5s内让View的宽度增加到500px，为了达到这个效果，我们提供了ViewWrapper类专门用于包装View，具体到本例是包装View，然后我们对ViewWrapper的width熟悉做动画，并且在setWidth方法中修改其内部的target的宽度，而target实际上就是我们包装的Button，这样一个间接属性动画就搞定了。上述代码同样适用于一个对象的其他属性。</p>
+
+<h3>采用ValueAnimator，监听动画过程，自己实现属性的改变</h3>
+
+<p>ValueAnimator本身不作用于任何对象，也就是说直接使用它没有任何动画效果。它可以对一个值做动画，然后我们可以监听其动画过程，在动画过程中修改我们的对象的属性值，这样也就相当于我们的对象做了动画。</p>
+
+<figure class='code'><figcaption><span>ValueAnimators</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">private</span> <span class="kt">void</span> <span class="nf">performAnimate</span><span class="o">(</span><span class="kd">final</span> <span class="n">View</span> <span class="n">target</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">ValueAnimator</span> <span class="n">valueAnimator</span> <span class="o">=</span> <span class="n">ValueAnimator</span><span class="o">.</span><span class="na">ofInt</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">100</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">valueAnimator</span><span class="o">.</span><span class="na">addUpdateListener</span><span class="o">(</span><span class="k">new</span> <span class="nf">AnimatorUpdateListener</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">//持有一个IntEvaluator对象，方便下面估值的时候使用</span>
+</span><span class='line'>        <span class="kd">private</span> <span class="n">IntEvaluator</span> <span class="n">mEvaluator</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">IntEvaluator</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nd">@Override</span>
+</span><span class='line'>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onAnimationUpdate</span><span class="o">(</span><span class="n">ValueAnimator</span> <span class="n">animator</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="c1">//获得当前动画的进度值，整型，1-100之间</span>
+</span><span class='line'>            <span class="kt">int</span> <span class="n">currentValue</span> <span class="o">=</span> <span class="o">(</span><span class="n">Integer</span><span class="o">)</span><span class="n">animator</span><span class="o">.</span><span class="na">getAnimatedValue</span><span class="o">();</span>
+</span><span class='line'>            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;current value: &quot;</span> <span class="o">+</span> <span class="n">currentValue</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">//计算当前进度占整个动画过程的比例，浮点型，0-1之间</span>
+</span><span class='line'>            <span class="kt">float</span> <span class="n">fraction</span> <span class="o">=</span> <span class="n">currentValue</span> <span class="o">/</span> <span class="mi">100</span><span class="n">f</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">//这里我偷懒了，不过有现成的干吗不用呢</span>
+</span><span class='line'>            <span class="c1">//直接调用整型估值器通过比例计算出宽度，然后再设给Button</span>
+</span><span class='line'>            <span class="n">target</span><span class="o">.</span><span class="na">getLayoutParams</span><span class="o">().</span><span class="na">width</span> <span class="o">=</span> <span class="n">mEvaluator</span><span class="o">.</span><span class="na">evaluate</span><span class="o">(</span><span class="n">fraction</span><span class="o">,</span> <span class="n">start</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">target</span><span class="o">.</span><span class="na">requestLayout</span><span class="o">();</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">valueAnimator</span><span class="o">.</span><span class="na">setDuration</span><span class="o">(</span><span class="mi">5000</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nd">@Override</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">mButton</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">performAnimate</span><span class="o">(</span><span class="n">mButton</span><span class="o">,</span> <span class="n">mButton</span><span class="o">.</span><span class="na">getWidth</span><span class="o">(),</span> <span class="mi">500</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>关于这个ValueAnimator我要再说一下，拿上例来说，它会在5000ms内将一个数从1变到100，然后动画的每一帧会回调onAnimationUpdate方法，在这个方法里，我们可以获取当前的值（1-100），根据当前值所占的比例（当前值/100），我们可以计算出Button现在的宽度应该是多少，比如时间过了一半，当前值是50，比例为0.5，假设Button的起始宽度是100px，最终宽度是500px，那么Button增加的宽度也应该占总增加宽度的一半，总增加宽度是500-100=400，所以这个时候Button应该增加宽度400*0.5=200，那么当前Button的宽度应该为初始宽度+ 增加宽度（100+200=300）。上述计算过程很简单，其实它就是整型估值器IntEvaluator的内部实现。</p>
+
+<h1>最后</h1>
+
+<ol>
+<li>View动画（渐变动画）的功能是有限的，大家可以尝试使用属性动画</li>
+<li>为了在各种安卓版本上使用属性动画，你需要采用nineoldandroids，它是GitHub开源项目，jar包和源码都可以在网上下到，如果下不到jar包，我可以发给大家</li>
+<li>再复杂的动画都是简单动画的合理组合，再加上本文介绍的方法，可以对任何属性作用动画效果，也就是说你几乎可以做出任何动画</li>
+<li>属性动画中的插值器（Interpolator）和估值器（TypeEvaluator）很重要，它是实现非匀速动画的重要手段，你应该试着搞懂它，最好你还能够自定义它们</li>
+</ol>
+
+
+<p>参考资料：<a href="http://blog.csdn.net/singwhatiwanna/article/details/17841165">Android属性动画深入分析：让你成为动画牛人</a></p>
 </div>
   
   
