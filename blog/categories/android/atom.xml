@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Android | Open Tech Pub]]></title>
+  <link href="http://wodis.github.io/blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://wodis.github.io/"/>
+  <updated>2015-12-21T14:26:08+08:00</updated>
+  <id>http://wodis.github.io/</id>
+  <author>
+    <name><![CDATA[Wu Di]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[浅谈Android动画]]></title>
+    <link href="http://wodis.github.io/blog/2015/09/06/android-animation/"/>
+    <updated>2015-09-06T18:26:51+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/09/06/android-animation</id>
+    <content type="html"><![CDATA[<p>在Android中动画分为以下4种：</p>
+
+<ol>
+<li>Tween Animation  补间动画</li>
+<li>Frame Animation  帧动画</li>
+<li>Layout Animation 布局动画</li>
+<li>Property Animation 属性动画</li>
+</ol>
+
+
+<p>动画实现流程：</p>
+
+<ol>
+<li>创建Animation</li>
+<li>设置相关属性</li>
+<li>View调用startAnimation方法启动动画</li>
+</ol>
+
+
+<h1>Animation</h1>
+
+<p>Animation类是Android系统的一个动画抽象类，所有其他一些动画类都要继承该类中的实现方法。Animation类主要用于补间动画效果，提供了动画启动、停止、重复、持续时间等方法。Animation类中的方法适用于任何一种补间动画对象。</p>
+
+<p>常用方法：</p>
+
+<p>start() 启动</p>
+
+<p>startNow() 立即启动</p>
+
+<p>cancel() 取消动画</p>
+
+<p>setDuration(long) 设置持续时间</p>
+
+<p>setRepeatMode(int) 设置重复模式</p>
+
+<p>setRepeatCount(int) 设置重复次数</p>
+
+<p>setFillEnabled(boolean) 能否填充位置</p>
+
+<p>setFillBefore(boolean) 回到起始填充位置</p>
+
+<p>setFillAfter(boolean) 回到结束填充位置</p>
+
+<p>setStartOffset(long) 设置延时启动时间</p>
+
+<p>setInterpolator(Interpolator) 设置加速曲线</p>
+
+<p>setAnimationListener(AnimationListener) 设置动画的回调</p>
+
+<h1>Tween Animation</h1>
+
+<p>该类Animations提供了旋转、移动、伸展和淡出等效果。Alpha——淡入淡出，Scale——缩放效果，Rotate——旋转，Translate——移动效果。</p>
+
+<h2>TranslateAnimation</h2>
+
+<p>TranslateAnimation类是Android系统中的位置变化动画类，用于控制View对象的位置变化，该类继承于Animation类。TranslateAnimation类中的很多方法都与Animation类一致，该类中最常用的方法便是TranslateAnimation构造方法。</p>
+
+<p>public TranslateAnimation (float fromXDelta, float toXDelta, float fromYDelta, float toYDelta)</p>
+
+<p>参数说明</p>
+
+<p>fromXDelta：位置变化的起始点X坐标。</p>
+
+<p>toXDelta：位置变化的结束点X坐标。</p>
+
+<p>fromYDelta：位置变化的起始点Y坐标。</p>
+
+<p>toYDelta：位置变化的结束点Y坐标。</p>
+
+<h2>RotateAnimation</h2>
+
+<p>RotateAnimation类是Android系统中的旋转变化动画类，用于控制View对象的旋转动作，该类继承于Animation类。RotateAnimation类中的很多方法都与Animation类一致，该类中最常用的方法便是RotateAnimation构造方法。</p>
+
+<p>public RotateAnimation (float fromDegrees, float toDegrees, int pivotXType, float pivotXValue, int pivotYType, float pivotYValue)</p>
+
+<p>参数说明</p>
+
+<p>fromDegrees：旋转的开始角度。</p>
+
+<p>toDegrees：旋转的结束角度。</p>
+
+<p>pivotXType：X轴的伸缩模式，可以取值为ABSOLUTE、RELATIVE_TO_SELF、RELATIVE_TO_PARENT。</p>
+
+<p>pivotXValue：X坐标的伸缩值。</p>
+
+<p>pivotYType：Y轴的伸缩模式，可以取值为ABSOLUTE、RELATIVE_TO_SELF、RELATIVE_TO_PARENT。</p>
+
+<p>pivotYValue：Y坐标的伸缩值。</p>
+
+<h2>ScaleAnimation</h2>
+
+<p>ScaleAnimation类是Android系统中的尺寸变化动画类，用于控制View对象的尺寸变化，该类继承于Animation类。ScaleAnimation类中的很多方法都与Animation类一致，该类中最常用的方法便是ScaleAnimation构造方法。</p>
+
+<p>public ScaleAnimation (float fromX, float toX, float fromY, float toY, int pivotXType, float pivotXValue, int pivotYType, float pivotYValue)</p>
+
+<p>参数说明</p>
+
+<p>fromX：起始X坐标上的伸缩尺寸。</p>
+
+<p>toX：结束X坐标上的伸缩尺寸。</p>
+
+<p>fromY：起始Y坐标上的伸缩尺寸。</p>
+
+<p>toY：结束Y坐标上的伸缩尺寸。</p>
+
+<p>pivotXType：X轴的伸缩模式，可以取值为ABSOLUTE、RELATIVE_TO_SELF、RELATIVE_TO_PARENT。</p>
+
+<p>pivotXValue：X坐标的伸缩值。</p>
+
+<p>pivotYType：Y轴的伸缩模式，可以取值为ABSOLUTE、RELATIVE_TO_SELF、RELATIVE_TO_PARENT。</p>
+
+<p>pivotYValue：Y坐标的伸缩值。</p>
+
+<h2>AlphaAnimation</h2>
+
+<p>AlphaAnimation类是Android系统中的透明度变化动画类，用于控制View对象的透明度变化，该类继承于Animation类。AlphaAnimation类中的很多方法都与Animation类一致，该类中最常用的方法便是AlphaAnimation构造方法。</p>
+
+<p>public AlphaAnimation (float fromAlpha, float toAlpha)</p>
+
+<p>参数说明</p>
+
+<p>fromAlpha：开始时刻的透明度，取值范围0~1。</p>
+
+<p>toAlpha：结束时刻的透明度，取值范围0~1。</p>
+
+<h2>AnimationSet</h2>
+
+<p>AnimationSet类是Android系统中的动画集合类，用于控制View对象进行多个动作的组合，该类继承于Animation类。AnimationSet类中的很多方法都与Animation类一致，该类中最常用的方法便是addAnimation方法，该方法用于为动画集合对象添加动画对象。</p>
+
+<p>public void addAnimation (Animation a)</p>
+
+<p>其中，参数a为Animation动画对象，可以是前述任何一种补间动作。</p>
+
+<h2>AnimationUtils</h2>
+
+<p>AnimationUtils类是Android系统中的动画工具类，提供了控制View对象的一些工具。该类中最常用的方法便是loadAnimation方法，该方法用于加载XML格式的动画配置文件。在Android系统中，除了在代码中设置动画效果外，还可以在XML配置文件中设置动画的组合动作，这种方式适用性更好。</p>
+
+<p>public static Animation loadAnimation (Context context, int id)</p>
+
+<p>参数说明</p>
+
+<p>context：上下文对象。</p>
+
+<p>id：动画配置文件的ID。</p>
+
+<h1>Frame Animation</h1>
+
+<p>AnimationDrawable类：帧动画类</p>
+
+<p>AnimationDrawable类是Android系统中的帧动画类。帧动画方式类似于放电影的原理，是通过顺序播放多张图片来实现动画效果的，图片之间有一定的动作连贯性，这样人眼看来就像对象真正在运动一样。AnimationDrawable类位于android.graphics.drawable软件包中，本节将介绍帧动画类中的主要编程方法。</p>
+
+<pre><code class="xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+                android:oneshot="true"&gt;
+    &lt;item android:drawable="@drawable/p0" android:duration="50"/&gt;
+    &lt;item android:drawable="@drawable/p1" android:duration="50"/&gt;
+    &lt;item android:drawable="@drawable/p2" android:duration="50"/&gt;
+    &lt;item android:drawable="@drawable/p3" android:duration="50"/&gt;
+    &lt;item android:drawable="@drawable/p4" android:duration="50"/&gt;
+&lt;/animation-list&gt;
+</code></pre>
+
+<p>通过动画配置文件，将其加载到ImageView的背景中，再start启动。</p>
+
+<h1>Layout Animations</h1>
+
+<p>LayoutAnimationsController可以用于实现使多个控件按顺序一个一个的显示。</p>
+
+<ol>
+<li>LayoutAnimationsController用于为一个layout里面的控件，或者是一个ViewGroup里面的控件设置统一的动画效果。</li>
+<li>每一个控件都有相同的动画效果。</li>
+<li>控件的动画效果可以在不同的时间显示出来。</li>
+<li>LayoutAnimationsController可以在xml文件当中设置，也可以在代码当中进行设置。</li>
+</ol>
+
+
+<pre><code class="java LayoutAnimations">//1.加载动画set的XML文件
+Animation animation = (Animation) AnimationUtils.loadAnimation(Animation2Activity.this, R.anim.list_anim);
+//2.初始化LayoutAnimationController
+LayoutAnimationController controller = new LayoutAnimationController(animation);
+//3.设置子View动画顺序
+controller.setOrder(LayoutAnimationController.ORDER_NORMAL);
+//4.设置动画延迟
+controller.setDelay(0.5f);
+//5.将LayoutAnimation设置给ViewGroup
+listView.setLayoutAnimation(controller);
+</code></pre>
+
+<h1>Property Animation</h1>
+
+<p>属性动画要求对象必须实现对应的get和set方法，属性动画根据传递的初始值和最终值，以动画的效果多次调用对应的set方法，根据时间的推移越来越接近最终值。</p>
+
+<p>如果需要对属性xxx做动画，必须满足两个条件：</p>
+
+<ol>
+<li>object必须提供set方法，如果不指定初始状态则必须提供get方法（系统会通过get方法拿初始属性）。</li>
+<li>object的set方法必须通过UI反应出来，不然动画无效（这点比较好理解，使UI布局更新）。</li>
+</ol>
+
+
+<p>Google给出了3个解决方法：</p>
+
+<ol>
+<li>给对象添加set和get方法，前提是拥有权限</li>
+<li>用一个包装类，实现对应的set和get方法</li>
+<li>采用ValueAnimator，监听动画过程，自己实现属性的改变</li>
+</ol>
+
+
+<h3>对象直接添加set和get方法</h3>
+
+<p>这个方式很简单，但是局限性较大。假如你想对Android SDK中的对象添加方法，正常是无法实现的。</p>
+
+<h3>使用包装类间接实现set和get方法</h3>
+
+<pre><code class="java ViewWrapper">private void performAnimate() {
+    ViewWrapper wrapper = new ViewWrapper(mButton);
+    ObjectAnimator.ofInt(wrapper, "width", 500).setDuration(5000).start();
+}
+
+@Override
+public void onClick(View v) {
+    if (v == mButton) {
+        performAnimate();
+    }
+}
+
+private static class ViewWrapper {
+    private View mTarget;
+
+    public ViewWrapper(View target) {
+        mTarget = target;
+    }
+
+    public int getWidth() {
+        return mTarget.getLayoutParams().width;
+    }
+
+    public void setWidth(int width) {
+        mTarget.getLayoutParams().width = width;
+        mTarget.requestLayout();
+    }
+}
+</code></pre>
+
+<p>上述代码5s内让View的宽度增加到500px，为了达到这个效果，我们提供了ViewWrapper类专门用于包装View，具体到本例是包装View，然后我们对ViewWrapper的width熟悉做动画，并且在setWidth方法中修改其内部的target的宽度，而target实际上就是我们包装的Button，这样一个间接属性动画就搞定了。上述代码同样适用于一个对象的其他属性。</p>
+
+<h3>采用ValueAnimator，监听动画过程，自己实现属性的改变</h3>
+
+<p>ValueAnimator本身不作用于任何对象，也就是说直接使用它没有任何动画效果。它可以对一个值做动画，然后我们可以监听其动画过程，在动画过程中修改我们的对象的属性值，这样也就相当于我们的对象做了动画。</p>
+
+<pre><code class="java ValueAnimators">private void performAnimate(final View target, final int start, final int end) {
+    ValueAnimator valueAnimator = ValueAnimator.ofInt(1, 100);
+
+    valueAnimator.addUpdateListener(new AnimatorUpdateListener() {
+
+        //持有一个IntEvaluator对象，方便下面估值的时候使用
+        private IntEvaluator mEvaluator = new IntEvaluator();
+
+        @Override
+        public void onAnimationUpdate(ValueAnimator animator) {
+            //获得当前动画的进度值，整型，1-100之间
+            int currentValue = (Integer)animator.getAnimatedValue();
+            Log.d(TAG, "current value: " + currentValue);
+
+            //计算当前进度占整个动画过程的比例，浮点型，0-1之间
+            float fraction = currentValue / 100f;
+
+            //这里我偷懒了，不过有现成的干吗不用呢
+            //直接调用整型估值器通过比例计算出宽度，然后再设给Button
+            target.getLayoutParams().width = mEvaluator.evaluate(fraction, start, end);
+            target.requestLayout();
+        }
+    });
+
+    valueAnimator.setDuration(5000).start();
+}
+
+@Override
+public void onClick(View v) {
+    if (v == mButton) {
+        performAnimate(mButton, mButton.getWidth(), 500);
+    }
+}
+</code></pre>
+
+<p>关于这个ValueAnimator我要再说一下，拿上例来说，它会在5000ms内将一个数从1变到100，然后动画的每一帧会回调onAnimationUpdate方法，在这个方法里，我们可以获取当前的值（1-100），根据当前值所占的比例（当前值/100），我们可以计算出Button现在的宽度应该是多少，比如时间过了一半，当前值是50，比例为0.5，假设Button的起始宽度是100px，最终宽度是500px，那么Button增加的宽度也应该占总增加宽度的一半，总增加宽度是500-100=400，所以这个时候Button应该增加宽度400*0.5=200，那么当前Button的宽度应该为初始宽度+ 增加宽度（100+200=300）。上述计算过程很简单，其实它就是整型估值器IntEvaluator的内部实现。</p>
+
+<h1>最后</h1>
+
+<ol>
+<li>View动画（渐变动画）的功能是有限的，大家可以尝试使用属性动画</li>
+<li>为了在各种安卓版本上使用属性动画，你需要采用nineoldandroids，它是GitHub开源项目，jar包和源码都可以在网上下到，如果下不到jar包，我可以发给大家</li>
+<li>再复杂的动画都是简单动画的合理组合，再加上本文介绍的方法，可以对任何属性作用动画效果，也就是说你几乎可以做出任何动画</li>
+<li>属性动画中的插值器（Interpolator）和估值器（TypeEvaluator）很重要，它是实现非匀速动画的重要手段，你应该试着搞懂它，最好你还能够自定义它们</li>
+</ol>
+
+
+<p>参考资料：<a href="http://blog.csdn.net/singwhatiwanna/article/details/17841165">Android属性动画深入分析：让你成为动画牛人</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android绘制过程]]></title>
+    <link href="http://wodis.github.io/blog/2015/08/26/android-view-de-hui-zhi-guo-cheng/"/>
+    <updated>2015-08-26T17:23:01+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/08/26/android-view-de-hui-zhi-guo-cheng</id>
+    <content type="html"><![CDATA[<p>最近群里面有些小伙伴问我，希望可以解释一下View间的绘制关系，所以简单的写一下。</p>
+
+<h1>Android是如何绘制View的</h1>
+
+<p>一旦Activity获得焦点之后，将会触发绘制布局的流程。
+绘制过程是从布局的根节点(root node)开始的，根据布局的树状结构测量(measure)并绘制(draw)。
+这个过程用于规定每一个View的区域，然后绘制对应的界面。
+ViewGroup用于负责请求每一个它的子View进行绘制，当子View接到请求则开始绘制自己的界面。
+注意树的遍历是有序的，意味着父View将在子View绘制之前被调用。</p>
+
+<h2>Measure与Layout</h2>
+
+<p>绘制布局分为两个过程：measure和layout。</p>
+
+<p>measure(int, int)方法用来自上而下的遍历View，每个View都是递归的测量自己所占的大小。</p>
+
+<p>layout(int, int, int, int)方法同样是自上而下的，它的功能是将子View放置在合适的位置。</p>
+
+<p>当View对象调用了measure方法之后，通过getMeasuredWidth()和getMeasuredHeight()方法就可以获取到测量后的值。
+注意一点，子View的宽和高不得超过在父View。这可以确保所有的子View都被父View所包含。</p>
+
+<h2>ViewGroup.LayoutParams</h2>
+
+<p>父类如何得知子类想要如何布局呢，ViewGroup.LayoutParams类用于告诉父类它们的布局预期。
+我们可以使用3种配置方式：</p>
+
+<ul>
+<li>准确的值</li>
+<li>MATCH_PARENT，子View想与父View一样大小</li>
+<li>WRAP_CONTENT，子View的大小足以包括它的内容</li>
+</ul>
+
+
+<h2>MeasureSpec</h2>
+
+<p>MeasureSpec用于父View向下要求子View的绘制模式，MeasureSpec有3种模式：</p>
+
+<ul>
+<li>UNSPECIFIED，表示大小并不明确</li>
+<li>EXACTLY，表示父类给定一个准确的大小</li>
+<li>AT MOST，表示父类限制了子类的最大值</li>
+</ul>
+
+
+<p><code>上面的逻辑是不是太抽象了？简单来说就是一个View如果想要展示出来需要两步：1、计算自己所占空间的大小。2、子View摆放的位置。(所有过程都是从父View发起，直到子View计算完成向它的父View返回结果)</code></p>
+
+<h1>自定义一个ViewGroup</h1>
+
+<p>我们自定义一个ViewGroup通常分为以下几步：</p>
+
+<p>1.继承ViewGroup并且重写父类的三个构造函数</p>
+
+<pre><code class="java">public class CustomViewGroup extends ViewGroup {
+
+  public CustomViewGroup(Context context) {
+      super(context);
+    }
+
+  public CustomViewGroup(Context context, AttributeSet attrs) {
+      super(context, attrs);
+    }
+
+  public CustomViewGroup(Context context, AttributeSet attrs, intdefStyle) {
+      super(context, attrs, defStyle);
+    }
+}
+</code></pre>
+
+<p>2.重载onMeasure()方法
+自定义ViewGroup的onMeasure()方法中，除了计算自身的尺寸外，还需要调用measureChildren()函数来计算子控件的尺寸。</p>
+
+<p>onMeasure()的定义不是本文的讨论重点，因此这里我直接使用默认的onMeasure()定义，当然measureChildren()是必须得加的，或者我们针对性的调用子View的measure方法。
+通常我们使用MeasureSpec.makeMeasureSpec(int size, int mode)来产生一个规格。
+使用getChildCount()获取子View个数。使用getChildAt(i)获得对应的子View。在最后不要忘记使用setMeasuredDimension方法设置当前View的规格。</p>
+
+<p>3.实现onLayout()方法
+通常我们在这个方法里面调用getMeasuredWidth()和getMeasuredHeight()获取已经测量过的View大小，
+然后根据这些数据来计算每个View对应的位置。通过layout(int l, int t, int r, int b)设置子View在当前View中的位置。</p>
+
+<p>4.添加LayoutParams
+generateLayoutParams()用于返回一个LayoutParams给子View，这样子View就可以将对应layout布局的参数传入，
+我们自定义的父View可以使用getLayoutParams()获取我们传入的LayoutParams。</p>
+
+<p>你可以跟踪源码看看，其实XML文件中View的layout_xxx参数都是被传递到了各种自定义ViewGroup.LayoutParams派生类对象中。例如LinearLayout的LayoutParams定义的关键部分如下：</p>
+
+<pre><code class="java">public class LinearLayout extends ViewGroup {
+
+    public static class LayoutParams extends ViewGroup.MarginLayoutParams {
+
+        public float weight;
+        public int gravity = -1;
+
+        public LayoutParams(Context c, AttributeSet attrs) {
+
+                super(c, attrs);
+
+                TypedArray a = c.obtainStyledAttributes(attrs, com.android.internal.R.styleable.LinearLayout_Layout);
+                weight = a.getFloat(com.android.internal.R.styleable.LinearLayout_Layout_layout_weight, 0);
+                gravity = a.getInt(com.android.internal.R.styleable.LinearLayout_Layout_layout_gravity, -1);
+
+                a.recycle();
+        }
+    }
+
+    @Override
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new LinearLayout.LayoutParams(getContext(), attrs);
+    }
+}
+</code></pre>
+
+<p>这样你大概就可以理解为什么LinearLayout的子控件支持weight和gravity的设置了吧，当然我们也可以这样自定义一些属于我们ViewGroup特有的params。</p>
+
+<p>这样修改之后，我们就可以在onLayout()函数中获取子控件的layout_xxx值了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Eclipse ADT Bundle下载]]></title>
+    <link href="http://wodis.github.io/blog/2015/08/04/adt-bundle/"/>
+    <updated>2015-08-04T17:32:10+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/08/04/adt-bundle</id>
+    <content type="html"><![CDATA[<p>Android官方主页不再提供Eclipse ADT Bundle的下载，并且声明放弃维护。</p>
+
+<p>以下是20140702对应操作系统的下载地址：</p>
+
+<p>windows 32: <a href="https://dl.google.com/android/adt/adt-bundle-windows-x86-20140702.zip">https://dl.google.com/android/adt/adt-bundle-windows-x86-20140702.zip</a></p>
+
+<p>windows 64: <a href="https://dl.google.com/android/adt/adt-bundle-windows-x86_64-20140702.zip">https://dl.google.com/android/adt/adt-bundle-windows-x86_64-20140702.zip</a></p>
+
+<p>Mac 64: <a href="https://dl.google.com/android/adt/adt-bundle-mac-x86_64-20140702.zip">https://dl.google.com/android/adt/adt-bundle-mac-x86_64-20140702.zip</a></p>
+
+<p>Linux 86: <a href="https://dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip">https://dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip</a></p>
+
+<p>Linux 64: <a href="https://dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip">https://dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[JVM工作原理摘要]]></title>
+    <link href="http://wodis.github.io/blog/2015/07/20/jvm-zhai-yao/"/>
+    <updated>2015-07-20T16:34:57+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/07/20/jvm-zhai-yao</id>
+    <content type="html"><![CDATA[<h1>一、JVM的生命周期</h1>
+
+<p>1.JVM实例对应了一个独立运行的java程序它是进程级别</p>
+
+<p>a)启动。启动一个Java程序时，一个JVM实例就产生了，任何一个拥有public static void main(String[] args)函数的class都可以作为JVM实例运行的起点</p>
+
+<p>b)运行。main()作为该程序初始线程的起点，任何其他线程均由该线程启动。JVM内部有两种线程：守护线程和非守护线程，main()属于非守护线程，守护线程通常由JVM自己使用，java程序也可以标明自己创建的线程是守护线程</p>
+
+<p>c)消亡。当程序中的所有非守护线程都终止时，JVM才退出；若安全管理器允许，程序也可以使用Runtime类或者System.exit()来退出</p>
+
+<p>2.JVM执行引擎实例则对应了属于用户运行程序的线程它是线程级别的</p>
+
+<h1>二、JVM的体系结构</h1>
+
+<p>1.类装载器（ClassLoader）（用来装载.class文件）</p>
+
+<p>2.执行引擎（执行字节码，或者执行本地方法）</p>
+
+<p>3.运行时数据区（方法区、堆、java栈、PC寄存器、本地方法栈）</p>
+
+<h1>三、JVM类加载器</h1>
+
+<h2>JVM整个类加载过程的步骤：</h2>
+
+<h3>1.装载</h3>
+
+<p>装载过程负责找到二进制字节码并加载至JVM中，JVM通过类名、类所在的包名通过ClassLoader来完成类的加载，
+同样，也采用以上三个元素来标识一个被加载了的类：类名+包名+ClassLoader实例ID。</p>
+
+<h3>2.链接</h3>
+
+<p>链接过程负责对二进制字节码的格式进行校验、初始化装载类中的静态变量以及解析类中调用的接口、类。</p>
+
+<p>完成校验后，JVM初始化类中的静态变量，并将其值赋为默认值。</p>
+
+<p>最后对类中的所有属性、方法进行验证，以确保其需要调用的属性、方法存在，以及具备应的权限（例如public、private域权限等），会造成NoSuchMethodError、NoSuchFieldError等错误信息。</p>
+
+<h3>3.初始化</h3>
+
+<p>初始化过程即为执行类中的静态初始化代码、构造器代码以及静态属性的初始化，在四种情况下初始化过程会被触发执行：</p>
+
+<p>调用了new；</p>
+
+<p>反射调用了类中的方法；</p>
+
+<p>子类调用了初始化；</p>
+
+<p>JVM启动过程中指定的初始化类。</p>
+
+<p>JVM类加载顺序：</p>
+
+<p>JVM两种类装载器包括：启动类装载器和用户自定义类装载器。</p>
+
+<p>启动类装载器是JVM实现的一部分；</p>
+
+<p>用户自定义类装载器则是Java程序的一部分，必须是ClassLoader类的子类。</p>
+
+<h3>JVM装载顺序：</h3>
+
+<p>Jvm启动时，由Bootstrap向User-Defined方向加载类；</p>
+
+<p>应用进行ClassLoader时，由User-Defined向Bootstrap方向查找并加载类；</p>
+
+<p>1.Bootstrap ClassLoader</p>
+
+<p>这是JVM的根ClassLoader，它是用C++实现的，JVM启动时初始化此ClassLoader，并由此ClassLoader完成$JAVA_HOME中jre/lib/rt.jar（Sun JDK的实现）中所有class文件的加载，这个jar中包含了java规范定义的所有接口以及实现。</p>
+
+<p>2.Extension ClassLoader</p>
+
+<p>JVM用此classloader来加载扩展功能的一些jar包。</p>
+
+<p>3.System ClassLoader</p>
+
+<p>JVM用此classloader来加载启动参数中指定的Classpath中的jar包以及目录，在Sun JDK中ClassLoader对应的类名为AppClassLoader。</p>
+
+<p>4.User-Defined ClassLoader</p>
+
+<p>User-DefinedClassLoader是Java开发人员继承ClassLoader抽象类自行实现的ClassLoader，基于自定义的ClassLoader可用于加载非Classpath中的jar以及目录。</p>
+
+<h3>ClassLoader抽象类的几个关键方法：</h3>
+
+<p>（1）loadClass</p>
+
+<p>此方法负责加载指定名字的类，ClassLoader的实现方法为先从已经加载的类中寻找，如没有则继续从parent ClassLoader中寻找，如仍然没找到，则从System ClassLoader中寻找，最后再调用findClass方法来寻找，如要改变类的加载顺序，则可覆盖此方法</p>
+
+<p>（2）findLoadedClass</p>
+
+<p>此方法负责从当前ClassLoader实例对象的缓存中寻找已加载的类，调用的为native的方法。</p>
+
+<p>（3）findClass</p>
+
+<p>此方法直接抛出ClassNotFoundException，因此需要通过覆盖loadClass或此方法来以自定义的方式加载相应的类。</p>
+
+<p>（4）findSystemClass</p>
+
+<p>此方法负责从System ClassLoader中寻找类，如未找到，则继续从Bootstrap ClassLoader中寻找，如仍然为找到，则返回null。</p>
+
+<p>（5）defineClass</p>
+
+<p>此方法负责将二进制的字节码转换为Class对象</p>
+
+<p>（6）resolveClass</p>
+
+<p>此方法负责完成Class对象的链接，如已链接过，则会直接返回。</p>
+
+<h1>四、JVM执行引擎</h1>
+
+<h3>在执行方法时JVM提供了四种指令来执行：</h3>
+
+<ol>
+<li><p>invokestatic：调用类的static方法</p></li>
+<li><p>invokevirtual：调用对象实例的方法</p></li>
+<li><p>invokeinterface：将属性定义为接口来进行调用</p></li>
+<li><p>invokespecial：JVM对于初始化对象（Java构造器的方法为：<init>）以及调用对象实例中的私有方法时。</p></li>
+</ol>
+
+
+<h3>主要的执行技术有:</h3>
+
+<p>解释，即时编译，自适应优化、芯片级直接执行</p>
+
+<ol>
+<li><p>解释属于第一代JVM，</p></li>
+<li><p>即时编译JIT属于第二代JVM，</p></li>
+<li><p>自适应优化（目前Sun的HotspotJVM采用这种技术）则吸取第一代JVM和第二代</p></li>
+</ol>
+
+
+<p>JVM的经验，采用两者结合的方式</p>
+
+<p>开始对所有的代码都采取解释执行的方式，并监视代码执行情况，然后对那些经常调用的方法启动一个后台线程，将其编译为本地代码，并进行优化。若方法不再频繁使用，则取消编译过的代码，仍对其进行解释执行。</p>
+
+<h1>五、JVM运行时数据区</h1>
+
+<h2>第一块：PC寄存器</h2>
+
+<p>PC寄存器是用于存储每个线程下一步将执行的JVM指令，如该方法为native的，则PC寄存器中不存储任何信息。</p>
+
+<h2>第二块：JVM栈</h2>
+
+<p>JVM栈是线程私有的，每个线程创建的同时都会创建JVM栈，JVM栈中存放的为当前线程中局部基本类型的变量（java中定义的八种基本类型：boolean、char、byte、short、int、long、float、double）、部分的返回结果以及Stack Frame，非基本类型的对象在JVM栈上仅存放一个指向堆上的地址</p>
+
+<h2>第三块：堆（Heap）</h2>
+
+<p>它是JVM用来存储对象实例以及数组值的区域，可以认为Java中所有通过new创建的对象的内存都在此分配，Heap中的对象的内存需要等待GC进行回收。</p>
+
+<ol>
+<li><p>堆是JVM中所有线程共享的，因此在其上进行对象内存的分配均需要进行加锁，这也导致了new对象的开销是比较大的</p></li>
+<li><p>Sun Hotspot JVM为了提升对象内存分配的效率，对于所创建的线程都会分配一块独立的空间TLAB（Thread Local Allocation Buffer），其大小由JVM根据运行的情况计算而得，在TLAB上分配对象时不需要加锁，因此JVM在给线程的对象分配内存时会尽量的在TLAB上分配，在这种情况下JVM中分配对象内存的性能和C基本是一样高效的，但如果对象过大的话则仍然是直接使用堆空间分配</p></li>
+<li><p>TLAB仅作用于新生代的Eden Space，因此在编写Java程序时，通常多个小的对象比大的对象分配起来更加高效。</p></li>
+</ol>
+
+
+<h2>第四块：方法区域（Method Area）</h2>
+
+<ol>
+<li><p>在Sun JDK中这块区域对应的为PermanetGeneration，又称为持久代。</p></li>
+<li><p>方法区域存放了所加载的类的信息（名称、修饰符等）、类中的静态变量、类中定义为final类型的常量、类中的Field信息、类中的方法信息，当开发人员在程序中通过Class</p></li>
+</ol>
+
+
+<p>对象中的getName、isInterface等方法来获取信息时，这些数据都来源于方法区域，同时方法区域也是全局共享的，在一定的条件下它也会被GC，当方法区域需要使用的内存超过其允许的大小时，会抛出OutOfMemory的错误信息。</p>
+
+<h2>第五块：运行时常量池（Runtime Constant Pool）</h2>
+
+<p>存放的为类中的固定的常量信息、方法和Field的引用信息等，其空间从方法区域中分配。</p>
+
+<h2>第六块：本地方法堆栈（Native Method Stacks）</h2>
+
+<p>JVM采用本地方法堆栈来支持native方法的执行，此区域用于存储每个native方法调用的状态。</p>
+
+<h1>六、JVM垃圾回收</h1>
+
+<h3>JVM分别对新生代和旧生代采用的两种垃圾回收机制？</h3>
+
+<ol>
+<li><p>新生代的GC：新生代通常存活时间较短，因此基于Copying算法来进行回收，所谓Copying算法就是扫描出存活的对象，并复制到一块新的完全未使用的空间中，对应于新生代，就是在Eden和FromSpace或ToSpace之间copy。新生代采用空闲指针的方式来控制GC触发，指针保持最后一个分配的对象在新生代区间的位置，当有新的对象要分配内存时，用于检查空间是否足够，不够就触发GC。当连续分配对象时，对象会逐渐从eden到survivor，最后到旧生代。</p></li>
+<li><p>旧生代的GC：旧生代与新生代不同，对象存活的时间比较长，比较稳定，因此采用标记(Mark)算法来进行回收，所谓标记就是扫描出存活的对象，然后再进行回收未被标记的对象，回收后对用空出的空间要么进行合并，要么标记出来便于下次进行分配，总之就是要减少内存碎片带来的效率损耗。</p></li>
+</ol>
+
+
+<h3>如何判断对象是否可以被回收？</h3>
+
+<ol>
+<li><p>引用计数法</p></li>
+<li><p>根搜索算法</p></li>
+</ol>
+
+
+<h3>垃圾收集算法：</h3>
+
+<ol>
+<li><p>标记-清除（Mark-Sweep）算法</p></li>
+<li><p>复制算法</p></li>
+<li><p>标记-整理算法</p></li>
+<li><p>分代收集算法</p></li>
+</ol>
+
+
+<h3>GC的基本原理：将内存中不再被使用的对象进行回收，GC中用于回收的方法称为收集器，由于GC需要消耗一些资源和时间，Java在对对象的生命周期特征进行分析后，按照新生代、旧生代的方式来对对象进行收集，以尽可能的缩短GC对应用造成的暂停</h3>
+
+<ol>
+<li><p>对新生代的对象的收集称为minor GC；</p></li>
+<li><p>对旧生代的对象的收集称为Full GC；</p></li>
+<li><p>程序中主动调用System.gc()强制执行的GC为Full GC。</p></li>
+</ol>
+
+
+<h3>不同的对象引用类型， GC会采用不同的方法进行回收，JVM对象的引用分为了四种类型：</h3>
+
+<ol>
+<li><p>强引用：默认情况下，对象采用的均为强引用（这个对象的实例没有其他对象引用，GC时才会被回收）</p></li>
+<li><p>软引用：软引用是Java中提供的一种比较适合于缓存场景的应用（只有在内存不够用的情况下才会被GC）</p></li>
+<li><p>弱引用：在GC时一定会被GC回收</p></li>
+<li><p>虚引用：由于虚引用只是用来得知对象是否被GC</p></li>
+</ol>
+
+
+<h1>JVM和DVM的不同点</h1>
+
+<h2>1. Dalvik 和标准 Java 虚拟机(JVM)的首要差别</h2>
+
+<p>Dalvik 基于寄存器，而 JVM 基于栈。基于寄存器的虚拟机对于更大的程序来说，在它们编译的时候，花费的时间更短。</p>
+
+<h2>2. Dalvik 和 Java 字节码的区别</h2>
+
+<p>Dalvik执行.dex格式的字节码，而JVM执行.class格式的字节码。android程序编译完之后生产.class文件，还有通过aapt工具生成的R.class等，然后dx工具会把.class文件处理成.dex文件，最终资源文件和.dex文件等打包成.apk文件。</p>
+
+<h2>3. Dalvik和Java运行环境的区别</h2>
+
+<p>Dalvik主要是完成对象生命周期管理，堆栈管理，线程管理，安全和异常管理，以及垃圾回收等等重要功能。
+Dalvik负责进程隔离和线程管理，每一个Android应用在底层都会对应一个独立的Dalvik虚拟机实例，其代码在虚拟机的解释下得以执行。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android开发中使用Java 8 Stream]]></title>
+    <link href="http://wodis.github.io/blog/2015/07/17/java-8-stream-android/"/>
+    <updated>2015-07-17T11:48:52+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/07/17/java-8-stream-android</id>
+    <content type="html"><![CDATA[<p>你将从这篇文章中了解到什么是Stream，并且如何在Android开发中使用它。</p>
+
+<p>不幸的是Android还不支持Java 8，Kitkat（Android 4.4+）以后的版本可以支持Java 7。
+那么只能和新特性说再见了吗？当然不是，一些聪明人想出了一个解决办法：</p>
+
+<p><a href="https://github.com/orfjackal/retrolambda">RETROLAMBDA</a></p>
+
+<h1>如何安装RETROLAMBDA</h1>
+
+<p>作为热身，让我们来看看如何快速的在项目中使用Retrolambda。
+（假设你已经了解Android Studio的gradle构建系统以及它是如何工作的）</p>
+
+<p>1.在./build.gradle文件中添加新的classpath:</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1437106139.png" alt="1437106139.png" /></p>
+
+<p>2.在./app/build.gradle文件中添加Retrolambda插件:</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1437106186.png" alt="1437106186.png" /></p>
+
+<p>3.还需要添加:</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1437106215.png" alt="1437106215.png" /></p>
+
+<p>4.编译gradle</p>
+
+<h1>STREAM</h1>
+
+<p><code>A stream is an abstraction for specifying aggregate computations on a DataSet</code></p>
+
+<p>Java 8 Stream API引入的目的在于弥补Java函数式编程的缺陷。对于很多支持函数式编程的语言，map()、reduce()基本上都内置到语言的标准库中了，不过，Java 8的Stream API总体来讲仍然是非常完善和强大，足以用很少的代码完成许多复杂的功能。</p>
+
+<p>创建一个Stream有很多方法，最简单的方法是把一个Collection变成Stream。我们来看最基本的几个操作：</p>
+
+<pre><code>public static void main(String[] args) {
+    List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    Stream&lt;Integer&gt; stream = numbers.stream();
+    stream.filter((x) -&gt; {
+        return x % 2 == 0;
+    }).map((x) -&gt; {
+        return x * x;
+    }).forEach(System.out::println);
+}
+</code></pre>
+
+<p>集合类新增的stream()方法用于把一个集合变成Stream，然后，通过filter()、map()等实现Stream的变换。Stream还有一个forEach()来完成每个元素的迭代。</p>
+
+<p>使用Stream的两个原因：</p>
+
+<p>1.集合类会持有所有元素在内存中，大集合会占用大量内存。而Stream的元素是在访问的时候被计算出来，内存占用小。</p>
+
+<p>2.二是集合类的迭代逻辑是调用者负责，通常是for循环，而Stream的迭代是隐含在对Stream的各种操作中，例如map()。</p>
+
+<p>更多特性参考InfoQ的文章<a href="http://www.infoq.com/cn/articles/java8-new-features-new-stream-api">Java 8新特性：全新的Stream API</a></p>
+
+<h1>Android中使用轻量级Stream API</h1>
+
+<p>上一部分介绍了Java 8 Stream的使用，但是我们的目的是讨论Android如何去使用这个特性。我们可以通过
+<a href="https://github.com/aNNiMON/Lightweight-Stream-API">Lightweight-Stream-API</a>，只需要增加它的classpath。</p>
+
+<p><code>compile 'com.annimon:stream:1.0.1'</code></p>
+
+<h1>JAVA 8 vs Lightweight-Stream-API（LSA）</h1>
+
+<p>虽然Java 8的Stream和LSA工作方式一样，但他们间仍有少量的区别。例如使用LSA创建Stream时使用Stream.of(YourCollection)，而Java 8中使用Stream<YourCollectionItem>。
+另一个区别为排序操作，Java 8中使用‘sort()’，而LSA中使用‘sorted()’。</p>
+]]></content>
+  </entry>
+  
+</feed>

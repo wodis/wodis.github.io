@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Android开发中使用Java 8 Stream - Open Tech Pub - 2015-07-17 11:48:52 +0800</title>
+  <meta name="author" content="Wu Di">
+
+  
+  <meta name="description" content="你将从这篇文章中了解到什么是Stream，并且如何在Android开发中使用它。 不幸的是Android还不支持Java 8，Kitkat（Android 4.4+）以后的版本可以支持Java 7。
+那么只能和新特性说再见了吗？当然不是，一些聪明人想出了一个解决办法： RETROLAMBDA &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wodis.github.io/blog/2015/07/17/java-8-stream-android/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Open Tech Pub" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+    <!-- googleapis is fucked by gfw -->
+  <script src="http://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!-- 
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+ -->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?16937d74824f50bd02daa98ce1ba6048";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Open Tech Pub</a></h1>
+  
+    <h2>那些年关注的技术</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="wodis.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+    <li><a href="/">首页</a></li>
+    <li><a href="/blog/archives">所有文章</a></li>
+    <li><a href="http://www.weibo.com/wodis">我的微博</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Android开发中使用Java 8 Stream</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-07-17T11:48:52+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:48 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>你将从这篇文章中了解到什么是Stream，并且如何在Android开发中使用它。</p>
+
+<p>不幸的是Android还不支持Java 8，Kitkat（Android 4.4+）以后的版本可以支持Java 7。
+那么只能和新特性说再见了吗？当然不是，一些聪明人想出了一个解决办法：</p>
+
+<p><a href="https://github.com/orfjackal/retrolambda">RETROLAMBDA</a></p>
+
+<h1>如何安装RETROLAMBDA</h1>
+
+<p>作为热身，让我们来看看如何快速的在项目中使用Retrolambda。
+（假设你已经了解Android Studio的gradle构建系统以及它是如何工作的）</p>
+
+<p>1.在./build.gradle文件中添加新的classpath:</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1437106139.png" alt="1437106139.png" /></p>
+
+<p>2.在./app/build.gradle文件中添加Retrolambda插件:</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1437106186.png" alt="1437106186.png" /></p>
+
+<p>3.还需要添加:</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1437106215.png" alt="1437106215.png" /></p>
+
+<p>4.编译gradle</p>
+
+<h1>STREAM</h1>
+
+<p><code>A stream is an abstraction for specifying aggregate computations on a DataSet</code></p>
+
+<p>Java 8 Stream API引入的目的在于弥补Java函数式编程的缺陷。对于很多支持函数式编程的语言，map()、reduce()基本上都内置到语言的标准库中了，不过，Java 8的Stream API总体来讲仍然是非常完善和强大，足以用很少的代码完成许多复杂的功能。</p>
+
+<p>创建一个Stream有很多方法，最简单的方法是把一个Collection变成Stream。我们来看最基本的几个操作：</p>
+
+<pre><code>public static void main(String[] args) {
+    List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    Stream&lt;Integer&gt; stream = numbers.stream();
+    stream.filter((x) -&gt; {
+        return x % 2 == 0;
+    }).map((x) -&gt; {
+        return x * x;
+    }).forEach(System.out::println);
+}
+</code></pre>
+
+<p>集合类新增的stream()方法用于把一个集合变成Stream，然后，通过filter()、map()等实现Stream的变换。Stream还有一个forEach()来完成每个元素的迭代。</p>
+
+<p>使用Stream的两个原因：</p>
+
+<p>1.集合类会持有所有元素在内存中，大集合会占用大量内存。而Stream的元素是在访问的时候被计算出来，内存占用小。</p>
+
+<p>2.二是集合类的迭代逻辑是调用者负责，通常是for循环，而Stream的迭代是隐含在对Stream的各种操作中，例如map()。</p>
+
+<p>更多特性参考InfoQ的文章<a href="http://www.infoq.com/cn/articles/java8-new-features-new-stream-api">Java 8新特性：全新的Stream API</a></p>
+
+<h1>Android中使用轻量级Stream API</h1>
+
+<p>上一部分介绍了Java 8 Stream的使用，但是我们的目的是讨论Android如何去使用这个特性。我们可以通过
+<a href="https://github.com/aNNiMON/Lightweight-Stream-API">Lightweight-Stream-API</a>，只需要增加它的classpath。</p>
+
+<p><code>compile 'com.annimon:stream:1.0.1'</code></p>
+
+<h1>JAVA 8 vs Lightweight-Stream-API（LSA）</h1>
+
+<p>虽然Java 8的Stream和LSA工作方式一样，但他们间仍有少量的区别。例如使用LSA创建Stream时使用Stream.of(YourCollection)，而Java 8中使用Stream<YourCollectionItem>。
+另一个区别为排序操作，Java 8中使用‘sort()’，而LSA中使用‘sorted()’。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Wu Di</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-07-17T11:48:52+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:48 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+    
+    
+    
+
+    
+    <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<br>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2035019"></script>
+<!-- UY END -->
+    
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/07/15/http-xiang-jie/" title="Previous Post: HTTP协议">&laquo; HTTP协议</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/07/20/jvm-zhai-yao/" title="Next Post: JVM工作原理摘要">JVM工作原理摘要 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/09/06/android-animation/">浅谈Android动画</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/26/android-view-de-hui-zhi-guo-cheng/">Android绘制过程</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/04/adt-bundle/">Eclipse ADT Bundle下载</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/20/jvm-zhai-yao/">JVM工作原理摘要</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/17/java-8-stream-android/">Android开发中使用Java 8 Stream</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+    <h1>About Me</h1>
+
+    <p>帝都成长，华中求学，爱尔兰漂泊一年有余，就职于新浪微博。Google死忠</p>
+
+    <p>Android开发工程师，曾开发微人脉客户端、WiFi胶卷，现在手机微博。</p>
+    <p>Java开发工程师，曾开发Kuali Student开源项目，后负责微人脉后端开发。</p>
+
+    <p>新浪微博：<a href="http://weibo.com/wodis">@讨厌茄子的老科特</a></p>
+    
+    <p>微信公众号：</p>
+    <p><img src="/images/qrcode_for_androiddevtips.jpg"></p>
+    
+    <p>我的微信账号：</p>
+    <p><img src="/images/weixin.jpg"></p>
+
+    <p>Wu Di -- “ I am a programmer who principally focused on Android/Java design and development. Dual master's degree in telecommunication and software engineering. Graduated from Dublin City University and Wuhan University. Working in Beijing. ”</p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy; 2015 - Wu Di -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> -
+    <span class="credit">Thanks for <a href="https://gitcafe.com">GitCafe</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

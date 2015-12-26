@@ -4,7 +4,7 @@
   <title><![CDATA[Open Tech Pub]]></title>
   <link href="http://wodis.github.io/atom.xml" rel="self"/>
   <link href="http://wodis.github.io/"/>
-  <updated>2015-05-26T17:46:03+08:00</updated>
+  <updated>2015-12-21T14:26:08+08:00</updated>
   <id>http://wodis.github.io/</id>
   <author>
     <name><![CDATA[Wu Di]]></name>
@@ -14,11 +14,2323 @@
 
   
   <entry>
-    <title type="html"><![CDATA[First Blog]]></title>
-    <link href="http://wodis.github.io/blog/2015/05/26/first-blog/"/>
-    <updated>2015-05-26T16:07:32+08:00</updated>
-    <id>http://wodis.github.io/blog/2015/05/26/first-blog</id>
-    <content type="html"><![CDATA[
+    <title type="html"><![CDATA[浅谈Android动画]]></title>
+    <link href="http://wodis.github.io/blog/2015/09/06/android-animation/"/>
+    <updated>2015-09-06T18:26:51+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/09/06/android-animation</id>
+    <content type="html"><![CDATA[<p>在Android中动画分为以下4种：</p>
+
+<ol>
+<li>Tween Animation  补间动画</li>
+<li>Frame Animation  帧动画</li>
+<li>Layout Animation 布局动画</li>
+<li>Property Animation 属性动画</li>
+</ol>
+
+
+<p>动画实现流程：</p>
+
+<ol>
+<li>创建Animation</li>
+<li>设置相关属性</li>
+<li>View调用startAnimation方法启动动画</li>
+</ol>
+
+
+<h1>Animation</h1>
+
+<p>Animation类是Android系统的一个动画抽象类，所有其他一些动画类都要继承该类中的实现方法。Animation类主要用于补间动画效果，提供了动画启动、停止、重复、持续时间等方法。Animation类中的方法适用于任何一种补间动画对象。</p>
+
+<p>常用方法：</p>
+
+<p>start() 启动</p>
+
+<p>startNow() 立即启动</p>
+
+<p>cancel() 取消动画</p>
+
+<p>setDuration(long) 设置持续时间</p>
+
+<p>setRepeatMode(int) 设置重复模式</p>
+
+<p>setRepeatCount(int) 设置重复次数</p>
+
+<p>setFillEnabled(boolean) 能否填充位置</p>
+
+<p>setFillBefore(boolean) 回到起始填充位置</p>
+
+<p>setFillAfter(boolean) 回到结束填充位置</p>
+
+<p>setStartOffset(long) 设置延时启动时间</p>
+
+<p>setInterpolator(Interpolator) 设置加速曲线</p>
+
+<p>setAnimationListener(AnimationListener) 设置动画的回调</p>
+
+<h1>Tween Animation</h1>
+
+<p>该类Animations提供了旋转、移动、伸展和淡出等效果。Alpha——淡入淡出，Scale——缩放效果，Rotate——旋转，Translate——移动效果。</p>
+
+<h2>TranslateAnimation</h2>
+
+<p>TranslateAnimation类是Android系统中的位置变化动画类，用于控制View对象的位置变化，该类继承于Animation类。TranslateAnimation类中的很多方法都与Animation类一致，该类中最常用的方法便是TranslateAnimation构造方法。</p>
+
+<p>public TranslateAnimation (float fromXDelta, float toXDelta, float fromYDelta, float toYDelta)</p>
+
+<p>参数说明</p>
+
+<p>fromXDelta：位置变化的起始点X坐标。</p>
+
+<p>toXDelta：位置变化的结束点X坐标。</p>
+
+<p>fromYDelta：位置变化的起始点Y坐标。</p>
+
+<p>toYDelta：位置变化的结束点Y坐标。</p>
+
+<h2>RotateAnimation</h2>
+
+<p>RotateAnimation类是Android系统中的旋转变化动画类，用于控制View对象的旋转动作，该类继承于Animation类。RotateAnimation类中的很多方法都与Animation类一致，该类中最常用的方法便是RotateAnimation构造方法。</p>
+
+<p>public RotateAnimation (float fromDegrees, float toDegrees, int pivotXType, float pivotXValue, int pivotYType, float pivotYValue)</p>
+
+<p>参数说明</p>
+
+<p>fromDegrees：旋转的开始角度。</p>
+
+<p>toDegrees：旋转的结束角度。</p>
+
+<p>pivotXType：X轴的伸缩模式，可以取值为ABSOLUTE、RELATIVE_TO_SELF、RELATIVE_TO_PARENT。</p>
+
+<p>pivotXValue：X坐标的伸缩值。</p>
+
+<p>pivotYType：Y轴的伸缩模式，可以取值为ABSOLUTE、RELATIVE_TO_SELF、RELATIVE_TO_PARENT。</p>
+
+<p>pivotYValue：Y坐标的伸缩值。</p>
+
+<h2>ScaleAnimation</h2>
+
+<p>ScaleAnimation类是Android系统中的尺寸变化动画类，用于控制View对象的尺寸变化，该类继承于Animation类。ScaleAnimation类中的很多方法都与Animation类一致，该类中最常用的方法便是ScaleAnimation构造方法。</p>
+
+<p>public ScaleAnimation (float fromX, float toX, float fromY, float toY, int pivotXType, float pivotXValue, int pivotYType, float pivotYValue)</p>
+
+<p>参数说明</p>
+
+<p>fromX：起始X坐标上的伸缩尺寸。</p>
+
+<p>toX：结束X坐标上的伸缩尺寸。</p>
+
+<p>fromY：起始Y坐标上的伸缩尺寸。</p>
+
+<p>toY：结束Y坐标上的伸缩尺寸。</p>
+
+<p>pivotXType：X轴的伸缩模式，可以取值为ABSOLUTE、RELATIVE_TO_SELF、RELATIVE_TO_PARENT。</p>
+
+<p>pivotXValue：X坐标的伸缩值。</p>
+
+<p>pivotYType：Y轴的伸缩模式，可以取值为ABSOLUTE、RELATIVE_TO_SELF、RELATIVE_TO_PARENT。</p>
+
+<p>pivotYValue：Y坐标的伸缩值。</p>
+
+<h2>AlphaAnimation</h2>
+
+<p>AlphaAnimation类是Android系统中的透明度变化动画类，用于控制View对象的透明度变化，该类继承于Animation类。AlphaAnimation类中的很多方法都与Animation类一致，该类中最常用的方法便是AlphaAnimation构造方法。</p>
+
+<p>public AlphaAnimation (float fromAlpha, float toAlpha)</p>
+
+<p>参数说明</p>
+
+<p>fromAlpha：开始时刻的透明度，取值范围0~1。</p>
+
+<p>toAlpha：结束时刻的透明度，取值范围0~1。</p>
+
+<h2>AnimationSet</h2>
+
+<p>AnimationSet类是Android系统中的动画集合类，用于控制View对象进行多个动作的组合，该类继承于Animation类。AnimationSet类中的很多方法都与Animation类一致，该类中最常用的方法便是addAnimation方法，该方法用于为动画集合对象添加动画对象。</p>
+
+<p>public void addAnimation (Animation a)</p>
+
+<p>其中，参数a为Animation动画对象，可以是前述任何一种补间动作。</p>
+
+<h2>AnimationUtils</h2>
+
+<p>AnimationUtils类是Android系统中的动画工具类，提供了控制View对象的一些工具。该类中最常用的方法便是loadAnimation方法，该方法用于加载XML格式的动画配置文件。在Android系统中，除了在代码中设置动画效果外，还可以在XML配置文件中设置动画的组合动作，这种方式适用性更好。</p>
+
+<p>public static Animation loadAnimation (Context context, int id)</p>
+
+<p>参数说明</p>
+
+<p>context：上下文对象。</p>
+
+<p>id：动画配置文件的ID。</p>
+
+<h1>Frame Animation</h1>
+
+<p>AnimationDrawable类：帧动画类</p>
+
+<p>AnimationDrawable类是Android系统中的帧动画类。帧动画方式类似于放电影的原理，是通过顺序播放多张图片来实现动画效果的，图片之间有一定的动作连贯性，这样人眼看来就像对象真正在运动一样。AnimationDrawable类位于android.graphics.drawable软件包中，本节将介绍帧动画类中的主要编程方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;animation-list</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+</span><span class='line'>                <span class="na">android:oneshot=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;item</span> <span class="na">android:drawable=</span><span class="s">&quot;@drawable/p0&quot;</span> <span class="na">android:duration=</span><span class="s">&quot;50&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;item</span> <span class="na">android:drawable=</span><span class="s">&quot;@drawable/p1&quot;</span> <span class="na">android:duration=</span><span class="s">&quot;50&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;item</span> <span class="na">android:drawable=</span><span class="s">&quot;@drawable/p2&quot;</span> <span class="na">android:duration=</span><span class="s">&quot;50&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;item</span> <span class="na">android:drawable=</span><span class="s">&quot;@drawable/p3&quot;</span> <span class="na">android:duration=</span><span class="s">&quot;50&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;item</span> <span class="na">android:drawable=</span><span class="s">&quot;@drawable/p4&quot;</span> <span class="na">android:duration=</span><span class="s">&quot;50&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/animation-list&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>通过动画配置文件，将其加载到ImageView的背景中，再start启动。</p>
+
+<h1>Layout Animations</h1>
+
+<p>LayoutAnimationsController可以用于实现使多个控件按顺序一个一个的显示。</p>
+
+<ol>
+<li>LayoutAnimationsController用于为一个layout里面的控件，或者是一个ViewGroup里面的控件设置统一的动画效果。</li>
+<li>每一个控件都有相同的动画效果。</li>
+<li>控件的动画效果可以在不同的时间显示出来。</li>
+<li>LayoutAnimationsController可以在xml文件当中设置，也可以在代码当中进行设置。</li>
+</ol>
+
+
+<figure class='code'><figcaption><span>LayoutAnimations</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//1.加载动画set的XML文件</span>
+</span><span class='line'><span class="n">Animation</span> <span class="n">animation</span> <span class="o">=</span> <span class="o">(</span><span class="n">Animation</span><span class="o">)</span> <span class="n">AnimationUtils</span><span class="o">.</span><span class="na">loadAnimation</span><span class="o">(</span><span class="n">Animation2Activity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">anim</span><span class="o">.</span><span class="na">list_anim</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//2.初始化LayoutAnimationController</span>
+</span><span class='line'><span class="n">LayoutAnimationController</span> <span class="n">controller</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">LayoutAnimationController</span><span class="o">(</span><span class="n">animation</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//3.设置子View动画顺序</span>
+</span><span class='line'><span class="n">controller</span><span class="o">.</span><span class="na">setOrder</span><span class="o">(</span><span class="n">LayoutAnimationController</span><span class="o">.</span><span class="na">ORDER_NORMAL</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//4.设置动画延迟</span>
+</span><span class='line'><span class="n">controller</span><span class="o">.</span><span class="na">setDelay</span><span class="o">(</span><span class="mf">0.5f</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//5.将LayoutAnimation设置给ViewGroup</span>
+</span><span class='line'><span class="n">listView</span><span class="o">.</span><span class="na">setLayoutAnimation</span><span class="o">(</span><span class="n">controller</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Property Animation</h1>
+
+<p>属性动画要求对象必须实现对应的get和set方法，属性动画根据传递的初始值和最终值，以动画的效果多次调用对应的set方法，根据时间的推移越来越接近最终值。</p>
+
+<p>如果需要对属性xxx做动画，必须满足两个条件：</p>
+
+<ol>
+<li>object必须提供set方法，如果不指定初始状态则必须提供get方法（系统会通过get方法拿初始属性）。</li>
+<li>object的set方法必须通过UI反应出来，不然动画无效（这点比较好理解，使UI布局更新）。</li>
+</ol>
+
+
+<p>Google给出了3个解决方法：</p>
+
+<ol>
+<li>给对象添加set和get方法，前提是拥有权限</li>
+<li>用一个包装类，实现对应的set和get方法</li>
+<li>采用ValueAnimator，监听动画过程，自己实现属性的改变</li>
+</ol>
+
+
+<h3>对象直接添加set和get方法</h3>
+
+<p>这个方式很简单，但是局限性较大。假如你想对Android SDK中的对象添加方法，正常是无法实现的。</p>
+
+<h3>使用包装类间接实现set和get方法</h3>
+
+<figure class='code'><figcaption><span>ViewWrapper</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">private</span> <span class="kt">void</span> <span class="nf">performAnimate</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">ViewWrapper</span> <span class="n">wrapper</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ViewWrapper</span><span class="o">(</span><span class="n">mButton</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">ObjectAnimator</span><span class="o">.</span><span class="na">ofInt</span><span class="o">(</span><span class="n">wrapper</span><span class="o">,</span> <span class="s">&quot;width&quot;</span><span class="o">,</span> <span class="mi">500</span><span class="o">).</span><span class="na">setDuration</span><span class="o">(</span><span class="mi">5000</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nd">@Override</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">mButton</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">performAnimate</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">ViewWrapper</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">View</span> <span class="n">mTarget</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="nf">ViewWrapper</span><span class="o">(</span><span class="n">View</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">mTarget</span> <span class="o">=</span> <span class="n">target</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getWidth</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">mTarget</span><span class="o">.</span><span class="na">getLayoutParams</span><span class="o">().</span><span class="na">width</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setWidth</span><span class="o">(</span><span class="kt">int</span> <span class="n">width</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">mTarget</span><span class="o">.</span><span class="na">getLayoutParams</span><span class="o">().</span><span class="na">width</span> <span class="o">=</span> <span class="n">width</span><span class="o">;</span>
+</span><span class='line'>        <span class="n">mTarget</span><span class="o">.</span><span class="na">requestLayout</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上述代码5s内让View的宽度增加到500px，为了达到这个效果，我们提供了ViewWrapper类专门用于包装View，具体到本例是包装View，然后我们对ViewWrapper的width熟悉做动画，并且在setWidth方法中修改其内部的target的宽度，而target实际上就是我们包装的Button，这样一个间接属性动画就搞定了。上述代码同样适用于一个对象的其他属性。</p>
+
+<h3>采用ValueAnimator，监听动画过程，自己实现属性的改变</h3>
+
+<p>ValueAnimator本身不作用于任何对象，也就是说直接使用它没有任何动画效果。它可以对一个值做动画，然后我们可以监听其动画过程，在动画过程中修改我们的对象的属性值，这样也就相当于我们的对象做了动画。</p>
+
+<figure class='code'><figcaption><span>ValueAnimators</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">private</span> <span class="kt">void</span> <span class="nf">performAnimate</span><span class="o">(</span><span class="kd">final</span> <span class="n">View</span> <span class="n">target</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">end</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">ValueAnimator</span> <span class="n">valueAnimator</span> <span class="o">=</span> <span class="n">ValueAnimator</span><span class="o">.</span><span class="na">ofInt</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">100</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">valueAnimator</span><span class="o">.</span><span class="na">addUpdateListener</span><span class="o">(</span><span class="k">new</span> <span class="nf">AnimatorUpdateListener</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">//持有一个IntEvaluator对象，方便下面估值的时候使用</span>
+</span><span class='line'>        <span class="kd">private</span> <span class="n">IntEvaluator</span> <span class="n">mEvaluator</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">IntEvaluator</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nd">@Override</span>
+</span><span class='line'>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onAnimationUpdate</span><span class="o">(</span><span class="n">ValueAnimator</span> <span class="n">animator</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="c1">//获得当前动画的进度值，整型，1-100之间</span>
+</span><span class='line'>            <span class="kt">int</span> <span class="n">currentValue</span> <span class="o">=</span> <span class="o">(</span><span class="n">Integer</span><span class="o">)</span><span class="n">animator</span><span class="o">.</span><span class="na">getAnimatedValue</span><span class="o">();</span>
+</span><span class='line'>            <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;current value: &quot;</span> <span class="o">+</span> <span class="n">currentValue</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">//计算当前进度占整个动画过程的比例，浮点型，0-1之间</span>
+</span><span class='line'>            <span class="kt">float</span> <span class="n">fraction</span> <span class="o">=</span> <span class="n">currentValue</span> <span class="o">/</span> <span class="mi">100</span><span class="n">f</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">//这里我偷懒了，不过有现成的干吗不用呢</span>
+</span><span class='line'>            <span class="c1">//直接调用整型估值器通过比例计算出宽度，然后再设给Button</span>
+</span><span class='line'>            <span class="n">target</span><span class="o">.</span><span class="na">getLayoutParams</span><span class="o">().</span><span class="na">width</span> <span class="o">=</span> <span class="n">mEvaluator</span><span class="o">.</span><span class="na">evaluate</span><span class="o">(</span><span class="n">fraction</span><span class="o">,</span> <span class="n">start</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
+</span><span class='line'>            <span class="n">target</span><span class="o">.</span><span class="na">requestLayout</span><span class="o">();</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">valueAnimator</span><span class="o">.</span><span class="na">setDuration</span><span class="o">(</span><span class="mi">5000</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nd">@Override</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">mButton</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">performAnimate</span><span class="o">(</span><span class="n">mButton</span><span class="o">,</span> <span class="n">mButton</span><span class="o">.</span><span class="na">getWidth</span><span class="o">(),</span> <span class="mi">500</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>关于这个ValueAnimator我要再说一下，拿上例来说，它会在5000ms内将一个数从1变到100，然后动画的每一帧会回调onAnimationUpdate方法，在这个方法里，我们可以获取当前的值（1-100），根据当前值所占的比例（当前值/100），我们可以计算出Button现在的宽度应该是多少，比如时间过了一半，当前值是50，比例为0.5，假设Button的起始宽度是100px，最终宽度是500px，那么Button增加的宽度也应该占总增加宽度的一半，总增加宽度是500-100=400，所以这个时候Button应该增加宽度400*0.5=200，那么当前Button的宽度应该为初始宽度+ 增加宽度（100+200=300）。上述计算过程很简单，其实它就是整型估值器IntEvaluator的内部实现。</p>
+
+<h1>最后</h1>
+
+<ol>
+<li>View动画（渐变动画）的功能是有限的，大家可以尝试使用属性动画</li>
+<li>为了在各种安卓版本上使用属性动画，你需要采用nineoldandroids，它是GitHub开源项目，jar包和源码都可以在网上下到，如果下不到jar包，我可以发给大家</li>
+<li>再复杂的动画都是简单动画的合理组合，再加上本文介绍的方法，可以对任何属性作用动画效果，也就是说你几乎可以做出任何动画</li>
+<li>属性动画中的插值器（Interpolator）和估值器（TypeEvaluator）很重要，它是实现非匀速动画的重要手段，你应该试着搞懂它，最好你还能够自定义它们</li>
+</ol>
+
+
+<p>参考资料：<a href="http://blog.csdn.net/singwhatiwanna/article/details/17841165">Android属性动画深入分析：让你成为动画牛人</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android绘制过程]]></title>
+    <link href="http://wodis.github.io/blog/2015/08/26/android-view-de-hui-zhi-guo-cheng/"/>
+    <updated>2015-08-26T17:23:01+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/08/26/android-view-de-hui-zhi-guo-cheng</id>
+    <content type="html"><![CDATA[<p>最近群里面有些小伙伴问我，希望可以解释一下View间的绘制关系，所以简单的写一下。</p>
+
+<h1>Android是如何绘制View的</h1>
+
+<p>一旦Activity获得焦点之后，将会触发绘制布局的流程。
+绘制过程是从布局的根节点(root node)开始的，根据布局的树状结构测量(measure)并绘制(draw)。
+这个过程用于规定每一个View的区域，然后绘制对应的界面。
+ViewGroup用于负责请求每一个它的子View进行绘制，当子View接到请求则开始绘制自己的界面。
+注意树的遍历是有序的，意味着父View将在子View绘制之前被调用。</p>
+
+<h2>Measure与Layout</h2>
+
+<p>绘制布局分为两个过程：measure和layout。</p>
+
+<p>measure(int, int)方法用来自上而下的遍历View，每个View都是递归的测量自己所占的大小。</p>
+
+<p>layout(int, int, int, int)方法同样是自上而下的，它的功能是将子View放置在合适的位置。</p>
+
+<p>当View对象调用了measure方法之后，通过getMeasuredWidth()和getMeasuredHeight()方法就可以获取到测量后的值。
+注意一点，子View的宽和高不得超过在父View。这可以确保所有的子View都被父View所包含。</p>
+
+<h2>ViewGroup.LayoutParams</h2>
+
+<p>父类如何得知子类想要如何布局呢，ViewGroup.LayoutParams类用于告诉父类它们的布局预期。
+我们可以使用3种配置方式：</p>
+
+<ul>
+<li>准确的值</li>
+<li>MATCH_PARENT，子View想与父View一样大小</li>
+<li>WRAP_CONTENT，子View的大小足以包括它的内容</li>
+</ul>
+
+
+<h2>MeasureSpec</h2>
+
+<p>MeasureSpec用于父View向下要求子View的绘制模式，MeasureSpec有3种模式：</p>
+
+<ul>
+<li>UNSPECIFIED，表示大小并不明确</li>
+<li>EXACTLY，表示父类给定一个准确的大小</li>
+<li>AT MOST，表示父类限制了子类的最大值</li>
+</ul>
+
+
+<p><code>上面的逻辑是不是太抽象了？简单来说就是一个View如果想要展示出来需要两步：1、计算自己所占空间的大小。2、子View摆放的位置。(所有过程都是从父View发起，直到子View计算完成向它的父View返回结果)</code></p>
+
+<h1>自定义一个ViewGroup</h1>
+
+<p>我们自定义一个ViewGroup通常分为以下几步：</p>
+
+<p>1.继承ViewGroup并且重写父类的三个构造函数</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomViewGroup</span> <span class="kd">extends</span> <span class="n">ViewGroup</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">CustomViewGroup</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">super</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">CustomViewGroup</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="n">AttributeSet</span> <span class="n">attrs</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">super</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">attrs</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">CustomViewGroup</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="n">AttributeSet</span> <span class="n">attrs</span><span class="o">,</span> <span class="n">intdefStyle</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">super</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">attrs</span><span class="o">,</span> <span class="n">defStyle</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2.重载onMeasure()方法
+自定义ViewGroup的onMeasure()方法中，除了计算自身的尺寸外，还需要调用measureChildren()函数来计算子控件的尺寸。</p>
+
+<p>onMeasure()的定义不是本文的讨论重点，因此这里我直接使用默认的onMeasure()定义，当然measureChildren()是必须得加的，或者我们针对性的调用子View的measure方法。
+通常我们使用MeasureSpec.makeMeasureSpec(int size, int mode)来产生一个规格。
+使用getChildCount()获取子View个数。使用getChildAt(i)获得对应的子View。在最后不要忘记使用setMeasuredDimension方法设置当前View的规格。</p>
+
+<p>3.实现onLayout()方法
+通常我们在这个方法里面调用getMeasuredWidth()和getMeasuredHeight()获取已经测量过的View大小，
+然后根据这些数据来计算每个View对应的位置。通过layout(int l, int t, int r, int b)设置子View在当前View中的位置。</p>
+
+<p>4.添加LayoutParams
+generateLayoutParams()用于返回一个LayoutParams给子View，这样子View就可以将对应layout布局的参数传入，
+我们自定义的父View可以使用getLayoutParams()获取我们传入的LayoutParams。</p>
+
+<p>你可以跟踪源码看看，其实XML文件中View的layout_xxx参数都是被传递到了各种自定义ViewGroup.LayoutParams派生类对象中。例如LinearLayout的LayoutParams定义的关键部分如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LinearLayout</span> <span class="kd">extends</span> <span class="n">ViewGroup</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">LayoutParams</span> <span class="kd">extends</span> <span class="n">ViewGroup</span><span class="o">.</span><span class="na">MarginLayoutParams</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">public</span> <span class="kt">float</span> <span class="n">weight</span><span class="o">;</span>
+</span><span class='line'>        <span class="kd">public</span> <span class="kt">int</span> <span class="n">gravity</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">public</span> <span class="nf">LayoutParams</span><span class="o">(</span><span class="n">Context</span> <span class="n">c</span><span class="o">,</span> <span class="n">AttributeSet</span> <span class="n">attrs</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="kd">super</span><span class="o">(</span><span class="n">c</span><span class="o">,</span> <span class="n">attrs</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">TypedArray</span> <span class="n">a</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">obtainStyledAttributes</span><span class="o">(</span><span class="n">attrs</span><span class="o">,</span> <span class="n">com</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">styleable</span><span class="o">.</span><span class="na">LinearLayout_Layout</span><span class="o">);</span>
+</span><span class='line'>                <span class="n">weight</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="na">getFloat</span><span class="o">(</span><span class="n">com</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">styleable</span><span class="o">.</span><span class="na">LinearLayout_Layout_layout_weight</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>                <span class="n">gravity</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="n">com</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">styleable</span><span class="o">.</span><span class="na">LinearLayout_Layout_layout_gravity</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">a</span><span class="o">.</span><span class="na">recycle</span><span class="o">();</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">LayoutParams</span> <span class="nf">generateLayoutParams</span><span class="o">(</span><span class="n">AttributeSet</span> <span class="n">attrs</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="k">new</span> <span class="n">LinearLayout</span><span class="o">.</span><span class="na">LayoutParams</span><span class="o">(</span><span class="n">getContext</span><span class="o">(),</span> <span class="n">attrs</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样你大概就可以理解为什么LinearLayout的子控件支持weight和gravity的设置了吧，当然我们也可以这样自定义一些属于我们ViewGroup特有的params。</p>
+
+<p>这样修改之后，我们就可以在onLayout()函数中获取子控件的layout_xxx值了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Eclipse ADT Bundle下载]]></title>
+    <link href="http://wodis.github.io/blog/2015/08/04/adt-bundle/"/>
+    <updated>2015-08-04T17:32:10+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/08/04/adt-bundle</id>
+    <content type="html"><![CDATA[<p>Android官方主页不再提供Eclipse ADT Bundle的下载，并且声明放弃维护。</p>
+
+<p>以下是20140702对应操作系统的下载地址：</p>
+
+<p>windows 32: <a href="https://dl.google.com/android/adt/adt-bundle-windows-x86-20140702.zip">https://dl.google.com/android/adt/adt-bundle-windows-x86-20140702.zip</a></p>
+
+<p>windows 64: <a href="https://dl.google.com/android/adt/adt-bundle-windows-x86_64-20140702.zip">https://dl.google.com/android/adt/adt-bundle-windows-x86_64-20140702.zip</a></p>
+
+<p>Mac 64: <a href="https://dl.google.com/android/adt/adt-bundle-mac-x86_64-20140702.zip">https://dl.google.com/android/adt/adt-bundle-mac-x86_64-20140702.zip</a></p>
+
+<p>Linux 86: <a href="https://dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip">https://dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip</a></p>
+
+<p>Linux 64: <a href="https://dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip">https://dl.google.com/android/adt/adt-bundle-linux-x86_64-20140702.zip</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[JVM工作原理摘要]]></title>
+    <link href="http://wodis.github.io/blog/2015/07/20/jvm-zhai-yao/"/>
+    <updated>2015-07-20T16:34:57+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/07/20/jvm-zhai-yao</id>
+    <content type="html"><![CDATA[<h1>一、JVM的生命周期</h1>
+
+<p>1.JVM实例对应了一个独立运行的java程序它是进程级别</p>
+
+<p>a)启动。启动一个Java程序时，一个JVM实例就产生了，任何一个拥有public static void main(String[] args)函数的class都可以作为JVM实例运行的起点</p>
+
+<p>b)运行。main()作为该程序初始线程的起点，任何其他线程均由该线程启动。JVM内部有两种线程：守护线程和非守护线程，main()属于非守护线程，守护线程通常由JVM自己使用，java程序也可以标明自己创建的线程是守护线程</p>
+
+<p>c)消亡。当程序中的所有非守护线程都终止时，JVM才退出；若安全管理器允许，程序也可以使用Runtime类或者System.exit()来退出</p>
+
+<p>2.JVM执行引擎实例则对应了属于用户运行程序的线程它是线程级别的</p>
+
+<h1>二、JVM的体系结构</h1>
+
+<p>1.类装载器（ClassLoader）（用来装载.class文件）</p>
+
+<p>2.执行引擎（执行字节码，或者执行本地方法）</p>
+
+<p>3.运行时数据区（方法区、堆、java栈、PC寄存器、本地方法栈）</p>
+
+<h1>三、JVM类加载器</h1>
+
+<h2>JVM整个类加载过程的步骤：</h2>
+
+<h3>1.装载</h3>
+
+<p>装载过程负责找到二进制字节码并加载至JVM中，JVM通过类名、类所在的包名通过ClassLoader来完成类的加载，
+同样，也采用以上三个元素来标识一个被加载了的类：类名+包名+ClassLoader实例ID。</p>
+
+<h3>2.链接</h3>
+
+<p>链接过程负责对二进制字节码的格式进行校验、初始化装载类中的静态变量以及解析类中调用的接口、类。</p>
+
+<p>完成校验后，JVM初始化类中的静态变量，并将其值赋为默认值。</p>
+
+<p>最后对类中的所有属性、方法进行验证，以确保其需要调用的属性、方法存在，以及具备应的权限（例如public、private域权限等），会造成NoSuchMethodError、NoSuchFieldError等错误信息。</p>
+
+<h3>3.初始化</h3>
+
+<p>初始化过程即为执行类中的静态初始化代码、构造器代码以及静态属性的初始化，在四种情况下初始化过程会被触发执行：</p>
+
+<p>调用了new；</p>
+
+<p>反射调用了类中的方法；</p>
+
+<p>子类调用了初始化；</p>
+
+<p>JVM启动过程中指定的初始化类。</p>
+
+<p>JVM类加载顺序：</p>
+
+<p>JVM两种类装载器包括：启动类装载器和用户自定义类装载器。</p>
+
+<p>启动类装载器是JVM实现的一部分；</p>
+
+<p>用户自定义类装载器则是Java程序的一部分，必须是ClassLoader类的子类。</p>
+
+<h3>JVM装载顺序：</h3>
+
+<p>Jvm启动时，由Bootstrap向User-Defined方向加载类；</p>
+
+<p>应用进行ClassLoader时，由User-Defined向Bootstrap方向查找并加载类；</p>
+
+<p>1.Bootstrap ClassLoader</p>
+
+<p>这是JVM的根ClassLoader，它是用C++实现的，JVM启动时初始化此ClassLoader，并由此ClassLoader完成$JAVA_HOME中jre/lib/rt.jar（Sun JDK的实现）中所有class文件的加载，这个jar中包含了java规范定义的所有接口以及实现。</p>
+
+<p>2.Extension ClassLoader</p>
+
+<p>JVM用此classloader来加载扩展功能的一些jar包。</p>
+
+<p>3.System ClassLoader</p>
+
+<p>JVM用此classloader来加载启动参数中指定的Classpath中的jar包以及目录，在Sun JDK中ClassLoader对应的类名为AppClassLoader。</p>
+
+<p>4.User-Defined ClassLoader</p>
+
+<p>User-DefinedClassLoader是Java开发人员继承ClassLoader抽象类自行实现的ClassLoader，基于自定义的ClassLoader可用于加载非Classpath中的jar以及目录。</p>
+
+<h3>ClassLoader抽象类的几个关键方法：</h3>
+
+<p>（1）loadClass</p>
+
+<p>此方法负责加载指定名字的类，ClassLoader的实现方法为先从已经加载的类中寻找，如没有则继续从parent ClassLoader中寻找，如仍然没找到，则从System ClassLoader中寻找，最后再调用findClass方法来寻找，如要改变类的加载顺序，则可覆盖此方法</p>
+
+<p>（2）findLoadedClass</p>
+
+<p>此方法负责从当前ClassLoader实例对象的缓存中寻找已加载的类，调用的为native的方法。</p>
+
+<p>（3）findClass</p>
+
+<p>此方法直接抛出ClassNotFoundException，因此需要通过覆盖loadClass或此方法来以自定义的方式加载相应的类。</p>
+
+<p>（4）findSystemClass</p>
+
+<p>此方法负责从System ClassLoader中寻找类，如未找到，则继续从Bootstrap ClassLoader中寻找，如仍然为找到，则返回null。</p>
+
+<p>（5）defineClass</p>
+
+<p>此方法负责将二进制的字节码转换为Class对象</p>
+
+<p>（6）resolveClass</p>
+
+<p>此方法负责完成Class对象的链接，如已链接过，则会直接返回。</p>
+
+<h1>四、JVM执行引擎</h1>
+
+<h3>在执行方法时JVM提供了四种指令来执行：</h3>
+
+<ol>
+<li><p>invokestatic：调用类的static方法</p></li>
+<li><p>invokevirtual：调用对象实例的方法</p></li>
+<li><p>invokeinterface：将属性定义为接口来进行调用</p></li>
+<li><p>invokespecial：JVM对于初始化对象（Java构造器的方法为：<init>）以及调用对象实例中的私有方法时。</p></li>
+</ol>
+
+
+<h3>主要的执行技术有:</h3>
+
+<p>解释，即时编译，自适应优化、芯片级直接执行</p>
+
+<ol>
+<li><p>解释属于第一代JVM，</p></li>
+<li><p>即时编译JIT属于第二代JVM，</p></li>
+<li><p>自适应优化（目前Sun的HotspotJVM采用这种技术）则吸取第一代JVM和第二代</p></li>
+</ol>
+
+
+<p>JVM的经验，采用两者结合的方式</p>
+
+<p>开始对所有的代码都采取解释执行的方式，并监视代码执行情况，然后对那些经常调用的方法启动一个后台线程，将其编译为本地代码，并进行优化。若方法不再频繁使用，则取消编译过的代码，仍对其进行解释执行。</p>
+
+<h1>五、JVM运行时数据区</h1>
+
+<h2>第一块：PC寄存器</h2>
+
+<p>PC寄存器是用于存储每个线程下一步将执行的JVM指令，如该方法为native的，则PC寄存器中不存储任何信息。</p>
+
+<h2>第二块：JVM栈</h2>
+
+<p>JVM栈是线程私有的，每个线程创建的同时都会创建JVM栈，JVM栈中存放的为当前线程中局部基本类型的变量（java中定义的八种基本类型：boolean、char、byte、short、int、long、float、double）、部分的返回结果以及Stack Frame，非基本类型的对象在JVM栈上仅存放一个指向堆上的地址</p>
+
+<h2>第三块：堆（Heap）</h2>
+
+<p>它是JVM用来存储对象实例以及数组值的区域，可以认为Java中所有通过new创建的对象的内存都在此分配，Heap中的对象的内存需要等待GC进行回收。</p>
+
+<ol>
+<li><p>堆是JVM中所有线程共享的，因此在其上进行对象内存的分配均需要进行加锁，这也导致了new对象的开销是比较大的</p></li>
+<li><p>Sun Hotspot JVM为了提升对象内存分配的效率，对于所创建的线程都会分配一块独立的空间TLAB（Thread Local Allocation Buffer），其大小由JVM根据运行的情况计算而得，在TLAB上分配对象时不需要加锁，因此JVM在给线程的对象分配内存时会尽量的在TLAB上分配，在这种情况下JVM中分配对象内存的性能和C基本是一样高效的，但如果对象过大的话则仍然是直接使用堆空间分配</p></li>
+<li><p>TLAB仅作用于新生代的Eden Space，因此在编写Java程序时，通常多个小的对象比大的对象分配起来更加高效。</p></li>
+</ol>
+
+
+<h2>第四块：方法区域（Method Area）</h2>
+
+<ol>
+<li><p>在Sun JDK中这块区域对应的为PermanetGeneration，又称为持久代。</p></li>
+<li><p>方法区域存放了所加载的类的信息（名称、修饰符等）、类中的静态变量、类中定义为final类型的常量、类中的Field信息、类中的方法信息，当开发人员在程序中通过Class</p></li>
+</ol>
+
+
+<p>对象中的getName、isInterface等方法来获取信息时，这些数据都来源于方法区域，同时方法区域也是全局共享的，在一定的条件下它也会被GC，当方法区域需要使用的内存超过其允许的大小时，会抛出OutOfMemory的错误信息。</p>
+
+<h2>第五块：运行时常量池（Runtime Constant Pool）</h2>
+
+<p>存放的为类中的固定的常量信息、方法和Field的引用信息等，其空间从方法区域中分配。</p>
+
+<h2>第六块：本地方法堆栈（Native Method Stacks）</h2>
+
+<p>JVM采用本地方法堆栈来支持native方法的执行，此区域用于存储每个native方法调用的状态。</p>
+
+<h1>六、JVM垃圾回收</h1>
+
+<h3>JVM分别对新生代和旧生代采用的两种垃圾回收机制？</h3>
+
+<ol>
+<li><p>新生代的GC：新生代通常存活时间较短，因此基于Copying算法来进行回收，所谓Copying算法就是扫描出存活的对象，并复制到一块新的完全未使用的空间中，对应于新生代，就是在Eden和FromSpace或ToSpace之间copy。新生代采用空闲指针的方式来控制GC触发，指针保持最后一个分配的对象在新生代区间的位置，当有新的对象要分配内存时，用于检查空间是否足够，不够就触发GC。当连续分配对象时，对象会逐渐从eden到survivor，最后到旧生代。</p></li>
+<li><p>旧生代的GC：旧生代与新生代不同，对象存活的时间比较长，比较稳定，因此采用标记(Mark)算法来进行回收，所谓标记就是扫描出存活的对象，然后再进行回收未被标记的对象，回收后对用空出的空间要么进行合并，要么标记出来便于下次进行分配，总之就是要减少内存碎片带来的效率损耗。</p></li>
+</ol>
+
+
+<h3>如何判断对象是否可以被回收？</h3>
+
+<ol>
+<li><p>引用计数法</p></li>
+<li><p>根搜索算法</p></li>
+</ol>
+
+
+<h3>垃圾收集算法：</h3>
+
+<ol>
+<li><p>标记-清除（Mark-Sweep）算法</p></li>
+<li><p>复制算法</p></li>
+<li><p>标记-整理算法</p></li>
+<li><p>分代收集算法</p></li>
+</ol>
+
+
+<h3>GC的基本原理：将内存中不再被使用的对象进行回收，GC中用于回收的方法称为收集器，由于GC需要消耗一些资源和时间，Java在对对象的生命周期特征进行分析后，按照新生代、旧生代的方式来对对象进行收集，以尽可能的缩短GC对应用造成的暂停</h3>
+
+<ol>
+<li><p>对新生代的对象的收集称为minor GC；</p></li>
+<li><p>对旧生代的对象的收集称为Full GC；</p></li>
+<li><p>程序中主动调用System.gc()强制执行的GC为Full GC。</p></li>
+</ol>
+
+
+<h3>不同的对象引用类型， GC会采用不同的方法进行回收，JVM对象的引用分为了四种类型：</h3>
+
+<ol>
+<li><p>强引用：默认情况下，对象采用的均为强引用（这个对象的实例没有其他对象引用，GC时才会被回收）</p></li>
+<li><p>软引用：软引用是Java中提供的一种比较适合于缓存场景的应用（只有在内存不够用的情况下才会被GC）</p></li>
+<li><p>弱引用：在GC时一定会被GC回收</p></li>
+<li><p>虚引用：由于虚引用只是用来得知对象是否被GC</p></li>
+</ol>
+
+
+<h1>JVM和DVM的不同点</h1>
+
+<h2>1. Dalvik 和标准 Java 虚拟机(JVM)的首要差别</h2>
+
+<p>Dalvik 基于寄存器，而 JVM 基于栈。基于寄存器的虚拟机对于更大的程序来说，在它们编译的时候，花费的时间更短。</p>
+
+<h2>2. Dalvik 和 Java 字节码的区别</h2>
+
+<p>Dalvik执行.dex格式的字节码，而JVM执行.class格式的字节码。android程序编译完之后生产.class文件，还有通过aapt工具生成的R.class等，然后dx工具会把.class文件处理成.dex文件，最终资源文件和.dex文件等打包成.apk文件。</p>
+
+<h2>3. Dalvik和Java运行环境的区别</h2>
+
+<p>Dalvik主要是完成对象生命周期管理，堆栈管理，线程管理，安全和异常管理，以及垃圾回收等等重要功能。
+Dalvik负责进程隔离和线程管理，每一个Android应用在底层都会对应一个独立的Dalvik虚拟机实例，其代码在虚拟机的解释下得以执行。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android开发中使用Java 8 Stream]]></title>
+    <link href="http://wodis.github.io/blog/2015/07/17/java-8-stream-android/"/>
+    <updated>2015-07-17T11:48:52+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/07/17/java-8-stream-android</id>
+    <content type="html"><![CDATA[<p>你将从这篇文章中了解到什么是Stream，并且如何在Android开发中使用它。</p>
+
+<p>不幸的是Android还不支持Java 8，Kitkat（Android 4.4+）以后的版本可以支持Java 7。
+那么只能和新特性说再见了吗？当然不是，一些聪明人想出了一个解决办法：</p>
+
+<p><a href="https://github.com/orfjackal/retrolambda">RETROLAMBDA</a></p>
+
+<h1>如何安装RETROLAMBDA</h1>
+
+<p>作为热身，让我们来看看如何快速的在项目中使用Retrolambda。
+（假设你已经了解Android Studio的gradle构建系统以及它是如何工作的）</p>
+
+<p>1.在./build.gradle文件中添加新的classpath:</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1437106139.png" alt="1437106139.png" /></p>
+
+<p>2.在./app/build.gradle文件中添加Retrolambda插件:</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1437106186.png" alt="1437106186.png" /></p>
+
+<p>3.还需要添加:</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1437106215.png" alt="1437106215.png" /></p>
+
+<p>4.编译gradle</p>
+
+<h1>STREAM</h1>
+
+<p><code>A stream is an abstraction for specifying aggregate computations on a DataSet</code></p>
+
+<p>Java 8 Stream API引入的目的在于弥补Java函数式编程的缺陷。对于很多支持函数式编程的语言，map()、reduce()基本上都内置到语言的标准库中了，不过，Java 8的Stream API总体来讲仍然是非常完善和强大，足以用很少的代码完成许多复杂的功能。</p>
+
+<p>创建一个Stream有很多方法，最简单的方法是把一个Collection变成Stream。我们来看最基本的几个操作：</p>
+
+<pre><code>public static void main(String[] args) {
+    List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    Stream&lt;Integer&gt; stream = numbers.stream();
+    stream.filter((x) -&gt; {
+        return x % 2 == 0;
+    }).map((x) -&gt; {
+        return x * x;
+    }).forEach(System.out::println);
+}
+</code></pre>
+
+<p>集合类新增的stream()方法用于把一个集合变成Stream，然后，通过filter()、map()等实现Stream的变换。Stream还有一个forEach()来完成每个元素的迭代。</p>
+
+<p>使用Stream的两个原因：</p>
+
+<p>1.集合类会持有所有元素在内存中，大集合会占用大量内存。而Stream的元素是在访问的时候被计算出来，内存占用小。</p>
+
+<p>2.二是集合类的迭代逻辑是调用者负责，通常是for循环，而Stream的迭代是隐含在对Stream的各种操作中，例如map()。</p>
+
+<p>更多特性参考InfoQ的文章<a href="http://www.infoq.com/cn/articles/java8-new-features-new-stream-api">Java 8新特性：全新的Stream API</a></p>
+
+<h1>Android中使用轻量级Stream API</h1>
+
+<p>上一部分介绍了Java 8 Stream的使用，但是我们的目的是讨论Android如何去使用这个特性。我们可以通过
+<a href="https://github.com/aNNiMON/Lightweight-Stream-API">Lightweight-Stream-API</a>，只需要增加它的classpath。</p>
+
+<p><code>compile 'com.annimon:stream:1.0.1'</code></p>
+
+<h1>JAVA 8 vs Lightweight-Stream-API（LSA）</h1>
+
+<p>虽然Java 8的Stream和LSA工作方式一样，但他们间仍有少量的区别。例如使用LSA创建Stream时使用Stream.of(YourCollection)，而Java 8中使用Stream<YourCollectionItem>。
+另一个区别为排序操作，Java 8中使用‘sort()’，而LSA中使用‘sorted()’。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[HTTP协议]]></title>
+    <link href="http://wodis.github.io/blog/2015/07/15/http-xiang-jie/"/>
+    <updated>2015-07-15T10:05:37+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/07/15/http-xiang-jie</id>
+    <content type="html"><![CDATA[<p>参加了几个面试都涉及到HTTP协议的问题，虽然可以简述出来，但是有些细节记不清了，整理一些关键点。</p>
+
+<h1>HTTP 1.1与HTTP 1.0的比较</h1>
+
+<p>HTTP 1.0规定浏览器与服务器只保持短暂的连接，浏览器的每次请求都需要与服务器建立一个TCP连接，服务器完成请求处理后立即断开TCP连接，服务器不跟踪每个客户也不记录过去的请求。但是，这也造成了一些性能上的缺陷。</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1436943671.svg" alt="1436943671.svg" /></p>
+
+<p>上图为一个网页请求模型，它包含网页文档和几个图片元素。加载整个网页需要进行4次请求和响应。</p>
+
+<p>为了克服HTTP 1.0的这个缺陷，HTTP 1.1支持持久连接，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟。
+一个包含有许多图像的网页文件的多个请求和应答可以在一个连接中传输，但每个单独的网页文件的请求和应答仍然需要使用各自的连接。HTTP 1.1还允许客户端不用等待上一次请求结果返回，就可以发出下一次请求，但服务器端必须按照接收到客户端请求的先后顺序依次回送响应结果，以保证客户端能够区分出每次请求的响应内容，这样也显著地减少了整个下载过程所需要的时间。</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1436944907.svg" alt="1436944907.svg" /></p>
+
+<p>上图为基于HTTP 1.1协议的客户机与服务器的信息交换过程</p>
+
+<p>可见，HTTP 1.1在继承了HTTP 1.0优点的基础上，也克服了HTTP 1.0的性能问题。不仅如此，HTTP 1.1还通过增加更多的请求头和响应头来改进和扩充HTTP 1.0的功能。例如，由于HTTP 1.0不支持Host请求头字段，WEB浏览器无法使用主机头名来明确表示要访问服务器上的哪个WEB站点，这样就无法使用WEB服务器在同一个IP地址和端口号上配置多个虚拟WEB站点。在HTTP 1.1中增加Host请求头字段后，WEB浏览器可以使用主机头名来明确表示要访问服务器上的哪个WEB站点，这才实现了在一台WEB服务器上可以在同一个IP地址和端口号上使用不同的主机名来创建多个虚拟WEB站点。HTTP 1.1的持续连接，也需要增加新的请求头来帮助实现，例如，Connection请求头的值为Keep-Alive时，客户端通知服务器返回本次请求结果后保持连接；Connection请求头的值为close时，客户端通知服务器返回本次请求结果后关闭连接。HTTP 1.1还提供了与身份认证、状态管理和Cache缓存等机制相关的请求头和响应头。</p>
+
+<p>HTTP/1.0不支持文件断点续传，目前的Web服务器绝大多数都采用了HTTP/1.1。
+RANGE:bytes是HTTP/1.1新增内容，HTTP/1.0每次传送文件都是从文件头开始，即0字节处开始。RANGE:bytes=XXXX表示要求服务器从文件XXXX字节处开始传送。</p>
+
+<h1>HTTP协议状态码</h1>
+
+<p>100  Continue  初始的请求已经接受，客户应当继续发送请求的其余部分。（HTTP 1.1新）</p>
+
+<p>101  Switching Protocols  服务器将遵从客户的请求转换到另外一种协议（HTTP 1.1新）</p>
+
+<p>200  OK  一切正常，对GET和POST请求的应答文档跟在后面。</p>
+
+<p>201  Created  服务器已经创建了文档，Location头给出了它的URL。</p>
+
+<p>202  Accepted  已经接受请求，但处理尚未完成。</p>
+
+<p>203  Non-Authoritative Information  文档已经正常地返回，但一些应答头可能不正确，因为使用的是文档的拷贝（HTTP 1.1新）。</p>
+
+<p>204  No Content  没有新文档，浏览器应该继续显示原来的文档。如果用户定期地刷新页面，而Servlet可以确定用户文档足够新，这个状态代码是很有用的。</p>
+
+<p>205  Reset Content  没有新的内容，但浏览器应该重置它所显示的内容。用来强制浏览器清除表单输入内容（HTTP 1.1新）。</p>
+
+<p>206  Partial Content  客户发送了一个带有Range头的GET请求，服务器完成了它（HTTP 1.1新）。</p>
+
+<p>300  Multiple Choices  客户请求的文档可以在多个位置找到，这些位置已经在返回的文档内列出。如果服务器要提出优先选择，则应该在Location应答头指明。</p>
+
+<p>301  Moved Permanently  客户请求的文档在其他地方，新的URL在Location头中给出，浏览器应该自动地访问新的URL。</p>
+
+<p>302  Found  类似于301，但新的URL应该被视为临时性的替代，而不是永久性的。注意，在HTTP1.0中对应的状态信息是“Moved Temporatily”。
+出现该状态代码时，浏览器能够自动访问新的URL，因此它是一个很有用的状态代码。
+注意这个状态代码有时候可以和301替换使用。例如，如果浏览器错误地请求<code>http://host/~user</code>（缺少了后面的斜杠），有的服务器返回301，有的则返回302。
+严格地说，我们只能假定只有当原来的请求是GET时浏览器才会自动重定向。请参见307。</p>
+
+<p>303  See Other  类似于301/302，不同之处在于，如果原来的请求是POST，Location头指定的重定向目标文档应该通过GET提取（HTTP 1.1新）。</p>
+
+<p>304  Not Modified  客户端有缓冲的文档并发出了一个条件性的请求（一般是提供If-Modified-Since头表示客户只想比指定日期更新的文档）。服务器告诉客户，原来缓冲的文档还可以继续使用。</p>
+
+<p>305  Use Proxy  客户请求的文档应该通过Location头所指明的代理服务器提取（HTTP 1.1新）。</p>
+
+<p>307  Temporary Redirect  和302（Found）相同。许多浏览器会错误地响应302应答进行重定向，即使原来的请求是POST，即使它实际上只能在POST请求的应答是303时 才能重定向。由于这个原因，HTTP 1.1新增了307，以便更加清除地区分几个状态代码：当出现303应答时，浏览器可以跟随重定向的GET和POST请求；如果是307应答，则浏览器只能跟随对GET请求的重定向。（HTTP 1.1新）</p>
+
+<p>400  Bad Request  请求出现语法错误。</p>
+
+<p>401  Unauthorized  客户试图未经授权访问受密码保护的页面。应答中会包含一个WWW-Authenticate头，浏览器据此显示用户名字/密码对话框，然后在填写合适的Authorization头后再次发出请求。</p>
+
+<p>403  Forbidden  资源不可用。服务器理解客户的请求，但拒绝处理它。通常由于服务器上文件或目录的权限设置导致。</p>
+
+<p>404  Not Found  无法找到指定位置的资源。这也是一个常用的应答。</p>
+
+<p>405  Method Not Allowed  请求方法（GET、POST、HEAD、DELETE、PUT、TRACE等）对指定的资源不适用。（HTTP 1.1新）</p>
+
+<p>406  Not Acceptable  指定的资源已经找到，但它的MIME类型和客户在Accpet头中所指定的不兼容（HTTP 1.1新）。</p>
+
+<p>407  Proxy Authentication Required  类似于401，表示客户必须先经过代理服务器的授权。（HTTP 1.1新）</p>
+
+<p>408  Request Timeout  在服务器许可的等待时间内，客户一直没有发出任何请求。客户可以在以后重复同一请求。（HTTP 1.1新）</p>
+
+<p>409  Conflict  通常和PUT请求有关。由于请求和资源的当前状态相冲突，因此请求不能成功。（HTTP 1.1新）</p>
+
+<p>410  Gone  所请求的文档已经不再可用，而且服务器不知道应该重定向到哪一个地址。它和404的不同在于，返回407表示文档永久地离开了指定的位置，而404表示由于未知的原因文档不可用。（HTTP 1.1新）</p>
+
+<p>411  Length Required  服务器不能处理请求，除非客户发送一个Content-Length头。（HTTP 1.1新）</p>
+
+<p>412  Precondition Failed  请求头中指定的一些前提条件失败（HTTP 1.1新）。</p>
+
+<p>413  Request Entity Too Large  目标文档的大小超过服务器当前愿意处理的大小。如果服务器认为自己能够稍后再处理该请求，则应该提供一个Retry-After头（HTTP 1.1新）。</p>
+
+<p>414  Request URI Too Long  URI太长（HTTP 1.1新）。</p>
+
+<p>416  Requested Range Not Satisfiable  服务器不能满足客户在请求中指定的Range头。（HTTP 1.1新）</p>
+
+<p>500  Internal Server Error  服务器遇到了意料不到的情况，不能完成客户的请求。</p>
+
+<p>501  Not Implemented  服务器不支持实现请求所需要的功能。例如，客户发出了一个服务器不支持的PUT请求。</p>
+
+<p>502  Bad Gateway  服务器作为网关或者代理时，为了完成请求访问下一个服务器，但该服务器返回了非法的应答。</p>
+
+<p>503  Service Unavailable  服务器由于维护或者负载过重未能应答。例如，Servlet可能在数据库连接池已满的情况下返回503。服务器返回503时可以提供一个Retry-After头。</p>
+
+<p>504  Gateway Timeout  由作为代理或网关的服务器使用，表示不能及时地从远程服务器获得应答。（HTTP 1.1新）</p>
+
+<p>505  HTTP Version Not Supported  服务器不支持请求中所指明的HTTP版本。（HTTP 1.1新）</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android详细理解Service]]></title>
+    <link href="http://wodis.github.io/blog/2015/07/04/android-service-shen-ru-li-jie/"/>
+    <updated>2015-07-04T21:16:11+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/07/04/android-service-shen-ru-li-jie</id>
+    <content type="html"><![CDATA[<h1>Service</h1>
+
+<p>官方文档给出的解释为。Service是一个无界面，长时间在后台运行的应用组件。
+其他的应用组件可以启动一个Service，即使用户切换到其他应用后Service任然在后台运行。
+另外，组件可以通过绑定(Bind)的方式与Service进行交互，甚至使用Interprocess Communication(IPC)的方式。</p>
+
+<p>Service基本上可以采取两种形式：</p>
+
+<p>Started</p>
+
+<p>当一个组件调用startService()方法后，Service将启动。一旦被启动，无论启动它的组件是否被销毁，Service都会在后台运行。
+这种方式通常为了执行一个单独的操作，并且我们不需要Service返回状态。</p>
+
+<p>Bound</p>
+
+<p>当一个组件调用bindService()方法后，Service提供了一个接口使得可以与组件进行交互。包括发送请求，获得结果，甚至进程间通信IPC。</p>
+
+<p>一般会分开讨论这两种Service的启动类型，但我们可以使Service在这两种方式下运行。这取决于你是否实现了一对回调方法：onStartCommand()允许组件启动；onBind()允许组件绑定。</p>
+
+<p><code>值得注意的是Service是运行在主线程中的，这意味着Service不能创建它自己的线程，也不能运行在其他进程中（除非特别指定）。一旦你需要做一些消耗CPU的工作或者阻塞操作，你应该在Service中创建一个新的线程去完成。</code></p>
+
+<p><strong>何时使用Service或者Thread：</strong>Service因为是Android中的一个组件，会一直在后台运行，请确认是否需要一个常驻的功能。Thread通常是处理一个异步的任务，任务执行完就不再需要，它避免阻塞主线程。</p>
+
+<h1>Service常用基类</h1>
+
+<h3>Service</h3>
+
+<p>这是所有服务类的基类，继承该类，对于在服务中创建新线程很重要。因为默认服务使用应用的主线程，可能会降低程序的性能。</p>
+
+<h3>IntentService</h3>
+
+<p>这是一个Service的子类，该子类使用线程处理所有启动请求，一次一个。这是不使用服务处理多任务请求的最佳选择。你需要做的只是实现onHandleIntent()方法即可。可以为每个启动请求接收到intent，放到后台工作即可。
+内部使用一个Handler和Looper来实现子线程处理.</p>
+
+<h1>Service生命周期</h1>
+
+<h3>未绑定的服务</h3>
+
+<p>startService() -> onCreate() -> onStartCommand() -> 运行服务 -> 停止 -> onDestroy() -> 服务关闭</p>
+
+<h3>绑定的服务</h3>
+
+<p>bindService() -> onCreate() -> onBind() -> 客户端绑定到服务 -> 客户端调用unbindService() -> onUnbind() -> onDestroy() -> 服务关闭</p>
+
+<h1>自动启动Service</h1>
+
+<p>通常的办法是实现一个BroadcastReceiver，监听ACTION_BOOT_COMPLETED即可，并在接收完该广播后通过AlarmManager轮询发送自定义广播，再通过另一个BroadcastReceiver启动Service。</p>
+
+<p>如果通过某种方式将整个进程杀死，所有的服务也会被杀死，此时将无法定期启动服务了。要想达到即使杀死了也可以自动启动服务，需要注册一个系统级别的BroadcastReceiver。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Google I/O回顾:Android开发工具的新玩意]]></title>
+    <link href="http://wodis.github.io/blog/2015/06/08/android-xin-kai-fa-gong-ju/"/>
+    <updated>2015-06-08T12:52:33+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/06/08/android-xin-kai-fa-gong-ju</id>
+    <content type="html"><![CDATA[<p>每年我们都在期待Google I/O大会中Android相关的新东西。然而，在线看视频简直太花时间了（拜GFW所赐还得使用一些小手段观看）。
+这篇文章对整个视频做了总结，希望可以帮到大家。</p>
+
+<h1>Easing Design</h1>
+
+<p><img src="http://www.openwudi.com/images/2015/1433733652.png" alt="1433733652.png" /></p>
+
+<p><a href="http://android-developers.blogspot.co.at/2015/05/android-design-support-library.html">Android Design Support Library</a>
+可以帮你遵循最新的Material Design风格。这个库包含了一系列Material Design组件，
+例如Navigation Drawer、Floating Labels for Editing Text、Floating Action Buttons和Snackbar，
+所有的组件都兼容Android 2.1以上版本。</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1433733704.png" alt="1433733704.png" /></p>
+
+<p>Android L已经介绍了Vector Drawables。随着Android Studio 1.3更改了Android Gradle插件，我们可以使用编译系统通过SVG和Vector Drawables生成不同dp的raster图像。</p>
+
+<p>最终，开发工具团队开始重写了整个可视化设计编辑器、它帮你实现更多所见即所得的方式。</p>
+
+<h1>Improving the Grade Plugin &amp; Build System</h1>
+
+<p><img src="http://www.openwudi.com/images/2015/1433736364.png" alt="1433736364.png" /></p>
+
+<p>Android Gradle插件有时会靠不住，特别是它作为依赖管理，相关问题已经得到了修复。</p>
+
+<p>Android Gradle插件最令人纠结的当然是超长的编译时间。工具团队从多个层面去解决这个问题。
+<a href="http://tools.android.com/tech-docs/jackandjill">Jack</a>，Java Android Compiler Kit的缩写，
+它将Java源码直接编译成Android的Dex文件格式。它是基于Eclispse Java编译器的，这个过程减少了一步。换句话说就是，不需要在转成Dex前编译成JVM字节码。另外，它还支持增量编译。</p>
+
+<p>压缩处理PNG图片同样花费了巨大的时间。工具团队已经提升了这方面的性能，将500张PNG和.9图从4秒减低到400毫秒。</p>
+
+<p>aapt(Android Asset Packaging Tool)，负责打包所有的Dex和资源文件，同样也得到了优化。</p>
+
+<p>另外一个开销是因为Gradle自己造成的，当Gradle开始编译Android项目的时候，它不得不创建一个模块去描述variants(flavor + build type)，
+即使只打算构建一个，它也会解析所有variants的依赖。并且它会执行自定义的逻辑。开发团队使用Gradle Ware优化了这些步骤。这是结果：</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1433743364.png" alt="1433743364.png" /></p>
+
+<p>当然，还没有说完。开发工具团队正在致力于新的Android Gradle插件，它基于Gradle Ware新的API。
+新的API允许Gradle直接管理模块，并且可以让它做一些事情，比如缓存、并行和增量构建。这是下一代插件的结果：</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1433744540.png" alt="1433744540.png" /></p>
+
+<p>这些数字并不包括缓存的优化，因为它还没开发完成。但它有一个小缺点，就是新插件使用新的DSL，而且还不能向下兼容。预览版将在几周后放出，但是正式版可能会在年末。</p>
+
+<p>开发工具团队也介绍了一个Data Binding Library。它需要构建系统的支持，因为它会从XML文件声明中生成Java源文件。老版和新版的Android Gradle插件都可以支持。Android Studio还开始支持C/C++进行NDK开发。</p>
+
+<h1>Testing</h1>
+
+<p><img src="http://www.openwudi.com/images/2015/1433747802.svg" alt="1433747802.png" /></p>
+
+<p>今年Android测试新发布了<a href="https://developers.google.com/cloud-test-lab/">Cloud Test lab</a>。
+它允许你使用Google测试云上的虚拟设备和物理设备进行app测试。并支持自动抓取，不需求自己写用例，当然如果你愿意也是支持的。</p>
+
+<h1>Emulator</h1>
+
+<p><img src="http://www.openwudi.com/images/2015/1433748302.png" alt="1433748302.png" /></p>
+
+<p>模拟器上并没有什么太多的变化，开发工具团队主要致力于稳定、正确性和可配置。Android Studio将下载并安装HAXM，性能上有很大的提升。
+Android Auto模拟器中将会提供指纹识别的支持。</p>
+
+<h1>New Support Annotations</h1>
+
+<p><img src="http://www.openwudi.com/images/2015/1433748585.png" alt="1433748585.png" /></p>
+
+<p>Java注解可以在编译和运行时进行很多神奇的事情。新增了13种注解可以帮助你避免一些Bug。</p>
+
+<p>例如，@WorkerThread注解。方法中声明此注解会自动检查代码是否在UI线程。Android Studio会高亮显示错误。</p>
+
+<p>另一个例子是，@RequiresPermission。一旦你使用的API没有在manifest文件中声明权限，Android Studio将会提醒你插入权限。
+在Android M中权限控制有了一些变化，用户可以选择同意和拒绝某种权限，这意味着你的代码不得不去处理拒绝后的逻辑。
+Android Studio将自动产生一个代码块帮助你完成这件事。</p>
+
+<h1>Data Binding</h1>
+
+<p><img src="http://www.openwudi.com/images/2015/1433750019.png" alt="1433750019.png" /></p>
+
+<p>这个可能是给开发者印象最深的变化。当你开发Android的UI时，通常使用findViewByID()查找XML文件中的布局，并将Java POJO填充到里面。
+Data Binding库可以让这个操作变简单。你可以声明POJO类型，变量表达式引用POJO，以及监听XML文件的布局，用来代替原来手动的操作。
+在编译时期，构建系统会生成绑定的Java类，关联你的布局和POJO。</p>
+
+<p>使用它只需要两步：POJO实现<code>android.databindings.Observable</code>接口，改变POJO则会反射到UI，反之亦然。
+Data Binding库当前还属于beta阶段，需要Android Studio 1.3版本和最新的Gradle插件。更多内容请参考
+<a href="https://developer.android.com/tools/data-binding/guide.html">https://developer.android.com/tools/data-binding/guide.html</a></p>
+
+<h1>Profiling Tools</h1>
+
+<p><img src="http://www.openwudi.com/images/2015/1433770237.png" alt="1433770237.png" /></p>
+
+<p>这个内存和性能分析工具做了一些优化。你现在可以查看在Android Studio中堆和方法路径的快照，通过一个下拉的界面，你可以发现问题在哪。
+它还能可视化的查看和跟踪，你不需要手动的生成<a href="http://docs.oracle.com/javase/7/docs/technotes/samples/hprof.html">HPROF</a>文件。</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1433770818.png" alt="1433770818.png" /></p>
+
+<p>现在内存快照是下拉显示的，看起来非常简洁。通过调试器可以查看当前的对象。它也可以让你去追踪引用链直到GC的根节点，这样你就可以知道谁持有了垃圾的引用。</p>
+
+<h1>New Features in Upcoming Releases</h1>
+
+<p><img src="http://www.openwudi.com/images/2015/1433771186.png" alt="1433771186.png" /></p>
+
+<p>这个新的视觉设计器暂时还没加入到Android Studio 1.3版本。令人兴奋的是，它减轻了创建UI的负担。上图展示了一个新的主题编辑器，让你通过可视化查看和修改主题文件。
+并且可以预览该主题的UI控件。</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1433773948.png" alt="1433773948.png" /></p>
+
+<p>布局编辑器也加入了一些新的功能，上图蓝色的部分可以让你只关注UI的布局。它还提供通过拖拽的方式修改组件。</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1433774256.png" alt="1433774256.png" /></p>
+
+<p>XML预览模式已经被扩展到可以显示系统参数，但是最重要的特点是通过所见即所得的方式直接在预览窗口进行编辑，包括从工具面板拖拽控件。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android开发中提升Gradle性能]]></title>
+    <link href="http://wodis.github.io/blog/2015/06/02/ti-sheng-gradle-xing-neng/"/>
+    <updated>2015-06-02T11:42:39+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/06/02/ti-sheng-gradle-xing-neng</id>
+    <content type="html"><![CDATA[<p>是不是感觉一整天都在等着Android Studio编译完成？我也是</p>
+
+<p>幸亏现在有方法让编译速度提升一些。虽然这些操作仍然有一定的风险，但还是值得尝试一下。
+当我修改了一小部分的代码后，使用这个方法，编译速度直接减少了2.5秒。</p>
+
+<p>Android现在通常使用Gradle进行编译。发布这篇文章的时候，默认的Gradle版本是2.2。
+最新的为2.4，它比之前的版本已经有了很大的提升。</p>
+
+<p>有两种方法配制新版Gradle，直接手动修改build脚本，或者更改Android Studio的配置。</p>
+
+<p>1.手动修改build脚本，通过在项目根目录的build.grade中添加以下代码</p>
+
+<pre><code>task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}
+</code></pre>
+
+<p>现在打开终端并且运行./gradlew，它会自动下载并安装Gradle 2.4作为本地版本。
+<a href="http://gradle.org/docs/current/userguide/gradle_wrapper.html">官方文档</a></p>
+
+<p>2.如果打算修改Android Studio的配制，需要打开Project Structure Dialog（OS X: ⌘+;），
+在左边的列表中选择Project，然后修改Gradle version为2.4。单击OK，Android Studio会自动安装和同步Gradle的配置。</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1433219043.png" alt="1433219043.png" /></p>
+
+<p>下一步是确保Gradle守护进程和并行编译可用。使用守护进程编译速度会提高，因为它并不会每次都编译完整的项目。
+并行编译会将项目分成多模块编译，这样可以提升大型多模块项目的编译速度。</p>
+
+<p>当然这些设置需要添加到.gradle目录的gradle.properties中。(i.e., ~/.gradle/gradle.properties)</p>
+
+<pre><code>org.gradle.daemon=true
+org.gradle.parallel=true
+</code></pre>
+
+<p>守护进程已经在Android Studio中开启，这样做是为了在终端中使用。</p>
+
+<p>注意：并行编译可能导致一些项目不安全。原因是需要你所有的项目是解耦的，不然会编译失败。<a href="http://gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects">多模块编译</a>
+认真测试所有的build variants，保证都可以正常工作。</p>
+
+<p>添加以下代码可以增加JVM的最大堆内存：</p>
+
+<pre><code>org.gradle.jvmargs=-Xmx768m
+org.gradle.java.home=/path/to/jvm
+</code></pre>
+
+<p>其他的gradle.properties配制，可以参考<a href="http://gradle.org/docs/current/userguide/userguide_single.html#sec:gradle_configuration_properties">官方文档</a>。</p>
+
+<p>最后的更改是增量打包dex，这是一个实验性的功能，默认是不开启的。它可能会导致你编译失败，但是还是建议你去试一下，看看你能否使用。</p>
+
+<p>增加以下代码到app模块的build.gradle中：</p>
+
+<pre><code>dexOptions {
+        incremental true
+}
+</code></pre>
+
+<p>如果你有其他的技巧欢迎与我交流。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android开发中的MVVM模式]]></title>
+    <link href="http://wodis.github.io/blog/2015/06/01/mvvm-mo-shi/"/>
+    <updated>2015-06-01T18:27:14+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/06/01/mvvm-mo-shi</id>
+    <content type="html"><![CDATA[<p>从去年开始我们的Android项目就已经从传统的MVC架构切换为Model-View-Presenter（MVP）架构，使得整个分层更加清晰。
+Presenter作为整个逻辑的控制者，与Controller的区别在于它并不包含任何的显示逻辑，只处理网络请求和数据填充操作，
+并通知View何时更新，当View收到更新请求，将数据根据需求展示在不同View中。</p>
+
+<p>今年的Google IO为Android开发者介绍了一个非常棒的新框架，允许将视图绑定（Binding）到任意对象的成员变量上。
+当成员变量更新，框架会通知视图 <strong>自动更新</strong>。</p>
+
+<p>这个系统相当强大，让我们可以使用一种在Windows世界常见的开发模式Model-View-ViewModel (MVVM)。
+我们先熟悉一下基本的概念，对于整个架构的理解很重要，并且看它如何使你的app更好。</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1433142732.png" alt="MVVM设计模式" /></p>
+
+<p>MVVM设计模式包含3部分：</p>
+
+<ul>
+<li>Model – 表示你的业务逻辑</li>
+<li>View – 显示的内容</li>
+<li>ViewModel – 将View和Model联系到一起</li>
+</ul>
+
+
+<p>ViewModel接口做两件事：行为(Actions)和数据(Data)。行为改变底层的模型（点击事件，文本变化事件等），数据则表示这个模型的内容。</p>
+
+<p>例如，一个拍卖系统的ViewModel数据可能是图片、标题、描述和价格。行为可能是竞拍、购买、或者联系卖家。</p>
+
+<p>传统的Android架构中，控制器（Controller）将数据直接赋值给View，再从Activity中找到View，更新内容。
+使用MVVM模式，ViewModel改变内容并通知绑定（Binding）框架内容已经变化。框架将会自动更新被绑定的View。
+这两个容器只通过数据接口和命令进行松散耦合。</p>
+
+<p>除了看起来智能的View绑定，也让测试变得方便。</p>
+
+<p>因为ViewModel并不依赖于View，你可以只测试一个ViewModel，甚至不需要View存在。通过适当的依赖注入，测试就很简单了。</p>
+
+<p>希望你已经理解了MVVM模式的基本概念，并且已经了解使用它的好处。后续我会发布实现MVVM的代码，和一些绑定框架的使用技巧。</p>
+
+<p>参考资料：</p>
+
+<ol>
+<li><a href="http://www.codeproject.com/Articles/66585/Comparison-of-Architecture-presentation-patterns-M">Comparison of Architecture presentation patterns MVP(SC),MVP(PV),PM,MVVM and MVC</a></li>
+<li><a href="http://konmik.github.io/introduction-to-model-view-presenter-on-android.html?utm_source=Android+Weekly&amp;utm_campaign=5589504b56-Android_Weekly_148&amp;utm_medium=email&amp;utm_term=0_4eb677ad19-5589504b56-337845481">Introduction to Model-View-Presenter on Android</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python Learning]]></title>
+    <link href="http://wodis.github.io/blog/2015/05/27/python-learning/"/>
+    <updated>2015-05-27T14:23:19+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/05/27/python-learning</id>
+    <content type="html"><![CDATA[<h1>为什么我要用Python</h1>
+
+<p>最近整理了一下微人脉现有的脚本，整体都基于PHP编写，然后通过Crontab做定时任务。
+但是，PHP来作为脚本的话，语法并不简洁，尝试使用Python。
+两者比较各有优势，Python的可读性非常好，对于OO化繁为简，就语法而言比PHP更容易适应（当然可能是我主观这么认为）。
+直接摘一个总结：</p>
+
+<ul>
+<li>Python is more readable, and more general purpose</li>
+<li>PHP has awful backward compatibility</li>
+<li>PHP has a lower barrier to entry</li>
+<li>Most inexpensive web-hosters support PHP, but not Python</li>
+<li>PHP has far more pre-writen scrīpts available</li>
+<li>Newer versions of mod_python require Apache 2.0, which few hosters have</li>
+<li>There is more demand for PHP developers, than Python developers</li>
+</ul>
+
+
+<h1>Python学习工程</h1>
+
+<p><a href="https://github.com/wodis/python-learning">Github Python Project</a></p>
+
+<p><strong>目录</strong></p>
+
+<ol>
+<li>中文编码 encoding</li>
+<li>变量类型 variable</li>
+<li>条件语句 decision</li>
+<li>循环语句 loop</li>
+<li>日期和时间 date</li>
+<li>函数 function</li>
+<li>文件I/O</li>
+<li>HTTP</li>
+<li>JSON</li>
+<li>Log</li>
+<li>面向对象 OOP</li>
+<li>多线程 Thread</li>
+<li>Redis</li>
+<li>MySQLdb</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Nginx专题]]></title>
+    <link href="http://wodis.github.io/blog/2015/02/19/nginxzhuan-ti/"/>
+    <updated>2015-02-19T14:40:19+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/02/19/nginxzhuan-ti</id>
+    <content type="html"><![CDATA[<p>起因：由于工作内容变化的原因，需要多了解后端所使用的技术。
+但是一直没有时间去从头学习，过年在家抢红包无意间看见一篇用Nginx做代理并通过log自己动手做一个报警工具
+<a href="http://mp.weixin.qq.com/s?__biz=MjM5NDMwNjMzNA==&amp;amp;amp;mid=203292077&amp;amp;amp;idx=3&amp;amp;amp;sn=815dcf56c4d60ef7251c7c18cfa0fc81&amp;amp;amp;3rd=MzA3MDU4NTYzMw==&amp;amp;amp;scene=6#rd">原文</a>。
+所以这才从头开始搭一下Nginx。现在为学习Nginx做一个整合，争取过年期间快速浏览一遍。</p>
+
+<hr />
+
+<ul>
+<li><a href="http://my.oschina.net/boonya/blog/286422">Nginx学习之一：从权威途径(wiki)了解Nginx</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287189">Nginx学习之二：Nginx 学习地图梗概</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287201">Nginx学习之三：对应平台的Nginx下载和安装</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287265">Nginx学习之四：Nginx支持模块的安装及描述</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287300">Nginx学习之五：Nginx第三方模块</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287313">Nginx学习之六：Nginx配置操作导航</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287322">Nginx学习之七：通过Nginx社区进行技术交流</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287330">Nginx开发者学习资源攻略</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/288874">Nginx学习之九：实践学习指南</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/289423">Nginx学习之十：Nginx+Tomcat多站点访问默认主页问题</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Git分支模型图]]></title>
+    <link href="http://wodis.github.io/blog/2015/01/10/git-flow/"/>
+    <updated>2015-01-10T15:58:07+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/01/10/git-flow</id>
+    <content type="html"><![CDATA[<p><img src="http://www.openwudi.com/images/2015/1432791784.png" alt="git branch" /></p>
+
+<p>上图为Vincent Driessen在2010年发布的“一个成功的Git分支模型”。其实基本的概念很清晰：</p>
+
+<h3>开发分支（develop）</h3>
+
+<p>这是主要的开发分支，所以的关于下一个版本的更改都应该在这个分支下完成。可以提交更改或者从其他分支合并一些功能。</p>
+
+<h3>生产分支（master）</h3>
+
+<p>这个分支表示最新发布或开发的代码。只从其他分支合并。</p>
+
+<h3>特征分支（feature前缀）</h3>
+
+<p>当需要进行一些琐碎功能开发的时候，可以创建一个feature，然后再合并到开发分支。</p>
+
+<h3>发布分支（release前缀）</h3>
+
+<p>当需要打包一个发布版本的时候，通常会从开发分支创建一个新的分支。也可以继续在这个分支下提交代码，等到需要发布的时候同时合并到开发分支和生产分支。</p>
+
+<h3>补丁分支（hotfix前缀）</h3>
+
+<p>当一个产品发布后遇到问题，将从生产分支创建一个补丁分支修复问题。修改完成后再合并回生产分支，进行发布。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux Command Line Tips]]></title>
+    <link href="http://wodis.github.io/blog/2015/01/04/linux-command-line-tips/"/>
+    <updated>2015-01-04T18:53:34+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/01/04/linux-command-line-tips</id>
+    <content type="html"><![CDATA[<p>I just post some &lsquo;terminal&rsquo; things here, because I am getting tried to use GUI for my development and decide to change the method to manage Unix-based Mac OSX. As a developer, I have to shamed to say &lsquo;I am so much depend on GUI before working&rsquo;, that why this article is created.</p>
+
+<h2>1.Try some simple</h2>
+
+<p>date</p>
+
+<p>cal</p>
+
+<p>df - display free disk space</p>
+
+<p>exit</p>
+
+<p>man - format and display the on-line manual pages</p>
+
+<p>which- locate a program file in the user&rsquo;s path</p>
+
+<h2>2.Navigation</h2>
+
+<p>pwd</p>
+
+<p>cd</p>
+
+<p>ls</p>
+
+<p>file - determine file type</p>
+
+<p>less - opposite of more</p>
+
+<h2>3.File System</h2>
+
+<p>cp</p>
+
+<p>mv</p>
+
+<p>mkdir</p>
+
+<p>rm</p>
+
+<h2>4.Authority and Progress</h2>
+
+<p>chmod &ndash; change file modes or Access Control Lists</p>
+
+<p>ps aux | grep vim</p>
+
+<p>kill</p>
+
+<h2>5.Search</h2>
+
+<p>locate - find filenames quickly</p>
+
+<p>find - walk a file hierarchy</p>
+
+<p>grep - file pattern searcher</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[关于我]]></title>
+    <link href="http://wodis.github.io/blog/2015/01/01/first-blog/"/>
+    <updated>2015-01-01T16:07:32+08:00</updated>
+    <id>http://wodis.github.io/blog/2015/01/01/first-blog</id>
+    <content type="html"><![CDATA[<p><img src="http://tp2.sinaimg.cn/1690201701/50/5679941181/1" alt="my icon" /></p>
+
+<p><strong>姓名：</strong> Di Wu</p>
+
+<p><strong>微博：</strong> <a href="http://weibo.com/wodis">@讨厌茄子的老科特</a></p>
+
+<p><strong>博客：</strong> <a href="http://www.openwudi.com">http://www.openwudi.com</a></p>
+
+<p><strong>所在地：</strong> 北京</p>
+
+<p><strong>就职于：</strong> 新浪微博</p>
+
+<p><strong>教育经历：</strong> <code>2012~2013 Dublin City University</code>
+<code>2006~2012 武汉大学</code></p>
+
+<hr />
+
+<p>2014年加入新浪微博，进行Java平台的研发工作，现担任新浪微博-微人脉项目工程师，完成Android客户端1.3以前版本，并切入服务器端开发到现在。2013年参加DCU的Kuali Student开源项目，经历了从调研，立项，到研发的整个过程，学业结束回国。</p>
+
+<p>欢迎随时与我交流Android/Java开发中所遇到的问题。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Google Guava Library Tips]]></title>
+    <link href="http://wodis.github.io/blog/2014/09/02/google-guava-library-tips/"/>
+    <updated>2014-09-02T18:58:38+08:00</updated>
+    <id>http://wodis.github.io/blog/2014/09/02/google-guava-library-tips</id>
+    <content type="html"><![CDATA[<h1>String</h1>
+
+<ul>
+<li>CharMatcher (which can be considered as a light form of JDK&rsquo;s Pattern+Matcher with string manipulation capabilities)</li>
+<li>Joiner and MapJoiner (which are useful for joining iterables or arrays into string representations)</li>
+<li>Splitter (which is split() of JDK on steroids).</li>
+</ul>
+
+
+<h3>CharMatcher.JAVA_LETTER_OR_DIGIT</h3>
+
+<p>.countIn(&ldquo;&rdquo;)</p>
+
+<p>.matchesAllOf(&ldquo;&rdquo;)</p>
+
+<p>.matchesNoneOf(&ldquo;&rdquo;)</p>
+
+<p>.negate()</p>
+
+<p>.removeFrom(&ldquo;&rdquo;)</p>
+
+<p>.retainFrom(&ldquo;&rdquo;)</p>
+
+<p>.indexIn(&ldquo;&rdquo;)</p>
+
+<p>.anyOf(&ldquo;&rdquo;)</p>
+
+<p>.noneOf(&ldquo;&rdquo;)</p>
+
+<p>.inRange(&lsquo;&rsquo;, &lsquo;&rsquo;)</p>
+
+<p>.or(CharMatcher)</p>
+
+<p>.and(CharMatcher)</p>
+
+<h3>Joiner</h3>
+
+<p>.on(&ldquo;&rdquo;)</p>
+
+<p>.join(List)</p>
+
+<p>.skipNulls()</p>
+
+<p>.useForNull(&ldquo;&rdquo;)</p>
+
+<h3>Splitter</h3>
+
+<p>.on(&ldquo;&rdquo;)</p>
+
+<p>.omitEmptyStrings()</p>
+
+<p>.trimResults()</p>
+
+<p>.split(&ldquo;&rdquo;)</p>
+
+<p>.fixedLength(int)</p>
+
+<h3>Strings</h3>
+
+<p>.emptyToNull(&ldquo;&rdquo;)</p>
+
+<p>.isNullOrEmpty(&ldquo;&rdquo;)</p>
+
+<p>.repeat(&ldquo;&rdquo;, int)</p>
+
+<p>.padEnd(&ldquo;&rdquo;, int, &lsquo;&rsquo;)</p>
+
+<p>.padStart(&ldquo;&rdquo;, int, &lsquo;&rsquo;)</p>
+
+<h1>Ordering</h1>
+
+<p>This class is really useful if you need to order your Iterable, find the maximum/minimum element in your Iterable, find the index of an arbitrary element. It implements Comparator interface for backward compatibility..from(Comparator)</p>
+
+<p>.sortedCopy(List)</p>
+
+<p>.explicit(enum)</p>
+
+<p>.usingToString()</p>
+
+<p>.natural()</p>
+
+<p>.binarySearch(List,Object)</p>
+
+<p>.max(List)</p>
+
+<p>.min(List)</p>
+
+<p>.reverse()</p>
+
+<p>.isOrdered()</p>
+
+<p>.isStrictlyOrdered()</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Git Learning]]></title>
+    <link href="http://wodis.github.io/blog/2014/07/01/git-learning/"/>
+    <updated>2014-07-01T13:47:06+08:00</updated>
+    <id>http://wodis.github.io/blog/2014/07/01/git-learning</id>
+    <content type="html"><![CDATA[<h2>Git 工作流程</h2>
+
+<p>一般工作流程如下：</p>
+
+<ul>
+<li>克隆 Git 资源作为工作目录。</li>
+<li>在克隆的资源上添加或修改文件。</li>
+<li>如果其他人修改了，你可以更新资源。</li>
+<li>在提交前查看修改。</li>
+<li>提交修改。</li>
+<li>在修改完成后，如果发现错误，可以撤回提交并再次修改并提交。</li>
+</ul>
+
+
+<p><img src="http://www.openwudi.com/images/2015/1432807147.png" alt="工作流程" /></p>
+
+<h2>Git 创建仓库</h2>
+
+<p>使用您当前目录作为Git仓库，我们只需使它初始化。</p>
+
+<pre><code>git init
+</code></pre>
+
+<p>使用指定目录作为Git仓库。</p>
+
+<pre><code>git init newrepo
+</code></pre>
+
+<p>初始化后，在当前目录下会出现一个名为 .git 的目录，所有 Git 需要的数据和资源都存放在这个目录中。
+如果当前目录下有几个文件想要纳入版本控制，需要先用 git add 命令告诉 Git 开始对这些文件进行跟踪，然后提交：</p>
+
+<pre><code>$ git add *.c
+$ git add README
+$ git commit -m 'initial project version'
+</code></pre>
+
+<h3>从现有仓库克隆</h3>
+
+<p>克隆仓库的命令格式为：</p>
+
+<pre><code>git clone [url]
+</code></pre>
+
+<p>比如，要克隆 Ruby 语言的 Git 代码仓库 Grit，可以用下面的命令：</p>
+
+<pre><code>$ git clone git://github.com/schacon/grit.git
+</code></pre>
+
+<p>执行该命令后，会在当前目录下创建一个名为grit的目录，其中包含一个 .git 的目录，用于保存下载下来的所有版本记录。
+如果要自己定义要新建的项目目录名称，可以在上面的命令末尾指定新的名字：</p>
+
+<pre><code>$ git clone git://github.com/schacon/grit.git mygrit
+</code></pre>
+
+<h2>Git 工作区、暂存区和版本库</h2>
+
+<p>我们先来理解下Git 工作区、暂存区和版本库概念</p>
+
+<ul>
+<li>工作区：就是你在电脑里能看到的目录。</li>
+<li>暂存区：英文叫stage, 或index。一般存放在"git目录"下的index文件（.git/index）中，所以我们把暂存区有时也叫作索引（index）。</li>
+<li>版本库：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。</li>
+</ul>
+
+
+<p>下面这个图展示了工作区、版本库中的暂存区和版本库之间的关系：</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1432810388.jpg" alt="工作区、暂存区和版本库" /></p>
+
+<p>图中左侧为工作区，右侧为版本库。在版本库中标记为 &ldquo;index&rdquo; 的区域是暂存区（stage, index），标记为 &ldquo;master&rdquo; 的是 master 分支所代表的目录树。</p>
+
+<p>图中我们可以看出此时 &ldquo;HEAD&rdquo; 实际是指向 master 分支的一个"游标"。所以图示的命令中出现 HEAD 的地方可以用 master 来替换。</p>
+
+<p>图中的 objects 标识的区域为 Git 的对象库，实际位于 &ldquo;.git/objects&rdquo; 目录下，里面包含了创建的各种对象及内容。</p>
+
+<p>当对工作区修改（或新增）的文件执行 &ldquo;git add&rdquo; 命令时，暂存区的目录树被更新，同时工作区修改（或新增）的文件内容被写入到对象库中的一个新的对象中，而该对象的ID被记录在暂存区的文件索引中。</p>
+
+<p>当执行提交操作（git commit）时，暂存区的目录树写到版本库（对象库）中，master 分支会做相应的更新。即 master 指向的目录树就是提交时暂存区的目录树。</p>
+
+<p>当执行 &ldquo;git reset HEAD&rdquo; 命令时，暂存区的目录树会被重写，被 master 分支指向的目录树所替换，但是工作区不受影响。</p>
+
+<p>当执行 &ldquo;git rm &ndash;cached <file>&rdquo; 命令时，会直接从暂存区删除文件，工作区则不做出改变。</p>
+
+<p>当执行 &ldquo;git checkout .&rdquo; 或者 &ldquo;git checkout &ndash; <file>&rdquo; 命令时，会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未添加到暂存区的改动。</p>
+
+<p>当执行 &ldquo;git checkout HEAD .&rdquo; 或者 &ldquo;git checkout HEAD <file>&rdquo; 命令时，会用 HEAD 指向的 master 分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。</p>
+
+<h2>Git 基本操作</h2>
+
+<p>Git 的工作就是创建和保存你的项目的快照及与之后的快照进行对比。</p>
+
+<h3>基本快照</h3>
+
+<h4>git add</h4>
+
+<p>git add 命令可将该文件添加到缓存，如我们添加以下两个文件：</p>
+
+<pre><code>$ touch README
+$ touch hello.php
+$ ls
+README      hello.php
+$ git status -s
+?? README
+?? hello.php
+$
+</code></pre>
+
+<p>git status 命令用于查看项目的当前状态。接下来我们执行 git add 命令来添加文件：</p>
+
+<pre><code>$ git add README hello.php
+</code></pre>
+
+<p>现在我们再执行 git status，就可以看到这两个文件已经加上去了。</p>
+
+<pre><code>$ git status -s
+A  README
+A  hello.php
+$
+</code></pre>
+
+<p>新项目中，添加所有文件很普遍，可以在当前工作目录执行命令：git add .。
+现在我们改个文件，再执行一下 git status：</p>
+
+<pre><code>$ vim README
+$ git status -s
+AM README
+A  hello.php
+</code></pre>
+
+<p>&ldquo;AM&rdquo; 状态的意思是，这个文件在我们将它添加到缓存之后又有改动。改动后我们在执行 git add 命令将其添加到缓存中：</p>
+
+<pre><code>$ git add .
+$ git status -s
+A  README
+A  hello.php
+</code></pre>
+
+<p>当你要将你的修改包含在即将提交的快照里的时候，需要执行 git add。</p>
+
+<h4>git status</h4>
+
+<p>git status 以查看在你上次提交之后是否有修改。
+演示该命令的时候加了 -s 参数，以获得简短的结果输出。如果没加该参数会详细输出内容：</p>
+
+<pre><code>$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached &lt;file&gt;..." to unstage)
+
+    new file:   README
+    new file:   hello.php
+</code></pre>
+
+<h4>git diff</h4>
+
+<p>执行 git diff 来查看执行 git status 的结果的详细信息。
+git diff 命令显示已写入缓存与已修改但尚未写入缓存的改动的区别。git diff 有两个主要的应用场景。</p>
+
+<ul>
+<li>尚未缓存的改动：git diff</li>
+<li>查看已缓存的改动： git diff &ndash;cached</li>
+<li>查看已缓存的与未缓存的所有改动：git diff HEAD</li>
+<li>显示摘要而非整个 diff：git diff &ndash;stat</li>
+</ul>
+
+
+<p>修改 hello.php 文件中输入以下内容：</p>
+
+<pre><code>$ git status -s
+A  README
+AM hello.php
+$ git diff
+diff --git a/hello.php b/hello.php
+index e69de29..d1a9166 100644
+--- a/hello.php
++++ b/hello.php
+@@ -0,0 +1,3 @@
++&lt;?php
++echo 'www.openwudi.com';
++?&gt;
+</code></pre>
+
+<p>git status显示你上次提交更新至后所更改或者写入缓存的改动， 而 git diff 一行一行地显示这些改动具体是啥。
+接下来我们来查看下 git diff &ndash;cached 的执行效果：</p>
+
+<pre><code>$ git add hello.php
+$ git status -s
+A  README
+A  hello.php
+$ git diff --cached
+diff --git a/README b/README
+new file mode 100644
+index 0000000..704cce7
+--- /dev/null
++++ b/README
+@@ -0,0 +1 @@
++openwudi.com
+diff --git a/hello.php b/hello.php
+new file mode 100644
+index 0000000..d1a9166
+--- /dev/null
++++ b/hello.php
+@@ -0,0 +1,3 @@
++&lt;?php
++echo 'www.openwudi.com';
++?&gt;
+</code></pre>
+
+<h4>git commit</h4>
+
+<p>使用 git add 命令将想要快照的内容写入了缓存， 而执行 git commit 记录缓存区的快照。
+Git 为你的每一个提交都记录你的名字与电子邮箱地址，所以第一步需要配置用户名和邮箱地址。</p>
+
+<pre><code>$ git config --global user.name 'openwudi'
+$ git config --global user.email xxx@openwudi.com
+</code></pre>
+
+<p>接下来我们写入缓存，并提交对 hello.php 的所有改动。在首个例子中，我们使用 -m 选项以在命令行中提供提交注释。</p>
+
+<pre><code>$ git add hello.php
+$ git status -s
+A  README
+A  hello.php
+$ git commit -m 'test comment from openwudi.com'
+[master (root-commit) 85fc7e7] test comment from openwudi.com
+ 2 files changed, 4 insertions(+)
+ create mode 100644 README
+ create mode 100644 hello.php
+</code></pre>
+
+<p>现在我们已经记录了快照。如果我们再执行 git status:</p>
+
+<pre><code>$ git status
+# On branch master
+nothing to commit (working directory clean)
+</code></pre>
+
+<p>以上输出说明我们在最近一次提交之后，没有做任何改动，是一个"干净的工作目录"。</p>
+
+<p>如果你觉得 git add 提交缓存的流程太过繁琐，Git 也允许你用 -a 选项跳过这一步。命令格式如下：</p>
+
+<pre><code>git commit -a
+</code></pre>
+
+<h4>git reset HEAD</h4>
+
+<p>git reset HEAD 命令用于取消缓存已缓存的内容。
+这里我们有两个最近提交之后又有所改动的文件。我们将两个都缓存，并取消缓存其中一个。</p>
+
+<pre><code>$ git status -s
+ M README
+ M hello.php
+$ git add .
+$ git status -s
+ M  README
+ M  hello.pp
+$ git reset HEAD -- hello.php
+ Unstaged changes after reset:
+ M hello.php
+$ git status -s
+ M  README
+ M hello.php
+</code></pre>
+
+<p>现在你执行 git commit 将只记录 README 文件的改动，并不含现在并不在缓存中的 hello.pp。</p>
+
+<h4>git rm</h4>
+
+<p>git rm 将文件从缓存区中移除。如我们删除 hello.php文件：</p>
+
+<pre><code>$ git rm hello.php
+rm 'hello.php'
+$ ls
+README
+</code></pre>
+
+<p>默认情况下，git rm file 会将文件从缓存区和你的硬盘中（工作目录）删除。 如果要在工作目录中留着该文件，可以使用命令：</p>
+
+<pre><code>git rm --cached
+</code></pre>
+
+<h4>git mv</h4>
+
+<p>git mv 命令做得所有事情就是 git rm &ndash;cached， 重命名磁盘上的文件，然后再执行 git add 把新文件添加到缓存区。因此，虽然有 git mv 命令，但它有点多余 。</p>
+
+<h2>Git 分支管理</h2>
+
+<h4>创建分支命令:</h4>
+
+<pre><code>git branch (branchname)
+</code></pre>
+
+<h4>切换分支命令:</h4>
+
+<pre><code>git checkout (branchname)
+</code></pre>
+
+<p>当你切换分支的时候，Git 会用该分支的最后提交的快照替换你的工作目录的内容， 所以多个分支不需要多个目录。</p>
+
+<h4>合并分支命令:</h4>
+
+<pre><code>git merge
+</code></pre>
+
+<p>你可以多次合并到统一分支， 也可以选择在合并之后直接删除被并入的分支。</p>
+
+<h4>列出分支基本命令:</h4>
+
+<pre><code>git branch
+</code></pre>
+
+<p>没有参数时，git branch 会列出你在本地的分支。</p>
+
+<pre><code>$ git branch
+* master
+</code></pre>
+
+<p>此例的意思就是，我们有一个叫做"master"的分支，并且该分支是当前分支。
+当你执行 git init 的时候，缺省情况下 Git 就会为你创建"master"分支。
+如果我们要手动创建一个分支，并切换过去。执行 git branch (branchname) 即可。</p>
+
+<pre><code>$ git branch testing
+$ git branch
+* master
+  testing
+</code></pre>
+
+<p>现在我们可以看到，有了一个新分支 testing。
+当你以此方式在上次提交更新之后创建了新分支，如果后来又有更新提交， 然后又切换到了"testing"分支，Git 将还原你的工作目录到你创建分支时候的样子
+接下来我们将演示如何切换分支，我们用 git checkout (branch) 切换到我们要修改的分支。</p>
+
+<pre><code>$ ls
+README
+$ echo 'openwudi.com' &gt; test.txt
+$ git add .
+$ git commit -m 'add test.txt'
+[master 048598f] add test.txt
+ 2 files changed, 1 insertion(+), 3 deletions(-)
+ delete mode 100644 hello.php
+ create mode 100644 test.txt
+$ ls
+README      test.txt
+$ git checkout testing
+Switched to branch 'testing'
+$ ls
+README      hello.php
+</code></pre>
+
+<p>当我们切换到"testing"分支的时候，我们添加的新文件test.txt被移除了, 原来被删除的文件hello.php文件又出现了。切换回"master"分支的时候，它们有重新出现了。</p>
+
+<pre><code>$ git checkout master
+Switched to branch 'master'
+$ ls
+README      test.txt
+</code></pre>
+
+<p>我们也可以使用 git checkout -b (branchname) 命令来创建新分支并立即切换到该分支下，从而在该分支中操作。</p>
+
+<pre><code>$ git checkout -b newtest
+Switched to a new branch 'newtest'
+$ git rm test2.txt
+rm 'test2.txt'
+$ ls
+README      test.txt
+$ git commit -am 'removed test2.txt'
+[newtest 556f0a0] removed test2.txt
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 test2.txt
+$ git checkout master
+Switched to branch 'master'
+$ ls
+README      test.txt    test2.txt
+</code></pre>
+
+<p>如你所见，我们创建了一个分支，在该分支的上下文中移除了一些文件，然后切换回我们的主分支，那些文件又回来了。
+使用分支将工作切分开来，从而让我们能够在不同上下文中做事，并来回切换。</p>
+
+<h4>删除分支命令:</h4>
+
+<pre><code>git branch -d (branchname)
+</code></pre>
+
+<h4>分支合并:</h4>
+
+<pre><code>git merge (branchname)
+</code></pre>
+
+<h4>合并冲突:</h4>
+
+<p>合并并不仅仅是简单的文件添加、移除的操作，Git 也会合并修改。</p>
+
+<pre><code>$ git branch
+* master
+$ cat test.txt
+openwudi.com
+</code></pre>
+
+<p>首先，我们创建一个叫做"change_site"的分支，切换过去，我们将内容改为 www.openwudi.com 。</p>
+
+<pre><code>$ git checkout -b change_site
+Switched to a new branch 'change_site'
+$ vim test.txt
+$ head -1 test.txt
+www.openwudi.com
+$ git commit -am 'changed the site'
+[change_site d7e7346] changed the site
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre>
+
+<p>将修改的内容提交到 &ldquo;change_site&rdquo; 分支中。 现在，假如切换回 &ldquo;master&rdquo; 分支我们可以看内容恢复到我们修改前的，我们再次修改test.txt文件。</p>
+
+<pre><code>$ git checkout master
+Switched to branch 'master'
+$ head -1 test.txt
+openwudi.com
+$ vim test.txt
+$ cat test.txt
+openwudi.com
+新增加一行
+$ git diff
+diff --git a/test.txt b/test.txt
+index 704cce7..f84c2a4 100644
+--- a/test.txt
++++ b/test.txt
+@@ -1 +1,2 @@
+ openwudi.com
++新增加一行
+$ git commit -am '新增加一行'
+[master 14b4dca] 新增加一行
+ 1 file changed, 1 insertion(+)
+</code></pre>
+
+<p>现在这些改变已经记录到我的 &ldquo;master&rdquo; 分支了。接下来我们将 &ldquo;change_site&rdquo; 分支合并过来。</p>
+
+<pre><code>$ git merge change_site
+Auto-merging test.txt
+CONFLICT (content): Merge conflict in test.txt
+Automatic merge failed; fix conflicts and then commit the result.
+$ cat test.txt
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+openwudi.com
+新增加一行
+=======
+www.openwudi.com
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; change_site
+</code></pre>
+
+<p>我们将前一个分支合并到 &ldquo;master&rdquo; 分支，一个合并冲突就出现了，接下来我们需要手动去修改它。</p>
+
+<pre><code>$ vim test.txt
+$ cat test.txt
+www.openwudi.com
+新增加一行
+$ git diff
+diff --cc test.txt
+index f84c2a4,bccb7c2..0000000
+--- a/test.txt
++++ b/test.txt
+@@@ -1,2 -1,1 +1,2 @@@
+- openwudi.com
++ www.openwudi.com
+ +新增加一行
+</code></pre>
+
+<p>在 Git 中，我们可以用 git add 要告诉 Git 文件冲突已经解决</p>
+
+<pre><code>$ git status -s
+UU test.txt
+$ git add test.txt 
+$ git status -s
+M  test.txt
+$ git commit
+[master 88afe0e] Merge branch 'change_site'
+</code></pre>
+
+<p>现在我们成功解决了合并中的冲突，并提交了结果。</p>
+
+<h2>Git 查看提交历史</h2>
+
+<p>回顾下提交历史，我们可以使用 git log 命令查看。</p>
+
+<pre><code>git log
+</code></pre>
+
+<p>可以用 &ndash;oneline 选项来查看历史记录的简洁的版本。</p>
+
+<pre><code>git log --oneline
+</code></pre>
+
+<p>还可以用 &ndash;graph 选项，查看历史中什么时候出现了分支、合并。以下为相同的命令，开启了拓扑图选项：</p>
+
+<pre><code>git log --oneline --graph
+</code></pre>
+
+<p>用 &lsquo;&ndash;reverse'参数来逆向显示所有日志。</p>
+
+<pre><code>git log --reverse --oneline
+</code></pre>
+
+<p>查找指定用户的提交日志可以使用命令：git log &ndash;author</p>
+
+<pre><code>git log --author=openwudi --oneline -5
+</code></pre>
+
+<p>指定日期，可以执行几个选项：&ndash;since 和 &ndash;before，但是你也可以用 &ndash;until 和 &ndash;after。</p>
+
+<p>更多 git log 命令可查看：<a href="http://git-scm.com/docs/git-log">http://git-scm.com/docs/git-log</a></p>
+
+<h2>Git 标签</h2>
+
+<p>如果你达到一个重要的阶段，并希望永远记住那个特别的提交快照，你可以使用 git tag 给它打上标签。
+-a 选项意为"创建一个带注解的标签"。 不用 -a 选项也可以执行的，但它不会记录这标签是啥时候打的，谁打的，也不会让你添加个标签的注解。 我推荐一直创建带注解的标签。</p>
+
+<pre><code>git tag -a v1.0
+</code></pre>
+
+<p>当你执行 git tag -a 命令时，Git 会打开你的编辑器，让你写一句标签注解，就像你给提交写注解一样。</p>
+
+<p>现在，注意当我们执行 git log &ndash;decorate 时，我们可以看到我们的标签了。</p>
+
+<p>如果我们要查看所有标签可以使用以下命令：</p>
+
+<pre><code>$ git tag
+v0.9
+v1.0
+</code></pre>
+
+<h2>Git 远程仓库</h2>
+
+<p>Git 并不像 SVN 那样有个中心服务器。
+目前我们使用到的 Git 命令都是在本地执行，如果你想通过 Git 分享你的代码或者与其他开发人员合作。 你就需要将数据放到一台其他开发人员能够连接的服务器上。</p>
+
+<h3>添加远程库</h3>
+
+<p>要添加一个新的远程仓库，可以指定一个简单的名字，以便将来引用,命令格式如下：</p>
+
+<pre><code>git remote add [shortname] [url]
+</code></pre>
+
+<h3>查看当前的远程库</h3>
+
+<p>查看当前配置有哪些远程仓库，可以用命令：</p>
+
+<pre><code>git remote
+</code></pre>
+
+<p>执行时加上 -v 参数，你还可以看到每个别名的实际链接地址。</p>
+
+<h3>提取远程仓库</h3>
+
+<p>Git 有两个命令用来提取远程仓库的更新。</p>
+
+<p>1、从远程仓库下载新分支与数据：</p>
+
+<pre><code>git fetch
+</code></pre>
+
+<p>该命令执行完后需要执行git merge 远程分支到你所在的分支。</p>
+
+<p>2、从远端仓库提取数据并尝试合并到当前分支：</p>
+
+<pre><code>git pull
+</code></pre>
+
+<h3>推送到远程仓库</h3>
+
+<p>推送你的新分支与数据到某个远端仓库命令:</p>
+
+<pre><code>git push [alias] [branch]
+</code></pre>
+
+<h3>删除远程仓库</h3>
+
+<p>删除远程仓库你可以使用命令：</p>
+
+<pre><code>git remote rm [alias]
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android Tips Round-Up]]></title>
+    <link href="http://wodis.github.io/blog/2014/06/27/android-tips-round-up/"/>
+    <updated>2014-06-27T15:20:27+08:00</updated>
+    <id>http://wodis.github.io/blog/2014/06/27/android-tips-round-up</id>
+    <content type="html"><![CDATA[<p><a href="http://developer.android.com/reference/android/app/Activity.html#startActivities(android.content.Intent[])">Activity.startActivities()</a> - Nice for launching to the middle of an app flow.</p>
+
+<p><a href="http://developer.android.com/reference/android/text/TextUtils.html#isEmpty(java.lang.CharSequence)">TextUtils.isEmpty()</a> - Simple utility I use everywhere.</p>
+
+<p><a href="http://developer.android.com/reference/android/text/Html.html#fromHtml(java.lang.String)">Html.fromHtml()</a> - Quick method for formatting Html. It&rsquo;s not particularly fast so I wouldn&rsquo;t use it constantly (e.g., don&rsquo;t use it just to bold part of a string - construct the Spannable manually instead), but it&rsquo;s fine for rendering text obtained from the web.</p>
+
+<p><a href="http://developer.android.com/reference/android/widget/TextView.html#setError%28java.lang.CharSequence%29">TextView.setError()</a> - Nice UI when validating user input.</p>
+
+<p><a href="http://developer.android.com/reference/android/os/Build.VERSION_CODES.html">Build.VERSION_CODES</a> - Not only is it handy for routing code, it&rsquo;s also summarizes behavioral differences between each version of Android.</p>
+
+<p><a href="http://developer.android.com/reference/android/util/Log.html#getStackTraceString(java.lang.Throwable)">Log.getStackTraceString()</a> - Convenience utility for logging.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/LayoutInflater.html#from%28android.content.Context%29">LayoutInflater.from()</a> - Wraps the long-winded getSystemService() call in a simple utility.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/ViewConfiguration.html#getScaledTouchSlop%28%29">ViewConfiguration.getScaledTouchSlop()</a> - Using the values provided in ViewConfiguration ensures all touch interaction feels consistent across the OS.</p>
+
+<p><a href="http://developer.android.com/reference/android/telephony/PhoneNumberUtils.html#convertKeypadLettersToDigits%28java.lang.String%29">PhoneNumberUtils.convertKeypadLettersToDigits</a> - Makes handling phone number data a snap, as some companies provide them as letters.</p>
+
+<p><a href="http://developer.android.com/reference/android/content/Context.html#getCacheDir%28%29">Context.getCacheDir()</a> - Use the cache dir for caching data. Simple enough but some don&rsquo;t know it exists.</p>
+
+<p><a href="http://developer.android.com/reference/android/animation/ArgbEvaluator.html">ArgbEvaluator</a> - Transition from one color to another. As was pointed out by Chris Banes, this class creates a lot of autoboxing churn so it&rsquo;d be better to just rip out the logic and run it yourself.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/ContextThemeWrapper.html">ContextThemeWrapper</a> - Nice class for changing the theme of a Context on the fly.</p>
+
+<p><a href="http://developer.android.com/reference/android/widget/Space.html">Space</a> - Lightweight View which skips drawing. Great for any situation that might require a placeholder.</p>
+
+<p><a href="http://developer.android.com/reference/android/animation/ValueAnimator.html#reverse%28%29">ValueAnimator.reverse()</a> - I love this for canceling animations smoothly.</p>
+
+<p><a href="http://developer.android.com/reference/android/text/format/DateUtils.html#formatDateTime%28android.content.Context,%20long,%20int%29">DateUtils.formatDateTime()</a> - One-stop shop for localized date/time strings.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int,long,long,android.app.PendingIntent)">AlarmManager.setInexactRepeating</a> - Saves on battery life by grouping multiple alarms together. Even if you&rsquo;re only calling a single alarm this is better (just make sure to call AlarmManager.cancel() when done).</p>
+
+<p><a href="http://developer.android.com/reference/android/text/format/Formatter.html#formatFileSize(android.content.Context,long)">Formatter.formatFileSize()</a> - A localized file size formatter.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/ActionBar.html#hide()">ActionBar.hide()/.show()</a> - Animates the action bar hiding/showing. Lets you switch to full-screen gracefully.</p>
+
+<p><a href="http://developer.android.com/reference/android/text/util/Linkify.html#addLinks(android.text.Spannable,int)">Linkify.addLinks()</a> - If you need to control how links are added to text.</p>
+
+<p><a href="http://developer.android.com/reference/android/text/StaticLayout.html">StaticLayout</a> - Useful for measuring text that you&rsquo;re about to render into a custom View.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/Activity.html#onBackPressed()">Activity.onBackPressed()</a> - Easy way to manage the back button. While I wouldn&rsquo;t normally hijack back, sometimes it&rsquo;s necessary to make a flow work.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/GestureDetector.html">GestureDetector</a> - Listens to motion events and fires listener events for common actions (like clicks, scrolls and flings). So much easier than implementing your own motion event system.</p>
+
+<p><a href="http://developer.android.com/reference/android/graphics/DrawFilter.html">DrawFilter</a> - Lets you manipulate a Canvas even if you&rsquo;re not calling the draw commands. For example, you could create a custom View which sets a DrawFilter which anti-aliases the draws of the parent View.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/ActivityManager.html#getMemoryClass()">ActivityManager.getMemoryClass()</a> - Gives you an idea of how much memory the device has. Great for figuring out how large to make your caches.</p>
+
+<p><a href="http://developer.android.com/reference/android/os/SystemClock.html#sleep(long)">SystemClock.sleep()</a> - Convenience method which guarantees sleeping the amount of time entered. I use it for debugging and simulating network delays.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/ViewStub.html">ViewStub</a> - A View that initially does nothing, but can later inflate a layout. This is a great placeholder for lazy-loading Views. Its only drawback is that it doesn&rsquo;t support <merge> tags, so it can create unnecessary nesting in the hierarchy if you&rsquo;re not careful.</p>
+
+<p><a href="http://developer.android.com/reference/android/util/DisplayMetrics.html#density">DisplayMetrics.density</a> - You can get the density of the screen this way. Most of the time you&rsquo;ll be better off letting the system scale dimensions automatically, but occasionally it&rsquo;s useful to have more control (especially with custom Views).</p>
+
+<p><a href="http://developer.android.com/reference/android/util/Pair.html#create(A,B)">Pair.create()</a> - Handy class, handy creator method.</p>
+
+<p><a href="http://developer.android.com/reference/android/net/UrlQuerySanitizer.html">UrlQuerySanitizer</a> - Sanitize URLs with this handy utility.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/Fragment.html#setArguments%28android.os.Bundle%29">Fragment.setArguments</a> - Since you can&rsquo;t use a Fragment constructor w/ parameters this is the second best thing. Arguments set before creation last throughout the entire Fragment&rsquo;s lifecycle (even if it&rsquo;s destroyed/recreated due to a configuration change).</p>
+
+<p><a href="http://developer.android.com/reference/android/app/DialogFragment.html#setShowsDialog%28boolean%29">DialogFragment.setShowsDialog()</a> - Neat trick - DialogFragments can act like normal Fragments! That way you can have the same Fragment do double-duty. I usually create a third View generation method that both onCreateView() and onCreateDialog() call into when creating a dual-purpose Fragment.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/FragmentManager.html#enableDebugLogging%28boolean%29">FragmentManager.enableDebugLogging()</a> - Help when you need it when figuring out Fragments.</p>
+
+<p><a href="http://developer.android.com/reference/android/support/v4/content/LocalBroadcastManager.html">LocalBroadcastManager</a> - Safer than global broadcasts. Simple and quick. Event buses like otto may make more sense for your use case though.</p>
+
+<p><a href="http://developer.android.com/reference/android/telephony/PhoneNumberUtils.html#formatNumber%28java.lang.String%29">PhoneNumberUtils.formatNumber()</a> - Let someone else figure out this problem for you.</p>
+
+<p><a href="http://developer.android.com/reference/android/graphics/Region.html#op%28android.graphics.Region,%20android.graphics.Region,%20android.graphics.Region.Op%29">Region.op()</a> - I found this useful for comparing two generic areas before rendering. If I&rsquo;ve got two Paths, do they overlap? I can figure that out with this method.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks%28android.app.Application.ActivityLifecycleCallbacks%29">Application.registerActivityLifecycleCallbacks</a> - Though lacking documentation I feel this is self-evident. Just a handy tool.</p>
+
+<p><a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Build-Types">versionNameSuffix</a> - This gradle setting lets you modify the versionName field in your manifest based on different build types. For example, I would setup my debug build type to end in &ldquo;-SNAPSHOT&rdquo;; that way you can easily tell if you&rsquo;re on a debug build or release build.</p>
+
+<p><a href="http://developer.android.com/reference/android/database/CursorJoiner.html">CursorJoiner</a> - If you&rsquo;re using a single database then a join in SQL is the natural solution, but what if you&rsquo;ve received data from two separate ContentProviders? In that case CursorJoiner can be helpful.</p>
+
+<p><a href="http://www.genymotion.com/">Genymotion</a> - A much faster Android emulator. I use it all day.</p>
+
+<p><a href="http://developer.android.com/guide/practices/screens_support.html#qualifiers">-nodpi</a> - Most qualifiers (-mdpi, -hdpi, -xhdpi, etc.) automatically scale assets/dimensions if you&rsquo;re on a device that isn&rsquo;t explicitly defined. Sometimes you just want something consistent though; in that case use -nodpi.</p>
+
+<p><a href="http://developer.android.com/reference/android/content/BroadcastReceiver.html#setDebugUnregister%28boolean%29">BroadcastRecevier.setDebugUnregister()</a> - Another handy debugging tool.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/Activity.html#recreate%28%29">Activity.recreate()</a> - Forces an Activity to recreate itself for whatever reason.</p>
+
+<p><a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#checkSignatures%28java.lang.String,%20java.lang.String%29">PackageManager.checkSignatures()</a> - You can use this to find out if two apps (presumably your own) are installed at the same time. Without checking signatures someone could imitate your app easily by just using the same package name.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/Activity.html#isChangingConfigurations%28%29">Activity.isChangingConfigurations()</a> - Often times you don&rsquo;t need to do quite as much saving of state if all that&rsquo;s happening is the configuration is changing.</p>
+
+<p><a href="http://developer.android.com/reference/android/content/SearchRecentSuggestionsProvider.html">SearchRecentSuggestionsProvider</a> - A quick and easy way to create a recents suggestion provider.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/ViewTreeObserver.html">ViewTreeObserver</a> - This is an amazing utility; it can be grabbed from any View and used to monitor the state of the View hierarchy. My most often use for it is to determine when Views have been measured (usually for animation purposes).</p>
+
+<p><a href="https://www.timroes.de/2013/09/12/speed-up-gradle/">org.gradle.daemon=true</a> - Helps reduce the startup time of of Gradle builds. Only really applies to command-line builds as Android Studio already tries to use the daemon.</p>
+
+<p><a href="http://developer.android.com/reference/android/database/DatabaseUtils.html">DatabaseUtils</a> - A variety of useful tools for database operations.</p>
+
+<p><a href="http://developer.android.com/reference/android/widget/LinearLayout.html#attr_android:weightSum">android:weightSum (LinearLayout)</a> - Want to use layout weights, but don&rsquo;t want them to fill the entire LinearLayout? That&rsquo;s what weightSum can do by defining the total weight.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/View.html#attr_android:duplicateParentState">android:duplicateParentState (View)</a> - Makes the child duplicate the state of the parent - for example, if you&rsquo;ve got a ViewGroup that is clickable, then you can use this to make its children change state when it is clicked.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/ViewGroup.html#attr_android:clipChildren">android:clipChildren (ViewGroup)</a> - If disabled, this lets the children of a ViewGroup draw outside their parent&rsquo;s bounds. Great for animations.</p>
+
+<p><a href="http://developer.android.com/reference/android/widget/ScrollView.html#attr_android:fillViewport">android:fillViewport (ScrollView)</a> - Best explained in this post, this helps solve a problem with ScrollViews that may not always have enough content to actually fill the height of the screen.</p>
+
+<p><a href="http://developer.android.com/guide/topics/resources/drawable-resource.html#Bitmap">android:tileMode (BitmapDrawable)</a> - Lets you create repeated patterns with images.</p>
+
+<p><a href="http://developer.android.com/reference/android/R.attr.html#exitFadeDuration">android:enterFadeDuration/android:exitFadeDuration (Drawables)</a> - For Drawables that have multiple states, this lets you define a fade before/after the drawable shows.</p>
+
+<p><a href="http://developer.android.com/reference/android/widget/ImageView.html#attr_android:scaleType">android:scaleType (ImageView)</a> - Defines how to scale/crop a drawable within an ImageView. &ldquo;centerCrop&rdquo; and &ldquo;centerInside&rdquo; are regular settings for me.</p>
+
+<p><a href="http://developer.android.com/training/improving-layouts/reusing-layouts.html#Merge"><merge></a> - Lets you include a layout in another without creating a duplicate ViewGroup (more info). Also good for custom ViewGroups; you can inflate a layout with <merge> inside the constructor to define its children automatically.</p>
+
+<p><a href="http://developer.android.com/reference/android/util/AtomicFile.html">AtomicFile</a> - Manipulates a file atomically by using a backup file. I&rsquo;ve written this myself before, it&rsquo;s good to have an official (and better-written) version of it.</p>
+
+<p><a href="https://developer.android.com/reference/android/support/v4/widget/ViewDragHelper.html">ViewDragHelper</a> - Dragging Views is a complex problem and this class helps a lot. If you want an example, DrawerLayout uses it for swiping. Flavient Laurent also wrote an excellent article about it.</p>
+
+<p><a href="https://developer.android.com/reference/android/widget/PopupWindow.html">PopupWindow</a> - Used all around Android without you even realizing it (action bars, autocomplete, edittext errors), this class is the primary method for creating floating content.</p>
+
+<p><a href="https://developer.android.com/reference/android/app/ActionBar.html#getThemedContext()">ActionBar.getThemedContext()</a> - ActionBar theming is surprisingly complex (and can be different from the theming of the rest of the Activity). This gets you a Context so if you create your own Views they will be properly themed.</p>
+
+<p><a href="https://developer.android.com/reference/android/media/ThumbnailUtils.html">ThumbnailUtils</a> - Helps create thumbnails; in general I&rsquo;d just use whatever image library was already in place (e.g. Picasso or Volley), but it can also create video thumbnails!</p>
+
+<p><a href="https://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String)">Context.getExternalFilesDir()</a> - While you do have permission to write anywhere on the SD card if you ask for it, it&rsquo;s much more polite to write your data in the correct designated folder. That way it gets cleaned up and users get a common experience. Additionally, as of Kit Kat you can write to this folder without permission, and each user has their own external files dir.</p>
+
+<p><a href="https://developer.android.com/reference/android/util/SparseArray.html">SparseArray</a> - A more efficient version of Map&lt;Integer, Object>. Be sure to check out sister classes SparseBooleanArray, SparseIntArray and SparseLongArray as well.</p>
+
+<p><a href="https://developer.android.com/reference/android/content/pm/PackageManager.html#setComponentEnabledSetting(android.content.ComponentName,int,int)">PackageManager.setComponentEnabledSetting()</a> - Lets you enable/disable components in your app&rsquo;s manifest. What&rsquo;s nice here is being able to shut off unnecessary functionality - for example, a BroadcastReceiver that is unnecessary due to the current app configuration.</p>
+
+<p><a href="https://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.html#yieldIfContendedSafely()">SQLiteDatabase.yieldIfContendedSafely()</a> - Lets you temporarily stop a db transaction so you don&rsquo;t tie up too much of the system.</p>
+
+<p><a href="https://developer.android.com/reference/android/os/Environment.html#getExternalStoragePublicDirectory(java.lang.String)">Environment.getExternalStoragePublicDirectory()</a> - Again, users like a consistent experience with their SD card; using this method will grab the correct directory for placing typed files (music, pictures, etc.) on their drive.</p>
+
+<p><a href="https://developer.android.com/reference/android/view/View.html#generateViewId()">View.generateViewId()</a> - Every once in a while I&rsquo;ve wanted to dynamically generate view IDs. The problem is ensuring you aren&rsquo;t clobbering existing IDs (or other generated ones).</p>
+
+<p><a href="https://developer.android.com/reference/android/app/ActivityManager.html#clearApplicationUserData()">ActivityManager.clearApplicationUserData()</a> - A reset button for your app. Perhaps the easiest way to log out a user, ever.</p>
+
+<p><a href="http://developer.android.com/reference/android/content/Context.html#createConfigurationContext(android.content.res.Configuration)">Context.createConfigurationContext()</a> - Customize your configuration context. Common problem I&rsquo;ve run into: forcing part of an app to render in a particular locale (not that I normally condone this sort of behavior, but you never know). This would make it a lot easier to do so.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/ActivityOptions.html">ActivityOptions</a> - Nice custom animations when moving between Activities. ActivityOptionsCompat is good for backwards compatible functionality.</p>
+
+<p><a href="http://developer.android.com/reference/android/widget/AdapterViewFlipper.html#fyiWillBeAdvancedByHostKThx%28%29">AdapterViewFlipper.fyiWillBeAdvancedByHostKThx()</a> - Because it&rsquo;s funny and for no other reason. There are other amusing tidbits in AOSP (like GRAVITY_DEATH_STAR_I) but unlike those this one is actually useful.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/ViewParent.html#requestDisallowInterceptTouchEvent%28boolean%29">ViewParent.requestDisallowInterceptTouchEvent()</a> - The Android touch event system defaults handle what you want most of the time, but sometimes you need this method to wrest event control from parents. (By the way, if you want to know about the touch system, this talk is amazing.)</p>
 ]]></content>
   </entry>
   

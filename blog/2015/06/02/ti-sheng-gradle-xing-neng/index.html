@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Android开发中提升Gradle性能 - Open Tech Pub - 2015-06-02 11:42:39 +0800</title>
+  <meta name="author" content="Wu Di">
+
+  
+  <meta name="description" content="是不是感觉一整天都在等着Android Studio编译完成？我也是 幸亏现在有方法让编译速度提升一些。虽然这些操作仍然有一定的风险，但还是值得尝试一下。
+当我修改了一小部分的代码后，使用这个方法，编译速度直接减少了2.5秒。 Android现在通常使用Gradle进行编译。发布这篇文章的时候， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wodis.github.io/blog/2015/06/02/ti-sheng-gradle-xing-neng/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Open Tech Pub" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+    <!-- googleapis is fucked by gfw -->
+  <script src="http://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!-- 
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+ -->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?16937d74824f50bd02daa98ce1ba6048";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Open Tech Pub</a></h1>
+  
+    <h2>那些年关注的技术</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="wodis.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+    <li><a href="/">首页</a></li>
+    <li><a href="/blog/archives">所有文章</a></li>
+    <li><a href="http://www.weibo.com/wodis">我的微博</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Android开发中提升Gradle性能</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-02T11:42:39+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:42 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>是不是感觉一整天都在等着Android Studio编译完成？我也是</p>
+
+<p>幸亏现在有方法让编译速度提升一些。虽然这些操作仍然有一定的风险，但还是值得尝试一下。
+当我修改了一小部分的代码后，使用这个方法，编译速度直接减少了2.5秒。</p>
+
+<p>Android现在通常使用Gradle进行编译。发布这篇文章的时候，默认的Gradle版本是2.2。
+最新的为2.4，它比之前的版本已经有了很大的提升。</p>
+
+<p>有两种方法配制新版Gradle，直接手动修改build脚本，或者更改Android Studio的配置。</p>
+
+<p>1.手动修改build脚本，通过在项目根目录的build.grade中添加以下代码</p>
+
+<pre><code>task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}
+</code></pre>
+
+<p>现在打开终端并且运行./gradlew，它会自动下载并安装Gradle 2.4作为本地版本。
+<a href="http://gradle.org/docs/current/userguide/gradle_wrapper.html">官方文档</a></p>
+
+<p>2.如果打算修改Android Studio的配制，需要打开Project Structure Dialog（OS X: ⌘+;），
+在左边的列表中选择Project，然后修改Gradle version为2.4。单击OK，Android Studio会自动安装和同步Gradle的配置。</p>
+
+<p><img src="http://www.openwudi.com/images/2015/1433219043.png" alt="1433219043.png" /></p>
+
+<p>下一步是确保Gradle守护进程和并行编译可用。使用守护进程编译速度会提高，因为它并不会每次都编译完整的项目。
+并行编译会将项目分成多模块编译，这样可以提升大型多模块项目的编译速度。</p>
+
+<p>当然这些设置需要添加到.gradle目录的gradle.properties中。(i.e., ~/.gradle/gradle.properties)</p>
+
+<pre><code>org.gradle.daemon=true
+org.gradle.parallel=true
+</code></pre>
+
+<p>守护进程已经在Android Studio中开启，这样做是为了在终端中使用。</p>
+
+<p>注意：并行编译可能导致一些项目不安全。原因是需要你所有的项目是解耦的，不然会编译失败。<a href="http://gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects">多模块编译</a>
+认真测试所有的build variants，保证都可以正常工作。</p>
+
+<p>添加以下代码可以增加JVM的最大堆内存：</p>
+
+<pre><code>org.gradle.jvmargs=-Xmx768m
+org.gradle.java.home=/path/to/jvm
+</code></pre>
+
+<p>其他的gradle.properties配制，可以参考<a href="http://gradle.org/docs/current/userguide/userguide_single.html#sec:gradle_configuration_properties">官方文档</a>。</p>
+
+<p>最后的更改是增量打包dex，这是一个实验性的功能，默认是不开启的。它可能会导致你编译失败，但是还是建议你去试一下，看看你能否使用。</p>
+
+<p>增加以下代码到app模块的build.gradle中：</p>
+
+<pre><code>dexOptions {
+        incremental true
+}
+</code></pre>
+
+<p>如果你有其他的技巧欢迎与我交流。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Wu Di</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-06-02T11:42:39+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:42 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+    
+    
+    
+
+    
+    <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<br>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2035019"></script>
+<!-- UY END -->
+    
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/06/01/mvvm-mo-shi/" title="Previous Post: Android开发中的MVVM模式">&laquo; Android开发中的MVVM模式</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/06/08/android-xin-kai-fa-gong-ju/" title="Next Post: Google I/O回顾:Android开发工具的新玩意">Google I/O回顾:Android开发工具的新玩意 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/09/06/android-animation/">浅谈Android动画</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/26/android-view-de-hui-zhi-guo-cheng/">Android绘制过程</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/04/adt-bundle/">Eclipse ADT Bundle下载</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/20/jvm-zhai-yao/">JVM工作原理摘要</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/17/java-8-stream-android/">Android开发中使用Java 8 Stream</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+    <h1>About Me</h1>
+
+    <p>帝都成长，华中求学，爱尔兰漂泊一年有余，就职于新浪微博。Google死忠</p>
+
+    <p>Android开发工程师，曾开发微人脉客户端、WiFi胶卷，现在手机微博。</p>
+    <p>Java开发工程师，曾开发Kuali Student开源项目，后负责微人脉后端开发。</p>
+
+    <p>新浪微博：<a href="http://weibo.com/wodis">@讨厌茄子的老科特</a></p>
+    
+    <p>微信公众号：</p>
+    <p><img src="/images/qrcode_for_androiddevtips.jpg"></p>
+    
+    <p>我的微信账号：</p>
+    <p><img src="/images/weixin.jpg"></p>
+
+    <p>Wu Di -- “ I am a programmer who principally focused on Android/Java design and development. Dual master's degree in telecommunication and software engineering. Graduated from Dublin City University and Wuhan University. Working in Beijing. ”</p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy; 2015 - Wu Di -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> -
+    <span class="credit">Thanks for <a href="https://gitcafe.com">GitCafe</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

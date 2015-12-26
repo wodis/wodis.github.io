@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Android详细理解Service - Open Tech Pub - 2015-07-04 21:16:11 +0800</title>
+  <meta name="author" content="Wu Di">
+
+  
+  <meta name="description" content="Service 官方文档给出的解释为。Service是一个无界面，长时间在后台运行的应用组件。
+其他的应用组件可以启动一个Service，即使用户切换到其他应用后Service任然在后台运行。
+另外，组件可以通过绑定(Bind)的方式与Service进行交互，甚至使用Interprocess &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wodis.github.io/blog/2015/07/04/android-service-shen-ru-li-jie/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Open Tech Pub" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+    <!-- googleapis is fucked by gfw -->
+  <script src="http://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!-- 
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+ -->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?16937d74824f50bd02daa98ce1ba6048";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Open Tech Pub</a></h1>
+  
+    <h2>那些年关注的技术</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="wodis.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+    <li><a href="/">首页</a></li>
+    <li><a href="/blog/archives">所有文章</a></li>
+    <li><a href="http://www.weibo.com/wodis">我的微博</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Android详细理解Service</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-07-04T21:16:11+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:16 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h1>Service</h1>
+
+<p>官方文档给出的解释为。Service是一个无界面，长时间在后台运行的应用组件。
+其他的应用组件可以启动一个Service，即使用户切换到其他应用后Service任然在后台运行。
+另外，组件可以通过绑定(Bind)的方式与Service进行交互，甚至使用Interprocess Communication(IPC)的方式。</p>
+
+<p>Service基本上可以采取两种形式：</p>
+
+<p>Started</p>
+
+<p>当一个组件调用startService()方法后，Service将启动。一旦被启动，无论启动它的组件是否被销毁，Service都会在后台运行。
+这种方式通常为了执行一个单独的操作，并且我们不需要Service返回状态。</p>
+
+<p>Bound</p>
+
+<p>当一个组件调用bindService()方法后，Service提供了一个接口使得可以与组件进行交互。包括发送请求，获得结果，甚至进程间通信IPC。</p>
+
+<p>一般会分开讨论这两种Service的启动类型，但我们可以使Service在这两种方式下运行。这取决于你是否实现了一对回调方法：onStartCommand()允许组件启动；onBind()允许组件绑定。</p>
+
+<p><code>值得注意的是Service是运行在主线程中的，这意味着Service不能创建它自己的线程，也不能运行在其他进程中（除非特别指定）。一旦你需要做一些消耗CPU的工作或者阻塞操作，你应该在Service中创建一个新的线程去完成。</code></p>
+
+<p><strong>何时使用Service或者Thread：</strong>Service因为是Android中的一个组件，会一直在后台运行，请确认是否需要一个常驻的功能。Thread通常是处理一个异步的任务，任务执行完就不再需要，它避免阻塞主线程。</p>
+
+<h1>Service常用基类</h1>
+
+<h3>Service</h3>
+
+<p>这是所有服务类的基类，继承该类，对于在服务中创建新线程很重要。因为默认服务使用应用的主线程，可能会降低程序的性能。</p>
+
+<h3>IntentService</h3>
+
+<p>这是一个Service的子类，该子类使用线程处理所有启动请求，一次一个。这是不使用服务处理多任务请求的最佳选择。你需要做的只是实现onHandleIntent()方法即可。可以为每个启动请求接收到intent，放到后台工作即可。
+内部使用一个Handler和Looper来实现子线程处理.</p>
+
+<h1>Service生命周期</h1>
+
+<h3>未绑定的服务</h3>
+
+<p>startService() -> onCreate() -> onStartCommand() -> 运行服务 -> 停止 -> onDestroy() -> 服务关闭</p>
+
+<h3>绑定的服务</h3>
+
+<p>bindService() -> onCreate() -> onBind() -> 客户端绑定到服务 -> 客户端调用unbindService() -> onUnbind() -> onDestroy() -> 服务关闭</p>
+
+<h1>自动启动Service</h1>
+
+<p>通常的办法是实现一个BroadcastReceiver，监听ACTION_BOOT_COMPLETED即可，并在接收完该广播后通过AlarmManager轮询发送自定义广播，再通过另一个BroadcastReceiver启动Service。</p>
+
+<p>如果通过某种方式将整个进程杀死，所有的服务也会被杀死，此时将无法定期启动服务了。要想达到即使杀死了也可以自动启动服务，需要注册一个系统级别的BroadcastReceiver。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Wu Di</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-07-04T21:16:11+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:16 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+    
+    
+    
+
+    
+    <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<br>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2035019"></script>
+<!-- UY END -->
+    
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/06/08/android-xin-kai-fa-gong-ju/" title="Previous Post: Google I/O回顾:Android开发工具的新玩意">&laquo; Google I/O回顾:Android开发工具的新玩意</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/07/15/http-xiang-jie/" title="Next Post: HTTP协议">HTTP协议 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/09/06/android-animation/">浅谈Android动画</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/26/android-view-de-hui-zhi-guo-cheng/">Android绘制过程</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/04/adt-bundle/">Eclipse ADT Bundle下载</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/20/jvm-zhai-yao/">JVM工作原理摘要</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/17/java-8-stream-android/">Android开发中使用Java 8 Stream</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+    <h1>About Me</h1>
+
+    <p>帝都成长，华中求学，爱尔兰漂泊一年有余，就职于新浪微博。Google死忠</p>
+
+    <p>Android开发工程师，曾开发微人脉客户端、WiFi胶卷，现在手机微博。</p>
+    <p>Java开发工程师，曾开发Kuali Student开源项目，后负责微人脉后端开发。</p>
+
+    <p>新浪微博：<a href="http://weibo.com/wodis">@讨厌茄子的老科特</a></p>
+    
+    <p>微信公众号：</p>
+    <p><img src="/images/qrcode_for_androiddevtips.jpg"></p>
+    
+    <p>我的微信账号：</p>
+    <p><img src="/images/weixin.jpg"></p>
+
+    <p>Wu Di -- “ I am a programmer who principally focused on Android/Java design and development. Dual master's degree in telecommunication and software engineering. Graduated from Dublin City University and Wuhan University. Working in Beijing. ”</p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy; 2015 - Wu Di -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> -
+    <span class="credit">Thanks for <a href="https://gitcafe.com">GitCafe</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
