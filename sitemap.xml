@@ -1,13 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://wodis.github.io/blog/2015/05/26/first-blog/</loc>
-    <lastmod>2015-05-26T16:07:32+08:00</lastmod>
+    <loc>http://wodis.github.io/blog/2015/09/06/android-animation/</loc>
+    <lastmod>2015-09-06T18:26:51+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2015/08/26/android-view-de-hui-zhi-guo-cheng/</loc>
+    <lastmod>2015-08-26T17:23:01+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2015/08/04/adt-bundle/</loc>
+    <lastmod>2015-08-04T17:32:10+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2015/07/20/jvm-zhai-yao/</loc>
+    <lastmod>2015-07-20T16:34:57+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2015/07/17/java-8-stream-android/</loc>
+    <lastmod>2015-07-17T11:48:52+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2015/07/15/http-xiang-jie/</loc>
+    <lastmod>2015-07-15T10:05:37+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2015/07/04/android-service-shen-ru-li-jie/</loc>
+    <lastmod>2015-07-04T21:16:11+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2015/06/08/android-xin-kai-fa-gong-ju/</loc>
+    <lastmod>2015-06-08T12:52:33+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2015/06/02/ti-sheng-gradle-xing-neng/</loc>
+    <lastmod>2015-06-02T11:42:39+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2015/06/01/mvvm-mo-shi/</loc>
+    <lastmod>2015-06-01T18:27:14+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2015/05/27/python-learning/</loc>
+    <lastmod>2015-05-27T14:23:19+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2015/02/19/nginxzhuan-ti/</loc>
+    <lastmod>2015-02-19T14:40:19+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2015/01/10/git-flow/</loc>
+    <lastmod>2015-01-10T15:58:07+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2015/01/04/linux-command-line-tips/</loc>
+    <lastmod>2015-01-04T18:53:34+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2015/01/01/first-blog/</loc>
+    <lastmod>2015-01-01T16:07:32+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2014/09/02/google-guava-library-tips/</loc>
+    <lastmod>2014-09-02T18:58:38+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2014/07/01/git-learning/</loc>
+    <lastmod>2014-07-01T13:47:06+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/2014/06/27/android-tips-round-up/</loc>
+    <lastmod>2014-06-27T15:20:27+08:00</lastmod>
   </url>
   <url>
     <loc>http://wodis.github.io/blog/archives/</loc>
   </url>
   <url>
     <loc>http://wodis.github.io/</loc>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/categories/android/</loc>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/categories/git/</loc>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/categories/java/</loc>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/categories/linux/</loc>
+  </url>
+  <url>
+    <loc>http://wodis.github.io/blog/categories/python/</loc>
   </url>
 </urlset>

@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Nginx专题 - Open Tech Pub - 2015-02-19 14:40:19 +0800</title>
+  <meta name="author" content="Wu Di">
+
+  
+  <meta name="description" content="起因：由于工作内容变化的原因，需要多了解后端所使用的技术。
+但是一直没有时间去从头学习，过年在家抢红包无意间看见一篇用Nginx做代理并通过log自己动手做一个报警工具
+原文。
+所以这才从头开始搭一下Nginx。现在为学习Nginx做一个整合，争取过年期间快速浏览一遍。 Nginx学习之一： &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wodis.github.io/blog/2015/02/19/nginxzhuan-ti/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Open Tech Pub" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+    <!-- googleapis is fucked by gfw -->
+  <script src="http://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!-- 
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+ -->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?16937d74824f50bd02daa98ce1ba6048";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Open Tech Pub</a></h1>
+  
+    <h2>那些年关注的技术</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="wodis.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+    <li><a href="/">首页</a></li>
+    <li><a href="/blog/archives">所有文章</a></li>
+    <li><a href="http://www.weibo.com/wodis">我的微博</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Nginx专题</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-02-19T14:40:19+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:40 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>起因：由于工作内容变化的原因，需要多了解后端所使用的技术。
+但是一直没有时间去从头学习，过年在家抢红包无意间看见一篇用Nginx做代理并通过log自己动手做一个报警工具
+<a href="http://mp.weixin.qq.com/s?__biz=MjM5NDMwNjMzNA==&amp;amp;amp;mid=203292077&amp;amp;amp;idx=3&amp;amp;amp;sn=815dcf56c4d60ef7251c7c18cfa0fc81&amp;amp;amp;3rd=MzA3MDU4NTYzMw==&amp;amp;amp;scene=6#rd">原文</a>。
+所以这才从头开始搭一下Nginx。现在为学习Nginx做一个整合，争取过年期间快速浏览一遍。</p>
+
+<hr />
+
+<ul>
+<li><a href="http://my.oschina.net/boonya/blog/286422">Nginx学习之一：从权威途径(wiki)了解Nginx</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287189">Nginx学习之二：Nginx 学习地图梗概</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287201">Nginx学习之三：对应平台的Nginx下载和安装</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287265">Nginx学习之四：Nginx支持模块的安装及描述</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287300">Nginx学习之五：Nginx第三方模块</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287313">Nginx学习之六：Nginx配置操作导航</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287322">Nginx学习之七：通过Nginx社区进行技术交流</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/287330">Nginx开发者学习资源攻略</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/288874">Nginx学习之九：实践学习指南</a></li>
+<li><a href="http://my.oschina.net/boonya/blog/289423">Nginx学习之十：Nginx+Tomcat多站点访问默认主页问题</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Wu Di</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-02-19T14:40:19+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:40 pm</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+    
+    
+    
+
+    
+    <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<br>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2035019"></script>
+<!-- UY END -->
+    
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/01/10/git-flow/" title="Previous Post: Git分支模型图">&laquo; Git分支模型图</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/05/27/python-learning/" title="Next Post: Python Learning">Python Learning &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/09/06/android-animation/">浅谈Android动画</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/26/android-view-de-hui-zhi-guo-cheng/">Android绘制过程</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/04/adt-bundle/">Eclipse ADT Bundle下载</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/20/jvm-zhai-yao/">JVM工作原理摘要</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/17/java-8-stream-android/">Android开发中使用Java 8 Stream</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+    <h1>About Me</h1>
+
+    <p>帝都成长，华中求学，爱尔兰漂泊一年有余，就职于新浪微博。Google死忠</p>
+
+    <p>Android开发工程师，曾开发微人脉客户端、WiFi胶卷，现在手机微博。</p>
+    <p>Java开发工程师，曾开发Kuali Student开源项目，后负责微人脉后端开发。</p>
+
+    <p>新浪微博：<a href="http://weibo.com/wodis">@讨厌茄子的老科特</a></p>
+    
+    <p>微信公众号：</p>
+    <p><img src="/images/qrcode_for_androiddevtips.jpg"></p>
+    
+    <p>我的微信账号：</p>
+    <p><img src="/images/weixin.jpg"></p>
+
+    <p>Wu Di -- “ I am a programmer who principally focused on Android/Java design and development. Dual master's degree in telecommunication and software engineering. Graduated from Dublin City University and Wuhan University. Working in Beijing. ”</p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy; 2015 - Wu Di -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> -
+    <span class="credit">Thanks for <a href="https://gitcafe.com">GitCafe</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

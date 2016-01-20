@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Android Tips Round-Up - Open Tech Pub - 2014-06-27 15:20:27 +0800</title>
+  <meta name="author" content="Wu Di">
+
+  
+  <meta name="description" content="Activity.startActivities() - Nice for launching to the middle of an app flow. TextUtils.isEmpty() - Simple utility I use everywhere. Html.fromHtml &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wodis.github.io/blog/2014/06/27/android-tips-round-up/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Open Tech Pub" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+    <!-- googleapis is fucked by gfw -->
+  <script src="http://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!-- 
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+ -->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?16937d74824f50bd02daa98ce1ba6048";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Open Tech Pub</a></h1>
+  
+    <h2>那些年关注的技术</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="wodis.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+    <li><a href="/">首页</a></li>
+    <li><a href="/blog/archives">所有文章</a></li>
+    <li><a href="http://www.weibo.com/wodis">我的微博</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Android Tips Round-Up</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-06-27T15:20:27+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:20 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://developer.android.com/reference/android/app/Activity.html#startActivities(android.content.Intent[])">Activity.startActivities()</a> - Nice for launching to the middle of an app flow.</p>
+
+<p><a href="http://developer.android.com/reference/android/text/TextUtils.html#isEmpty(java.lang.CharSequence)">TextUtils.isEmpty()</a> - Simple utility I use everywhere.</p>
+
+<p><a href="http://developer.android.com/reference/android/text/Html.html#fromHtml(java.lang.String)">Html.fromHtml()</a> - Quick method for formatting Html. It&rsquo;s not particularly fast so I wouldn&rsquo;t use it constantly (e.g., don&rsquo;t use it just to bold part of a string - construct the Spannable manually instead), but it&rsquo;s fine for rendering text obtained from the web.</p>
+
+<p><a href="http://developer.android.com/reference/android/widget/TextView.html#setError%28java.lang.CharSequence%29">TextView.setError()</a> - Nice UI when validating user input.</p>
+
+<p><a href="http://developer.android.com/reference/android/os/Build.VERSION_CODES.html">Build.VERSION_CODES</a> - Not only is it handy for routing code, it&rsquo;s also summarizes behavioral differences between each version of Android.</p>
+
+<p><a href="http://developer.android.com/reference/android/util/Log.html#getStackTraceString(java.lang.Throwable)">Log.getStackTraceString()</a> - Convenience utility for logging.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/LayoutInflater.html#from%28android.content.Context%29">LayoutInflater.from()</a> - Wraps the long-winded getSystemService() call in a simple utility.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/ViewConfiguration.html#getScaledTouchSlop%28%29">ViewConfiguration.getScaledTouchSlop()</a> - Using the values provided in ViewConfiguration ensures all touch interaction feels consistent across the OS.</p>
+
+<p><a href="http://developer.android.com/reference/android/telephony/PhoneNumberUtils.html#convertKeypadLettersToDigits%28java.lang.String%29">PhoneNumberUtils.convertKeypadLettersToDigits</a> - Makes handling phone number data a snap, as some companies provide them as letters.</p>
+
+<p><a href="http://developer.android.com/reference/android/content/Context.html#getCacheDir%28%29">Context.getCacheDir()</a> - Use the cache dir for caching data. Simple enough but some don&rsquo;t know it exists.</p>
+
+<p><a href="http://developer.android.com/reference/android/animation/ArgbEvaluator.html">ArgbEvaluator</a> - Transition from one color to another. As was pointed out by Chris Banes, this class creates a lot of autoboxing churn so it&rsquo;d be better to just rip out the logic and run it yourself.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/ContextThemeWrapper.html">ContextThemeWrapper</a> - Nice class for changing the theme of a Context on the fly.</p>
+
+<p><a href="http://developer.android.com/reference/android/widget/Space.html">Space</a> - Lightweight View which skips drawing. Great for any situation that might require a placeholder.</p>
+
+<p><a href="http://developer.android.com/reference/android/animation/ValueAnimator.html#reverse%28%29">ValueAnimator.reverse()</a> - I love this for canceling animations smoothly.</p>
+
+<p><a href="http://developer.android.com/reference/android/text/format/DateUtils.html#formatDateTime%28android.content.Context,%20long,%20int%29">DateUtils.formatDateTime()</a> - One-stop shop for localized date/time strings.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int,long,long,android.app.PendingIntent)">AlarmManager.setInexactRepeating</a> - Saves on battery life by grouping multiple alarms together. Even if you&rsquo;re only calling a single alarm this is better (just make sure to call AlarmManager.cancel() when done).</p>
+
+<p><a href="http://developer.android.com/reference/android/text/format/Formatter.html#formatFileSize(android.content.Context,long)">Formatter.formatFileSize()</a> - A localized file size formatter.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/ActionBar.html#hide()">ActionBar.hide()/.show()</a> - Animates the action bar hiding/showing. Lets you switch to full-screen gracefully.</p>
+
+<p><a href="http://developer.android.com/reference/android/text/util/Linkify.html#addLinks(android.text.Spannable,int)">Linkify.addLinks()</a> - If you need to control how links are added to text.</p>
+
+<p><a href="http://developer.android.com/reference/android/text/StaticLayout.html">StaticLayout</a> - Useful for measuring text that you&rsquo;re about to render into a custom View.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/Activity.html#onBackPressed()">Activity.onBackPressed()</a> - Easy way to manage the back button. While I wouldn&rsquo;t normally hijack back, sometimes it&rsquo;s necessary to make a flow work.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/GestureDetector.html">GestureDetector</a> - Listens to motion events and fires listener events for common actions (like clicks, scrolls and flings). So much easier than implementing your own motion event system.</p>
+
+<p><a href="http://developer.android.com/reference/android/graphics/DrawFilter.html">DrawFilter</a> - Lets you manipulate a Canvas even if you&rsquo;re not calling the draw commands. For example, you could create a custom View which sets a DrawFilter which anti-aliases the draws of the parent View.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/ActivityManager.html#getMemoryClass()">ActivityManager.getMemoryClass()</a> - Gives you an idea of how much memory the device has. Great for figuring out how large to make your caches.</p>
+
+<p><a href="http://developer.android.com/reference/android/os/SystemClock.html#sleep(long)">SystemClock.sleep()</a> - Convenience method which guarantees sleeping the amount of time entered. I use it for debugging and simulating network delays.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/ViewStub.html">ViewStub</a> - A View that initially does nothing, but can later inflate a layout. This is a great placeholder for lazy-loading Views. Its only drawback is that it doesn&rsquo;t support <merge> tags, so it can create unnecessary nesting in the hierarchy if you&rsquo;re not careful.</p>
+
+<p><a href="http://developer.android.com/reference/android/util/DisplayMetrics.html#density">DisplayMetrics.density</a> - You can get the density of the screen this way. Most of the time you&rsquo;ll be better off letting the system scale dimensions automatically, but occasionally it&rsquo;s useful to have more control (especially with custom Views).</p>
+
+<p><a href="http://developer.android.com/reference/android/util/Pair.html#create(A,B)">Pair.create()</a> - Handy class, handy creator method.</p>
+
+<p><a href="http://developer.android.com/reference/android/net/UrlQuerySanitizer.html">UrlQuerySanitizer</a> - Sanitize URLs with this handy utility.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/Fragment.html#setArguments%28android.os.Bundle%29">Fragment.setArguments</a> - Since you can&rsquo;t use a Fragment constructor w/ parameters this is the second best thing. Arguments set before creation last throughout the entire Fragment&rsquo;s lifecycle (even if it&rsquo;s destroyed/recreated due to a configuration change).</p>
+
+<p><a href="http://developer.android.com/reference/android/app/DialogFragment.html#setShowsDialog%28boolean%29">DialogFragment.setShowsDialog()</a> - Neat trick - DialogFragments can act like normal Fragments! That way you can have the same Fragment do double-duty. I usually create a third View generation method that both onCreateView() and onCreateDialog() call into when creating a dual-purpose Fragment.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/FragmentManager.html#enableDebugLogging%28boolean%29">FragmentManager.enableDebugLogging()</a> - Help when you need it when figuring out Fragments.</p>
+
+<p><a href="http://developer.android.com/reference/android/support/v4/content/LocalBroadcastManager.html">LocalBroadcastManager</a> - Safer than global broadcasts. Simple and quick. Event buses like otto may make more sense for your use case though.</p>
+
+<p><a href="http://developer.android.com/reference/android/telephony/PhoneNumberUtils.html#formatNumber%28java.lang.String%29">PhoneNumberUtils.formatNumber()</a> - Let someone else figure out this problem for you.</p>
+
+<p><a href="http://developer.android.com/reference/android/graphics/Region.html#op%28android.graphics.Region,%20android.graphics.Region,%20android.graphics.Region.Op%29">Region.op()</a> - I found this useful for comparing two generic areas before rendering. If I&rsquo;ve got two Paths, do they overlap? I can figure that out with this method.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks%28android.app.Application.ActivityLifecycleCallbacks%29">Application.registerActivityLifecycleCallbacks</a> - Though lacking documentation I feel this is self-evident. Just a handy tool.</p>
+
+<p><a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Build-Types">versionNameSuffix</a> - This gradle setting lets you modify the versionName field in your manifest based on different build types. For example, I would setup my debug build type to end in &ldquo;-SNAPSHOT&rdquo;; that way you can easily tell if you&rsquo;re on a debug build or release build.</p>
+
+<p><a href="http://developer.android.com/reference/android/database/CursorJoiner.html">CursorJoiner</a> - If you&rsquo;re using a single database then a join in SQL is the natural solution, but what if you&rsquo;ve received data from two separate ContentProviders? In that case CursorJoiner can be helpful.</p>
+
+<p><a href="http://www.genymotion.com/">Genymotion</a> - A much faster Android emulator. I use it all day.</p>
+
+<p><a href="http://developer.android.com/guide/practices/screens_support.html#qualifiers">-nodpi</a> - Most qualifiers (-mdpi, -hdpi, -xhdpi, etc.) automatically scale assets/dimensions if you&rsquo;re on a device that isn&rsquo;t explicitly defined. Sometimes you just want something consistent though; in that case use -nodpi.</p>
+
+<p><a href="http://developer.android.com/reference/android/content/BroadcastReceiver.html#setDebugUnregister%28boolean%29">BroadcastRecevier.setDebugUnregister()</a> - Another handy debugging tool.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/Activity.html#recreate%28%29">Activity.recreate()</a> - Forces an Activity to recreate itself for whatever reason.</p>
+
+<p><a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#checkSignatures%28java.lang.String,%20java.lang.String%29">PackageManager.checkSignatures()</a> - You can use this to find out if two apps (presumably your own) are installed at the same time. Without checking signatures someone could imitate your app easily by just using the same package name.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/Activity.html#isChangingConfigurations%28%29">Activity.isChangingConfigurations()</a> - Often times you don&rsquo;t need to do quite as much saving of state if all that&rsquo;s happening is the configuration is changing.</p>
+
+<p><a href="http://developer.android.com/reference/android/content/SearchRecentSuggestionsProvider.html">SearchRecentSuggestionsProvider</a> - A quick and easy way to create a recents suggestion provider.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/ViewTreeObserver.html">ViewTreeObserver</a> - This is an amazing utility; it can be grabbed from any View and used to monitor the state of the View hierarchy. My most often use for it is to determine when Views have been measured (usually for animation purposes).</p>
+
+<p><a href="https://www.timroes.de/2013/09/12/speed-up-gradle/">org.gradle.daemon=true</a> - Helps reduce the startup time of of Gradle builds. Only really applies to command-line builds as Android Studio already tries to use the daemon.</p>
+
+<p><a href="http://developer.android.com/reference/android/database/DatabaseUtils.html">DatabaseUtils</a> - A variety of useful tools for database operations.</p>
+
+<p><a href="http://developer.android.com/reference/android/widget/LinearLayout.html#attr_android:weightSum">android:weightSum (LinearLayout)</a> - Want to use layout weights, but don&rsquo;t want them to fill the entire LinearLayout? That&rsquo;s what weightSum can do by defining the total weight.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/View.html#attr_android:duplicateParentState">android:duplicateParentState (View)</a> - Makes the child duplicate the state of the parent - for example, if you&rsquo;ve got a ViewGroup that is clickable, then you can use this to make its children change state when it is clicked.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/ViewGroup.html#attr_android:clipChildren">android:clipChildren (ViewGroup)</a> - If disabled, this lets the children of a ViewGroup draw outside their parent&rsquo;s bounds. Great for animations.</p>
+
+<p><a href="http://developer.android.com/reference/android/widget/ScrollView.html#attr_android:fillViewport">android:fillViewport (ScrollView)</a> - Best explained in this post, this helps solve a problem with ScrollViews that may not always have enough content to actually fill the height of the screen.</p>
+
+<p><a href="http://developer.android.com/guide/topics/resources/drawable-resource.html#Bitmap">android:tileMode (BitmapDrawable)</a> - Lets you create repeated patterns with images.</p>
+
+<p><a href="http://developer.android.com/reference/android/R.attr.html#exitFadeDuration">android:enterFadeDuration/android:exitFadeDuration (Drawables)</a> - For Drawables that have multiple states, this lets you define a fade before/after the drawable shows.</p>
+
+<p><a href="http://developer.android.com/reference/android/widget/ImageView.html#attr_android:scaleType">android:scaleType (ImageView)</a> - Defines how to scale/crop a drawable within an ImageView. &ldquo;centerCrop&rdquo; and &ldquo;centerInside&rdquo; are regular settings for me.</p>
+
+<p><a href="http://developer.android.com/training/improving-layouts/reusing-layouts.html#Merge"><merge></a> - Lets you include a layout in another without creating a duplicate ViewGroup (more info). Also good for custom ViewGroups; you can inflate a layout with <merge> inside the constructor to define its children automatically.</p>
+
+<p><a href="http://developer.android.com/reference/android/util/AtomicFile.html">AtomicFile</a> - Manipulates a file atomically by using a backup file. I&rsquo;ve written this myself before, it&rsquo;s good to have an official (and better-written) version of it.</p>
+
+<p><a href="https://developer.android.com/reference/android/support/v4/widget/ViewDragHelper.html">ViewDragHelper</a> - Dragging Views is a complex problem and this class helps a lot. If you want an example, DrawerLayout uses it for swiping. Flavient Laurent also wrote an excellent article about it.</p>
+
+<p><a href="https://developer.android.com/reference/android/widget/PopupWindow.html">PopupWindow</a> - Used all around Android without you even realizing it (action bars, autocomplete, edittext errors), this class is the primary method for creating floating content.</p>
+
+<p><a href="https://developer.android.com/reference/android/app/ActionBar.html#getThemedContext()">ActionBar.getThemedContext()</a> - ActionBar theming is surprisingly complex (and can be different from the theming of the rest of the Activity). This gets you a Context so if you create your own Views they will be properly themed.</p>
+
+<p><a href="https://developer.android.com/reference/android/media/ThumbnailUtils.html">ThumbnailUtils</a> - Helps create thumbnails; in general I&rsquo;d just use whatever image library was already in place (e.g. Picasso or Volley), but it can also create video thumbnails!</p>
+
+<p><a href="https://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String)">Context.getExternalFilesDir()</a> - While you do have permission to write anywhere on the SD card if you ask for it, it&rsquo;s much more polite to write your data in the correct designated folder. That way it gets cleaned up and users get a common experience. Additionally, as of Kit Kat you can write to this folder without permission, and each user has their own external files dir.</p>
+
+<p><a href="https://developer.android.com/reference/android/util/SparseArray.html">SparseArray</a> - A more efficient version of Map&lt;Integer, Object>. Be sure to check out sister classes SparseBooleanArray, SparseIntArray and SparseLongArray as well.</p>
+
+<p><a href="https://developer.android.com/reference/android/content/pm/PackageManager.html#setComponentEnabledSetting(android.content.ComponentName,int,int)">PackageManager.setComponentEnabledSetting()</a> - Lets you enable/disable components in your app&rsquo;s manifest. What&rsquo;s nice here is being able to shut off unnecessary functionality - for example, a BroadcastReceiver that is unnecessary due to the current app configuration.</p>
+
+<p><a href="https://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.html#yieldIfContendedSafely()">SQLiteDatabase.yieldIfContendedSafely()</a> - Lets you temporarily stop a db transaction so you don&rsquo;t tie up too much of the system.</p>
+
+<p><a href="https://developer.android.com/reference/android/os/Environment.html#getExternalStoragePublicDirectory(java.lang.String)">Environment.getExternalStoragePublicDirectory()</a> - Again, users like a consistent experience with their SD card; using this method will grab the correct directory for placing typed files (music, pictures, etc.) on their drive.</p>
+
+<p><a href="https://developer.android.com/reference/android/view/View.html#generateViewId()">View.generateViewId()</a> - Every once in a while I&rsquo;ve wanted to dynamically generate view IDs. The problem is ensuring you aren&rsquo;t clobbering existing IDs (or other generated ones).</p>
+
+<p><a href="https://developer.android.com/reference/android/app/ActivityManager.html#clearApplicationUserData()">ActivityManager.clearApplicationUserData()</a> - A reset button for your app. Perhaps the easiest way to log out a user, ever.</p>
+
+<p><a href="http://developer.android.com/reference/android/content/Context.html#createConfigurationContext(android.content.res.Configuration)">Context.createConfigurationContext()</a> - Customize your configuration context. Common problem I&rsquo;ve run into: forcing part of an app to render in a particular locale (not that I normally condone this sort of behavior, but you never know). This would make it a lot easier to do so.</p>
+
+<p><a href="http://developer.android.com/reference/android/app/ActivityOptions.html">ActivityOptions</a> - Nice custom animations when moving between Activities. ActivityOptionsCompat is good for backwards compatible functionality.</p>
+
+<p><a href="http://developer.android.com/reference/android/widget/AdapterViewFlipper.html#fyiWillBeAdvancedByHostKThx%28%29">AdapterViewFlipper.fyiWillBeAdvancedByHostKThx()</a> - Because it&rsquo;s funny and for no other reason. There are other amusing tidbits in AOSP (like GRAVITY_DEATH_STAR_I) but unlike those this one is actually useful.</p>
+
+<p><a href="http://developer.android.com/reference/android/view/ViewParent.html#requestDisallowInterceptTouchEvent%28boolean%29">ViewParent.requestDisallowInterceptTouchEvent()</a> - The Android touch event system defaults handle what you want most of the time, but sometimes you need this method to wrest event control from parents. (By the way, if you want to know about the touch system, this talk is amazing.)</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Wu Di</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-06-27T15:20:27+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:20 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+    
+    
+    
+
+    
+    <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+<br>
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2035019"></script>
+<!-- UY END -->
+    
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/07/01/git-learning/" title="Next Post: Git Learning">Git Learning &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/09/06/android-animation/">浅谈Android动画</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/26/android-view-de-hui-zhi-guo-cheng/">Android绘制过程</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/04/adt-bundle/">Eclipse ADT Bundle下载</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/20/jvm-zhai-yao/">JVM工作原理摘要</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/17/java-8-stream-android/">Android开发中使用Java 8 Stream</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+    <h1>About Me</h1>
+
+    <p>帝都成长，华中求学，爱尔兰漂泊一年有余，就职于新浪微博。Google死忠</p>
+
+    <p>Android开发工程师，曾开发微人脉客户端、WiFi胶卷，现在手机微博。</p>
+    <p>Java开发工程师，曾开发Kuali Student开源项目，后负责微人脉后端开发。</p>
+
+    <p>新浪微博：<a href="http://weibo.com/wodis">@讨厌茄子的老科特</a></p>
+    
+    <p>微信公众号：</p>
+    <p><img src="/images/qrcode_for_androiddevtips.jpg"></p>
+    
+    <p>我的微信账号：</p>
+    <p><img src="/images/weixin.jpg"></p>
+
+    <p>Wu Di -- “ I am a programmer who principally focused on Android/Java design and development. Dual master's degree in telecommunication and software engineering. Graduated from Dublin City University and Wuhan University. Working in Beijing. ”</p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy; 2015 - Wu Di -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> -
+    <span class="credit">Thanks for <a href="https://gitcafe.com">GitCafe</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
